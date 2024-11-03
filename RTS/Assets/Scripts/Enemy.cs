@@ -61,7 +61,6 @@ public class Enemy : MonoBehaviour,IDamage
         while (true)
         {
             var temp = Physics2D.OverlapCircle(transform.position,5.0f,LayerMask.GetMask("Player"));
-            Debug.Log(temp + transform.name);
             if (temp)
             {
                 move.StartMove(temp.gameObject);
@@ -77,9 +76,9 @@ public class Enemy : MonoBehaviour,IDamage
 
     public void TakeDamage(float Damage)
     {
-        Debug.Log("OUCH!!!!!!!!!");
         Health -= Damage;
-        if(Health <= 0)
+        Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = Damage;
+        if (Health <= 0)
         {
             Die();
         }

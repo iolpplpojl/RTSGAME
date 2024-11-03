@@ -16,6 +16,7 @@ public class Player : MonoBehaviour,IDamage
     public float Health { get => _health; set => _health = value; }
 
 
+
     public void Die()
     {
         GetComponentInParent<Goons>().memberDie(gameObject);
@@ -24,6 +25,8 @@ public class Player : MonoBehaviour,IDamage
     public void TakeDamage(float Damage)
     {
         Health -= Damage;
+        Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = Damage;
+        Debug.Log(Damage + "Ouch");
         if (Health <= 0)
         {
             Die();

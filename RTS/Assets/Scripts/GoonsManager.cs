@@ -19,9 +19,53 @@ public class GoonsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        var temp = isNumberKeyPressed();
+        if (temp != -1)
         {
-            Goons[0].Selected = true;
+            Select(temp);
+        }
+
+    }
+
+
+    int isNumberKeyPressed()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            return 0;
+        }
+        for (KeyCode key = KeyCode.Alpha1; key <= KeyCode.Alpha9; key++)
+        {
+            if (Input.GetKeyDown(key))
+            {
+                return key - KeyCode.Alpha0;
+            }
+        }
+        return -1;
+    }
+
+    void Select(int idx)
+    {
+        Debug.Log(idx);
+        if(idx == 0)
+        {
+            idx = 10;
+        }
+        if(idx > Goons.Count)
+        {
+            return;
+        }
+        for (int i = 0; i < Goons.Count; i++)
+        {
+            if(i == idx-1)
+            {
+                Goons [i].Selected = true;
+            }
+            else
+            {
+                Goons[i].Selected = false;
+            }
+                
         }
     }
 }
