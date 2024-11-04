@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.ComponentModel;
 public class RoomManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -14,7 +15,7 @@ public class RoomManager : MonoBehaviour
     int gridY = 20;
     int[,] room_grid; // X , Y
     int roomcount = 0;
-    int roommax = 12;
+    int roommax = 8;
     bool roomgencomplete = false;
 
     void Start()
@@ -27,27 +28,81 @@ public class RoomManager : MonoBehaviour
         if (roomQueue.Count > 0 && roommax > roomcount && !roomgencomplete)
         {
             Room room = roomQueue.Dequeue();
-            RoomGeneration(room.Pos + Vector2Int.left,room);
-            RoomGeneration(room.Pos + Vector2Int.right, room);
-            RoomGeneration(room.Pos + Vector2Int.up, room);
-            RoomGeneration(room.Pos + Vector2Int.down,room);
 
+            // 방향을 배열에 저장
+            Vector2Int[] directions = new Vector2Int[]
+            {
+               Vector2Int.left,
+                  Vector2Int.right,
+                Vector2Int.up,
+              Vector2Int.down
+            };
+
+            // 배열을 무작위로 섞기
+            ShuffleArray(directions);
+
+            // 섞인 방향에 따라 방 생성
+            foreach (var direction in directions)
+            {
+                RoomGeneration(room.Pos + direction, room);
+            }
         }
-        else if(!roomgencomplete)
+        else if (!roomgencomplete)
         {
             Debug.Log("생성 완료됨.");
             roomgencomplete = true;
         }
     }
 
+    // 배열을 무작위로 섞는 메서드
+    void ShuffleArray(Vector2Int[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            int randomIndex = Random.Range(i, array.Length);
+            // 스왑
+            Vector2Int temp = array[i];
+            array[i] = array[randomIndex];
+            array[randomIndex] = temp;
+        }
+    }
+
+
+    void SetConnection(Room from, Room to)
+    {
+        var temp = from.Pos - to.Pos;
+        if(temp == Vector2Int.left)
+        {
+            from.doors[1].SetActive(true);
+        }
+        if (temp == Vector2Int.right)
+        {
+            from.doors[0].SetActive(true);
+
+        }
+        if (temp == Vector2Int.up)
+        {
+            from.doors[3].SetActive(true);
+        }
+        if (temp == Vector2Int.down)
+        {
+            from.doors[2].SetActive(true);
+        }
+    }
+
     void RoomGeneration(Vector2Int index, Room room)
     {
         Debug.Log(index);
+        if (roommax <= roomcount)
+        {
+            return;
+        }
         if (room_grid[index.x, index.y] != 0)
             return;
+
         if (room.ConnectCount >= 1)
         {
-            if(Random.value < (0.44f * room.ConnectCount) && index != Vector2Int.zero)
+            if(Random.value < 0.5f && index != Vector2Int.zero)
             {
                 return;
             }
@@ -65,6 +120,7 @@ public class RoomManager : MonoBehaviour
         list_room.Add(init);
         room.ConnectCount++;
         room.OutRoom.Add(init.GetComponent<Room>());
+        SetConnection(room, init.GetComponent<Room>());
         init.GetComponent<Room>().InRoom.Add(room);
         roomQueue.Enqueue(init.GetComponent<Room>());
 

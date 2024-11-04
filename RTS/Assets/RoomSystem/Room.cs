@@ -8,4 +8,9 @@ public class Room : MonoBehaviour
     public int ConnectCount = 0;
     public List<Room> OutRoom = new List<Room>();
     public List<Room> InRoom = new List<Room>();
+
+
+    public List<GameObject> doors = new List<GameObject>();
+
+
 }
