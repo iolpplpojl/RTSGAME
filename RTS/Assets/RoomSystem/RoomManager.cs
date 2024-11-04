@@ -15,7 +15,7 @@ public class RoomManager : MonoBehaviour
     int gridY = 20;
     int[,] room_grid; // X , Y
     int roomcount = 0;
-    int roommax = 8;
+    int roommax = 12;
     bool roomgencomplete = false;
 
     void Start()
@@ -102,7 +102,7 @@ public class RoomManager : MonoBehaviour
 
         if (room.ConnectCount >= 1)
         {
-            if(Random.value < 0.5f && index != Vector2Int.zero)
+            if(Random.value < 0.9f && index != Vector2Int.zero)
             {
                 return;
             }
