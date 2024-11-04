@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour,IDamage
 
     float AttackTime = 1.0f;
     float AttackTimeNow = 0f;
-    float Damage = 2;
+    float Damage;
 
     [SerializeField] float _health;
     public float Health { get => _health; set => _health = value; }
@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour,IDamage
     void Start()
     {
         move = GetComponent<Moveable>();
-
+        Damage = Random.Range(1, 8);
         StartCoroutine(MovePattern());
     }
 
