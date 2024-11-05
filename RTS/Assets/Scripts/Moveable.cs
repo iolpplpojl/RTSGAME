@@ -10,7 +10,7 @@ public class Moveable : MonoBehaviour
     NavMeshAgent agent;
     public GameObject Target;
     public Vector2 TargetPos;
-    public bool isMoving = true;
+    public bool isMoving = false;
     public bool Targeting = false;
     [TextArea(3, 20)]
     public string least;

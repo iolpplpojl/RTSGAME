@@ -110,6 +110,10 @@ public class Player : MonoBehaviour,IDamage
                 {
                     Attack(move.Target.GetComponent<IDamage>());
                 }
+                else
+                {
+                    Attacking = false;
+                }
             }
             else
             {

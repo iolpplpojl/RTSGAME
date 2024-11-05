@@ -5840,10 +5840,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   TargetPos: {x: 0, y: 0}
-  isMoving: 1
+  isMoving: 0
   Targeting: 0
   least: 
-  PosArrive: 0
+  PosArrive: 1
+  CanArrive: 0
 --- !u!114 &8065821699077025917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5856,7 +5857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93c09b1c65f477459994b2a3b5c9102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 50
+  _health: 100
   AttackTimeNow: 0
   sprite: {fileID: 3256077969166274824}
 --- !u!195 &8075972912689061635
