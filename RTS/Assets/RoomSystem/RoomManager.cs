@@ -1,11 +1,13 @@
-using UnityEngine;
 using System.Collections.Generic;
-using System.ComponentModel;
+using UnityEngine;
+
 public class RoomManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public GameObject room;
+
+    public static RoomManager instance;
 
     List<GameObject> list_room = new List<GameObject>();
     Queue<Room> roomQueue = new Queue<Room>();
@@ -17,8 +19,21 @@ public class RoomManager : MonoBehaviour
     int roomcount = 0;
     int roommax = 12;
     bool roomgencomplete = false;
+    public bool moving = false;
+    Room nowRoom;
 
-    void Start()
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+    public void Clear()
+    {
+           moving = true;
+    }
+void Start()
     {
         room_grid = new int[gridX,gridY];
         StartRoomGeneration(new Vector2Int(gridX/2,gridY/2));
@@ -52,6 +67,24 @@ public class RoomManager : MonoBehaviour
             Debug.Log("생성 완료됨.");
             roomgencomplete = true;
         }
+        foreach (var temp in list_room)
+        {
+
+            temp.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        if (moving == true)
+        {
+
+            foreach (var temp in nowRoom.InRoom)
+            { 
+               temp.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+            }
+            foreach (var temp in nowRoom.OutRoom)
+            {
+                temp.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+            }
+        } 
+        nowRoom.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     // 배열을 무작위로 섞는 메서드
@@ -67,6 +100,28 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    public void MoveRoom(Room room)
+    {
+        if (moving == true)
+        {
+            if (nowRoom.InRoom.Contains(room) || nowRoom.OutRoom.Contains(room))
+            {
+                Debug.Log("무브성공");
+                nowRoom.GetComponent<SpriteRenderer>().color = Color.white;
+                nowRoom = room;
+                nowRoom.GetComponent<SpriteRenderer>().color = Color.red;
+                moving = false;
+            }
+            else
+            {
+                Debug.Log("무브불가");
+            }
+        }
+        else
+        {
+            Debug.Log("무브불가");
+        }
+    }
 
     void SetConnection(Room from, Room to)
     {
@@ -157,6 +212,8 @@ public class RoomManager : MonoBehaviour
         init.GetComponent<Room>().Pos = index;
         list_room.Add(init);
         roomQueue.Enqueue(init.GetComponent<Room>());
+        nowRoom = init.GetComponent<Room>();
+        nowRoom.GetComponent<SpriteRenderer>().color = Color.red;
 
     }
 
