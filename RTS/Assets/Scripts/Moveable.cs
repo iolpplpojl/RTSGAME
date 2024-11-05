@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
@@ -14,6 +15,8 @@ public class Moveable : MonoBehaviour
     [TextArea(3, 20)]
     public string least;
     public bool PosArrive = false; //위치 지정시
+    public bool CanArrive;
+
 
     void Start()
     {
@@ -21,7 +24,7 @@ public class Moveable : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         TargetPos = transform.position;
-        agent.radius = transform.localScale.x * 0.5f;
+        agent.radius = transform.localScale.x * 0.25f;
         agent.stoppingDistance = 0.03f * (agent.radius * 10);
     }
 
@@ -51,8 +54,11 @@ public class Moveable : MonoBehaviour
                 {
                     if (!agent.hasPath || agent.velocity.sqrMagnitude <= 0.00f)
                     {
-                        PosArrive = true;
-                        Debug.Log("Arrive" + agent.transform.name);
+                        if (CanArrive == true)
+                        {
+                            PosArrive = true;
+                            Debug.Log("Arrive" + agent.transform.name);
+                        }
                     }
                 }
             }
@@ -62,6 +68,12 @@ public class Moveable : MonoBehaviour
         }
     }
 
+    IEnumerator CanArriveTime()
+    {
+        CanArrive = false;
+        yield return new WaitForSeconds(0.1f);
+        CanArrive = true;
+    }
 
     public void StartMove(GameObject Target)
     {
@@ -71,6 +83,7 @@ public class Moveable : MonoBehaviour
     public void StartMove(Vector2 TargetPos)
     {
         this.TargetPos = TargetPos;
+        StartCoroutine(CanArriveTime());
         PosArrive = false;
         Targeting = false;
     }

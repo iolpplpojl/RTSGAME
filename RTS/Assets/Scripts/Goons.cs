@@ -39,7 +39,16 @@ public class Goons : MonoBehaviour,IGoons
             if (temp) {
                 foreach (GameObject obj in members)
                 {
-                    obj.GetComponent<Player>().SetMoveDirection(temp.GetComponentInParent<IGoons>().SetTargeting());
+                    Player player = obj.transform.GetChild(0).GetComponent<Player>();
+                    if (player != null)
+                    {
+                        // temp 객체에서 IGoons 컴포넌트를 찾고 SetTargeting 호출
+                        IGoons goons = temp.GetComponentInParent<IGoons>();
+                        if (goons != null)
+                        {
+                            player.SetMoveDirection(goons.SetTargeting());
+                        }
+                    }
                 }
             }
             else
@@ -48,19 +57,17 @@ public class Goons : MonoBehaviour,IGoons
                 int i = 0;
 
                 foreach (GameObject obj in members)
-                {
+                { 
                     // x, y 위치를 원형으로 설정
-
                     float angle = i * 137.5f * Mathf.Deg2Rad;
-                    float radius = Mathf.Sqrt(i) * (GetComponentInChildren<NavMeshAgent>().radius * 1.44f);
-
+                    float radius = Mathf.Sqrt(i) * (obj.transform.GetChild(0).GetComponent<NavMeshAgent>().radius * 1.44f);
                     float x = Mathf.Cos(angle) * radius;
                     float y = Mathf.Sin(angle) * radius;
-                    var temps = obj.GetComponent<Player>();
-
-                    temps.SetMoveDirection(pos + new Vector2(x,y));
+                    var temps = obj.transform.GetChild(0).GetComponent<Player>();
+                    temps.SetMoveDirection(pos + new Vector2(x, y));
                     i++;
                 }
+            
             }
         }
 

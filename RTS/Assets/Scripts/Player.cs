@@ -14,12 +14,13 @@ public class Player : MonoBehaviour,IDamage
     float AttackTime = 0.5f;
     public float AttackTimeNow = 0;
     public float Health { get => _health; set => _health = value; }
-
+    public Transform sprite;
+    Animator anim;
 
 
     public void Die()
     {
-        GetComponentInParent<Goons>().memberDie(gameObject);
+        GetComponentInParent<Goons>().memberDie(transform.parent.gameObject);
     }
 
     public void TakeDamage(float Damage)
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour,IDamage
     void Start()
     {
         move= GetComponent<Moveable>();
+        anim = GetComponent <Animator>();
     }
 
 
@@ -60,6 +62,37 @@ public class Player : MonoBehaviour,IDamage
 
         Cooldown();
         MovePattern();
+        if(move.Targeting == true) {
+            if (transform.position.x - move.Target.transform.position.x > 0)
+            {
+                sprite.localScale = new Vector3(0.8f, 0.8f, 1f);
+            }
+            else
+            {
+                sprite.localScale = new Vector3(-0.8f, 0.8f, 1f);
+            }
+        }
+        else
+        {
+            if (transform.position.x - move.TargetPos.x > 0)
+            {
+                sprite.localScale = new Vector3(0.8f, 0.8f, 1f);
+            }
+            else
+            {
+                sprite.localScale = new Vector3(-0.8f, 0.8f, 1f);
+            }
+        }
+        if(move.PosArrive == false)
+        {
+            anim.SetBool("1_Move", true);
+        }
+        else
+        {
+            anim.SetBool("1_Move", false);
+
+        }
+
     }
 
     // 적 클릭했을때는 따라가면서 공격해야함.
@@ -99,6 +132,7 @@ public class Player : MonoBehaviour,IDamage
                 Attacking = false;
             }
         }
+        move.isMoving = !Attacking;
     }
 
     public void Cooldown()
@@ -118,6 +152,7 @@ public class Player : MonoBehaviour,IDamage
             move.Target.GetComponent<IDamage>().TakeDamage(Damage);
             AttackTimeNow = AttackTime;
         }
+        anim.Play("ATTACK");
     }
 
     public void Attack(IDamage Target)
@@ -130,6 +165,8 @@ public class Player : MonoBehaviour,IDamage
             Target.TakeDamage(Damage);
             AttackTimeNow = AttackTime;
         }
+        anim.Play("ATTACK");
+
     }
     private void OnDrawGizmos()
     {
