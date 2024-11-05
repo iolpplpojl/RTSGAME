@@ -5,17 +5,17 @@ using static UnityEngine.GraphicsBuffer;
 public class Player : MonoBehaviour,IDamage
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    Moveable move;
-    float AttackRadius = 0.4f;
+    protected Moveable move;
+    [SerializeField] float AttackRadius = 0.4f;
     [SerializeField]
     private float _health;
-    bool Attacking = false;
-    float Damage = 5;
-    float AttackTime = 0.5f;
+    protected bool Attacking = false;
+    protected float Damage = 5;
+    protected float AttackTime = 0.5f;
     public float AttackTimeNow = 0;
     public float Health { get => _health; set => _health = value; }
     public Transform sprite;
-    Animator anim;
+    protected  Animator anim;
 
 
     public void Die()
@@ -108,7 +108,7 @@ public class Player : MonoBehaviour,IDamage
             {
                 if (Vector2.Distance(transform.position, move.Target.transform.position) < AttackRadius)
                 {
-                    Attack(move.Target.GetComponent<IDamage>());
+                    Attack(move.Target);
                 }
                 else
                 {
@@ -128,7 +128,7 @@ public class Player : MonoBehaviour,IDamage
                 if (temp != null)
                 {
                     Attacking = true;
-                    Attack(temp.GetComponent<IDamage>());
+                    Attack(temp.gameObject);
                 }
             }
             else
@@ -146,7 +146,7 @@ public class Player : MonoBehaviour,IDamage
             AttackTimeNow -= Time.deltaTime;
         }
     }
-    public void Attack()
+    public virtual void Attack()
     {
         Debug.Log("Attack");
 
@@ -159,14 +159,14 @@ public class Player : MonoBehaviour,IDamage
         anim.Play("ATTACK");
     }
 
-    public void Attack(IDamage Target)
+    public virtual void Attack(GameObject Target)
     {
         Debug.Log("ArriveAttack");
 
         Attacking = true;
         if (AttackTimeNow <= 0)
         {
-            Target.TakeDamage(Damage);
+            Target.GetComponent<IDamage>().TakeDamage(Damage);
             AttackTimeNow = AttackTime;
         }
         anim.Play("ATTACK");
