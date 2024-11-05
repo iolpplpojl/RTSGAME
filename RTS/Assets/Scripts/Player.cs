@@ -6,7 +6,7 @@ public class Player : MonoBehaviour,IDamage
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     Moveable move;
-    float AttackRadius = 1.5f;
+    float AttackRadius = 0.4f;
     [SerializeField]
     private float _health;
     bool Attacking = false;
