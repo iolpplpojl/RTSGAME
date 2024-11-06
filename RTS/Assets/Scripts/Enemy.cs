@@ -12,15 +12,30 @@ public class Enemy : MonoBehaviour,IDamage
     float AttackTime = 1.0f;
     float AttackTimeNow = 0f;
     float Damage;
-
+    
+    public int Defence;
+    public int Power = 4;
     [SerializeField] float _health;
     public float Health { get => _health; set => _health = value; }
 
     void Start()
     {
         move = GetComponent<Moveable>();
-        Damage = Random.Range(1, 8);
+        Damage = 12;
         StartCoroutine(MovePattern());
+    }
+
+    public void TakeAttack(float Damage, int Power)
+    {
+       if(Power > 10 + Defence)
+        {
+            TakeDamage(GameManager.instance.Dice(1,(int)Damage)) ;
+        }
+        else
+        {
+            Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = -1;
+            Debug.Log("ºø³ª°¨ ! : " + Health);
+        }
     }
 
     // Update is called once per frame
@@ -52,7 +67,7 @@ public class Enemy : MonoBehaviour,IDamage
     {
         if (AttackTimeNow <= 0)
         {
-            Target.TakeDamage(Damage);
+            Target.TakeAttack(Damage, GameManager.instance.Dice(1, 20) + Power);
             AttackTimeNow = AttackTime;
         }
     }

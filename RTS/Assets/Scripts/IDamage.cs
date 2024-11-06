@@ -7,5 +7,6 @@ public interface IDamage
     public float Health {  get; set; }
     void Die();
     public void TakeDamage(float Damage);
+    public void TakeAttack(float Damage, int Power); // 대미지, 명중률
     public void TakeHeal();
 }

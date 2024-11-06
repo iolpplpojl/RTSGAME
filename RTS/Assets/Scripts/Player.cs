@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -10,13 +12,19 @@ public class Player : MonoBehaviour,IDamage
     [SerializeField]
     private float _health;
     protected bool Attacking = false;
-    protected float Damage = 5;
+    public float Damage = 12;
     protected float AttackTime = 0.5f;
     public float AttackTimeNow = 0;
     public float Health { get => _health; set => _health = value; }
     public Transform sprite;
     protected  Animator anim;
+    public SPUM_Prefabs _prefabs;
+    public Dictionary<PlayerState, int> IndexPair = new();
 
+
+
+    public int Power;
+    public int Defence;
 
     public void Die()
     {
@@ -43,7 +51,20 @@ public class Player : MonoBehaviour,IDamage
     {
         move= GetComponent<Moveable>();
         anim = GetComponent <Animator>();
+        _prefabs = GetComponentInParent<SPUM_Prefabs>();
+            if (!_prefabs.allListsHaveItemsExist())
+            {
+                _prefabs.PopulateAnimationLists();
+            }
+        _prefabs.OverrideControllerInit();
+        foreach (PlayerState state in Enum.GetValues(typeof(PlayerState)))
+        {
+            IndexPair[state] = 0;
+        }
+
     }
+
+
 
 
     public void SetMoveDirection(GameObject Target)
@@ -139,6 +160,19 @@ public class Player : MonoBehaviour,IDamage
         move.isMoving = !Attacking;
     }
 
+    public void TakeAttack(float Damage, int Power)
+    {
+        if (Power > 10 + Defence)
+        {
+            TakeDamage(GameManager.instance.Dice(1, (int)Damage));
+        }
+        else
+        {
+            Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = -1;
+            Debug.Log("ºø³ª°¨ ! : " + Health);
+        }
+    }
+
     public void Cooldown()
     {
         if(AttackTimeNow >= 0)
@@ -153,7 +187,7 @@ public class Player : MonoBehaviour,IDamage
         Attacking = true;
         if (AttackTimeNow <= 0)
         {
-            move.Target.GetComponent<IDamage>().TakeDamage(Damage);
+            move.Target.GetComponent<IDamage>().TakeAttack(Damage, GameManager.instance.Dice(1,20) + Power);
             AttackTimeNow = AttackTime;
         }
         anim.Play("ATTACK");
@@ -166,7 +200,7 @@ public class Player : MonoBehaviour,IDamage
         Attacking = true;
         if (AttackTimeNow <= 0)
         {
-            Target.GetComponent<IDamage>().TakeDamage(Damage);
+            Target.GetComponent<IDamage>().TakeAttack(Damage, GameManager.instance.Dice(1, 20) + Power);
             AttackTimeNow = AttackTime;
         }
         anim.Play("ATTACK");

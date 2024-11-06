@@ -14,9 +14,10 @@ public class Player_Bow : Player
             var temp = Instantiate(Arrow, transform.position, Quaternion.LookRotation(Vector3.forward, move.Target.transform.position - transform.position));
             temp.GetComponent<Arrow>().Damage = Damage;
             temp.GetComponent<Arrow>().Target = move.Target;
+            temp.GetComponent<Arrow>().Power = Power;
             AttackTimeNow = AttackTime;
         }
-        anim.Play("ATTACK");
+        _prefabs.PlayAnimation(PlayerState.ATTACK, 0);
     }
 
     override public void Attack(GameObject Target)
@@ -29,9 +30,12 @@ public class Player_Bow : Player
             var temp = Instantiate(Arrow, transform.position, Quaternion.LookRotation(Vector3.forward, Target.transform.position - transform.position)) ;
             temp.GetComponent<Arrow>().Damage = Damage;
             temp.GetComponent<Arrow>().Target = Target;
+            temp.GetComponent<Arrow>().Power = Power;
+
             AttackTimeNow = AttackTime;
         }
-        anim.Play("ATTACK");
+        _prefabs.PlayAnimation(PlayerState.ATTACK, 0);
+
 
     }
 }

@@ -6,7 +6,8 @@ public class Arrow : MonoBehaviour
 
     public GameObject Target;
     public float Damage;
-    float speed = 3.0f;
+    float speed = 24.0f;
+    public int Power;
     // Update is called once per frame
 
     void Update()
@@ -28,7 +29,7 @@ public class Arrow : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, speed * Time.deltaTime);
         if (Vector2.Distance(Target.transform.position, transform.position) <= 0.0f)
         {
-            Target.GetComponent<IDamage>().TakeDamage(Damage);
+            Target.GetComponent<IDamage>().TakeAttack(Damage, GameManager.instance.Dice(1, 20) + Power);
             Destroy(gameObject);
         }
     }

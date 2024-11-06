@@ -13,7 +13,16 @@ public class Popup : MonoBehaviour
     }
     private void Update()
     {
-       m_Text.text = Damage.ToString();
+        if (Damage != -1)
+        {
+            m_Text.text = Damage.ToString();
+        }
+        else
+        {
+            m_Text.text = "ºø³ª°¨!";
+            m_Text.color = Color.gray;
+        }
+        
     }
 
 }

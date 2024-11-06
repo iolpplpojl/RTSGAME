@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class GoonsManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    List<Goons> Goons = new List<Goons>();
+    public List<Goons> Goons = new List<Goons>();
+    public List<GameObject> SelectField = new List<GameObject>();
+
+    public int nowselect = -1;
+
     void Start()
     {
         var temp = transform.childCount;
@@ -23,6 +27,24 @@ public class GoonsManager : MonoBehaviour
         if (temp != -1)
         {
             Select(temp);
+        }
+        for (int i = 0; i < Goons.Count-1; i++)
+        {
+            SelectField[i].SetActive(true);
+        }
+        for (int i = Goons.Count; i < 10; i++)
+        {
+            SelectField[i].SetActive(false);
+        }
+
+
+        foreach(var kek in SelectField)
+        {
+           kek.GetComponent<Outline>().enabled = false;
+        }
+        if (nowselect != -1)
+        {
+            SelectField[nowselect].GetComponent<Outline>().enabled = true;
         }
 
     }
@@ -60,6 +82,7 @@ public class GoonsManager : MonoBehaviour
             if(i == idx-1)
             {
                 Goons [i].Selected = true;
+                nowselect = i;
             }
             else
             {

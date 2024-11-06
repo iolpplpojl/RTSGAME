@@ -14,4 +14,23 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
     }
+
+    public int Dice(int times, int max)
+    {
+        int num = 0;
+        for(int i = 0; i < times; i++)
+        {
+            num += Random.Range(1, max + 1);
+        }
+        return num;
+    }
+    public int Dice(int[] list)
+    {
+        int num = 0;
+        for (int i = 0; i < list[0]; i++)
+        {
+            num += Random.Range(1, list[1] + 1);
+        }
+        return num;
+    }
 }

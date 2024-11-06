@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Goons : MonoBehaviour,IGoons
 {
@@ -11,8 +12,12 @@ public class Goons : MonoBehaviour,IGoons
     [SerializeField]
     private List<GameObject> _members  = new List<GameObject>();
     public List<GameObject> members { get; set; } = new List<GameObject>();
-
-
+    public List<Item> items = new List<Item>();
+    public int ItemCount = 2;
+    public string name;
+    
+    
+    
     public GameObject SetTargeting()
     {
         return members[Random.Range(0, members.Count)];
@@ -26,6 +31,22 @@ public class Goons : MonoBehaviour,IGoons
         {
             members.Add(transform.GetChild(i).gameObject);
         }
+    }
+
+    public void EquipItem(Item item)
+    {
+        if (items.Count < ItemCount)
+        {
+            foreach (var member in members)
+            {
+                item.Equip(member.transform.GetChild(0).GetComponent<Player>());
+            }
+            items.Add(item);
+        }
+    }
+    public void RemoveItem(int pos)
+    {
+
     }
 
     // Update is called once per frame
@@ -71,6 +92,7 @@ public class Goons : MonoBehaviour,IGoons
             }
         }
 
+
     }
 
 
@@ -80,6 +102,8 @@ public class Goons : MonoBehaviour,IGoons
         Destroy(member);
         if (members.Count == 0)
         {
+            GetComponentInParent<GoonsManager>().nowselect = -1;
+            GetComponentInParent<GoonsManager>().Goons.Remove(this);
             Destroy(gameObject);
         }
 
