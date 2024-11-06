@@ -24,16 +24,17 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     {
         // 드래그 시작 시 처리할 코드 작성
         Debug.Log("Drag Started");
+        InventoryDragSlot.instance.gameObject.SetActive(true);
         InventoryDragSlot.instance.dragSlot = this;
         InventoryDragSlot.instance.DragSetImage(GetComponent<Image>());
         InventoryDragSlot.instance.transform.position = eventData.position;
+
     }
 
     // 드래그 중 이벤트 처리 (IDragHandler)
     public void OnDrag(PointerEventData eventData)
     {
         // 드래그 중 처리할 코드 작성
-        Debug.Log("Dragging");
         // 드래그 중 요소의 위치 업데이트 예시
         InventoryDragSlot.instance.transform.position = eventData.position;
     }
@@ -44,12 +45,13 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         // 드래그가 끝날 때 처리할 코드 작성
         InventoryDragSlot.instance.SetColor(0);
         InventoryDragSlot.instance.dragSlot = null;
+        InventoryDragSlot.instance.gameObject.SetActive(false);
+        Debug.Log(eventData.position);
     }
 
     // 드롭 이벤트 처리 (IDropHandler)
     public void OnDrop(PointerEventData eventData)
     {
-        // 드래그한 요소가 드롭된 위치에 대해 처리할 코드 작성
-        Debug.Log("Element Dropped");
+        Debug.Log("Element Dropped at: " + eventData.position + eventData.pointerDrag + " => " + eventData.pointerCurrentRaycast);
     }
 }

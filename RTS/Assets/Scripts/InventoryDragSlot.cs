@@ -9,7 +9,7 @@ public class InventoryDragSlot : MonoBehaviour
     [SerializeField]
     private Image imageItem;
 
-    void Start()
+    void Awake()
     {
         instance = this;
         imageItem = GetComponent<Image>();
