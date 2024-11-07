@@ -91,4 +91,21 @@ public class GoonsManager : MonoBehaviour
                 
         }
     }
+    public void Select(Goons idx)
+    {
+        Debug.Log(idx);
+        for (int i = 0; i < Goons.Count; i++)
+        {
+            if (Goons[i] == idx)
+            {
+                Goons[i].Selected = true;
+                nowselect = i;
+            }
+            else
+            {
+                Goons[i].Selected = false;
+            }
+
+        }
+    }
 }

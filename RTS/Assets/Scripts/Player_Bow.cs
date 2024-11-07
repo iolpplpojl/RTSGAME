@@ -7,6 +7,7 @@ public class Player_Bow : Player
     override public void Attack()
     {
         Debug.Log("Attack");
+        _prefabs._anim.CrossFade("ATTACK", 0f, 0); // "EVENT" 애니메이션으로 0초 전환
 
         Attacking = true;
         if (AttackTimeNow <= 0)
@@ -25,6 +26,8 @@ public class Player_Bow : Player
         Debug.Log("ArriveAttack");
 
         Attacking = true;
+        _prefabs._anim.CrossFade("ATTACK", 0f, 0); // "EVENT" 애니메이션으로 0초 전환
+
         if (AttackTimeNow <= 0)
         {
             var temp = Instantiate(Arrow, transform.position, Quaternion.LookRotation(Vector3.forward, Target.transform.position - transform.position)) ;
@@ -35,7 +38,7 @@ public class Player_Bow : Player
             AttackTimeNow = AttackTime;
         }
         _prefabs.PlayAnimation(PlayerState.ATTACK, 0);
-
+    
 
     }
 }

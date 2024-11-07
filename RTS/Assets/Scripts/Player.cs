@@ -13,8 +13,8 @@ public class Player : MonoBehaviour,IDamage
     private float _health;
     protected bool Attacking = false;
     public float Damage = 12;
-    protected float AttackTime = 0.5f;
-    public float AttackTimeNow = 0;
+    public float AttackTime = 0.5f;
+    protected float AttackTimeNow = 0;
     public float Health { get => _health; set => _health = value; }
     public Transform sprite;
     protected  Animator anim;
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour,IDamage
         {
             IndexPair[state] = 0;
         }
-
+        _prefabs._anim.SetFloat("AttackTime", 1 / AttackTime);
     }
 
 
@@ -114,6 +114,11 @@ public class Player : MonoBehaviour,IDamage
 
         }
 
+    }
+    private void OnMouseUpAsButton()
+    {
+        // Runs when button is released
+        transform.parent.parent.parent.GetComponent<GoonsManager>().Select(transform.parent.parent.GetComponent<Goons>()) ;
     }
 
     // 적 클릭했을때는 따라가면서 공격해야함.
@@ -183,6 +188,7 @@ public class Player : MonoBehaviour,IDamage
     public virtual void Attack()
     {
         Debug.Log("Attack");
+        _prefabs._anim.CrossFade("ATTACK", 0f, 0); // "EVENT" 애니메이션으로 0초 전환
 
         Attacking = true;
         if (AttackTimeNow <= 0)
@@ -196,6 +202,7 @@ public class Player : MonoBehaviour,IDamage
     public virtual void Attack(GameObject Target)
     {
         Debug.Log("ArriveAttack");
+                _prefabs._anim.CrossFade("ATTACK", 0f, 0); // "EVENT" 애니메이션으로 0초 전환
 
         Attacking = true;
         if (AttackTimeNow <= 0)

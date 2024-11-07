@@ -3274,6 +3274,7 @@ GameObject:
   - component: {fileID: 3260436141182891752}
   - component: {fileID: 5097711242820765009}
   - component: {fileID: 403782462772173359}
+  - component: {fileID: 6084667644668361442}
   m_Layer: 6
   m_Name: UnitRoot
   m_TagString: Untagged
@@ -3344,10 +3345,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326b0d293dfe370469387ad1b8a9ec01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackRadius: 20
+  AttackRadius: 2.5
   _health: 30
   Damage: 12
-  AttackTimeNow: 0
+  AttackTime: 0.5
   sprite: {fileID: 4875855341349531361}
   _prefabs: {fileID: 0}
   Power: 0
@@ -3430,6 +3431,42 @@ MonoBehaviour:
   least: 
   PosArrive: 0
   CanArrive: 0
+--- !u!58 &6084667644668361442
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5414044223158285315}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.6
 --- !u!1 &5445789262304931024
 GameObject:
   m_ObjectHideFlags: 0
