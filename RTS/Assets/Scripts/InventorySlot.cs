@@ -5,12 +5,16 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
 {
 
     Vector3 nowposition;
-    
+    public Item item;
+    public int slotNum;
+    Image img;
 
     void Start()
     {
         nowposition = transform.position;
         transform.SetSiblingIndex(1000);
+        img = GetComponent<Image>();
+        img.sprite = item.sprite;
     }
     // 클릭 이벤트 처리 (IPointerClickHandler)
     public void OnPointerClick(PointerEventData eventData)
@@ -53,5 +57,16 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("Element Dropped at: " + eventData.position + eventData.pointerDrag + " => " + eventData.pointerCurrentRaycast);
+        ChangeItem(eventData.pointerDrag.gameObject.GetComponent<InventorySlot>());
+    }
+
+    void ChangeItem(InventorySlot From)
+    {
+        Item _item = item;
+        item = From.item;
+        img.sprite = item.sprite;
+        From.item = _item;
+        From.img.sprite = From.item.sprite;
+
     }
 }

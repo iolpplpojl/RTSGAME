@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Item : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public abstract class Item : MonoBehaviour
     public int Power;
     public int Damage;
     public int Defence;
+    public Sprite sprite;
 
     public virtual void Equip(Player player)
     {
@@ -19,7 +22,14 @@ public abstract class Item : MonoBehaviour
     }
     public virtual void UnEquip(Player player)
     {
-
+        player.Health -= Health;
+        player.Power -= Power;
+        player.Damage -= Damage;
+        player.Defence -= Defence;
+        Debug.Log(player + "해제완료");
     }
 
+    public abstract void onAttack(Player player, IDamage enemy);
+
+    public abstract void onHit();
 }

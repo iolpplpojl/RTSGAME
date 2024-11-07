@@ -34,7 +34,7 @@ public class Player : MonoBehaviour,IDamage
     public void TakeDamage(float Damage)
     {
         Health -= Damage;
-        Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = Damage;
+    //    Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = Damage;
         Debug.Log(Damage + "Ouch");
         if (Health <= 0)
         {
@@ -173,7 +173,7 @@ public class Player : MonoBehaviour,IDamage
         }
         else
         {
-            Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = -1;
+          //  Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = -1;
             Debug.Log("빗나감 ! : " + Health);
         }
     }
@@ -202,12 +202,16 @@ public class Player : MonoBehaviour,IDamage
     public virtual void Attack(GameObject Target)
     {
         Debug.Log("ArriveAttack");
-                _prefabs._anim.CrossFade("ATTACK", 0f, 0); // "EVENT" 애니메이션으로 0초 전환
+        _prefabs._anim.CrossFade("ATTACK", 0f, 0); // "EVENT" 애니메이션으로 0초 전환
 
         Attacking = true;
         if (AttackTimeNow <= 0)
         {
             Target.GetComponent<IDamage>().TakeAttack(Damage, GameManager.instance.Dice(1, 20) + Power);
+            foreach(var temp in transform.parent.parent.GetComponent<Goons>().items)
+            {
+                temp.onAttack(this,Target.GetComponent<IDamage>());
+            }
             AttackTimeNow = AttackTime;
         }
         anim.Play("ATTACK");

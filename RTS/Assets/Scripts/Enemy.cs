@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour,IDamage
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     Moveable move;
-    float AttackRadius = 0.2f;
+    public float AttackRadius = 0.2f;
     bool Attacking = false;
 
     float AttackTime = 1.0f;
