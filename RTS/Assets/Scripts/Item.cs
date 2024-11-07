@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-
-public abstract class Item : MonoBehaviour
+[CreateAssetMenu(fileName = "BaseItem", menuName = "Items/BaseItem")]
+public class Item : ScriptableObject
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -11,6 +13,7 @@ public abstract class Item : MonoBehaviour
     public int Damage;
     public int Defence;
     public Sprite sprite;
+    public List<ScriptableObject> effect;
 
     public virtual void Equip(Player player)
     {
@@ -28,8 +31,12 @@ public abstract class Item : MonoBehaviour
         player.Defence -= Defence;
         Debug.Log(player + "해제완료");
     }
-
-    public abstract void onAttack(Player player, IDamage enemy);
-
-    public abstract void onHit();
+    public void onAttack(Player player, IDamage enemy)
+    {
+        foreach (var item in effect)
+        {
+            IEffect _effect = item as IEffect;
+            _effect.onAttack(player, enemy);
+        }
+    }
 }

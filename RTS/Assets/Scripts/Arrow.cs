@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
@@ -8,6 +9,8 @@ public class Arrow : MonoBehaviour
     public float Damage;
     float speed = 24.0f;
     public int Power;
+    public List<Item> items;
+    public Player owner;
     // Update is called once per frame
 
     void Update()
@@ -30,6 +33,10 @@ public class Arrow : MonoBehaviour
         if (Vector2.Distance(Target.transform.position, transform.position) <= 0.0f)
         {
             Target.GetComponent<IDamage>().TakeAttack(Damage, GameManager.instance.Dice(1, 20) + Power);
+            foreach (var kek in items)
+            {
+                kek.onAttack(owner, Target.GetComponent<IDamage>());
+            }
             Destroy(gameObject);
         }
     }
