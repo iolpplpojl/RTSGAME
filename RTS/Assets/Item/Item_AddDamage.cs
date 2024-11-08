@@ -9,7 +9,10 @@ public class Item_AddDamage : ScriptableObject,IEffect
         Debug.Log("추가 피해!!!");
         enemy.TakeDamage(GameManager.instance.Dice(1,addDamage));
     }
-
+    public void onUpdate(Player player)
+    {
+        return;
+    }
     public  void onHit(){
         return;
     }

@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca369c723c694ce4286f4b795b9d4978, type: 3}
-  m_Name: ExplodeItem
+  m_Script: {fileID: 11500000, guid: ef3db5425bf0d6a4f8267932ded4faa2, type: 3}
+  m_Name: "\uD68C\uBCF5"
   m_EditorClassIdentifier: 
-  probability: 0.7
-  explodeDamage: 2
-  explodeRadius: 0.5
+  Heal: 0

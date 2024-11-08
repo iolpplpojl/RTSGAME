@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef3db5425bf0d6a4f8267932ded4faa2, type: 3}
-  m_Name: New Add Damage Item
+  m_Script: {fileID: 11500000, guid: 200b77e45ef2d90458d506597236589d, type: 3}
+  m_Name: "\uACE0\uC815"
   m_EditorClassIdentifier: 
-  Heal: 0
+  type: 2
+  value: 20

@@ -48,6 +48,8 @@ public class Enemy : MonoBehaviour,IDamage
         {
             Attacking = true;
             Attack(temp.GetComponent<IDamage>());
+            Debug.Log("EnemyAttack");
+
         }
         else
         {
@@ -71,6 +73,7 @@ public class Enemy : MonoBehaviour,IDamage
         {
             Target.TakeAttack(Damage, GameManager.instance.Dice(1, 20) + Power);
             AttackTimeNow = AttackTime;
+
         }
     }
     IEnumerator MovePattern()

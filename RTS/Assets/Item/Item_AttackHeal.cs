@@ -8,7 +8,10 @@ public class Item_AttackHeal : ScriptableObject,IEffect
         Debug.Log("Èú!!!");
         player.Health += Heal;
     }
-
+    public void onUpdate(Player player)
+    {
+        return;
+    }
     public  void onHit()
     {
         return;

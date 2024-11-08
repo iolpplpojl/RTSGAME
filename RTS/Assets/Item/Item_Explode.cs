@@ -21,7 +21,10 @@ public class Item_Explode : ScriptableObject,IEffect
         }
     }
 
-    
+    public void onUpdate(Player player)
+    {
+        return;
+    }
     public void onHit()
     {
         return;

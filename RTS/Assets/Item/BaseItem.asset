@@ -20,3 +20,4 @@ MonoBehaviour:
   description: 
   effect:
   - {fileID: 11400000, guid: 164b533737e46ba4782d06fc25695668, type: 2}
+  - {fileID: 11400000, guid: 48ef852a3bdf06449ae8afbf9a7d1611, type: 2}

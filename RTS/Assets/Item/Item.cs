@@ -40,6 +40,14 @@ public class Item : ScriptableObject
             _effect.onAttack(player, enemy);
         }
     }
+    public void onUpdate(Player player)
+    {
+        foreach (var item in effect)
+        {
+            IEffect _effect = item as IEffect;
+            _effect.onUpdate(player);
+        }
+    }
 
     public void onHit()
     {

@@ -1,6 +1,6 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -64,6 +64,7 @@ public class Player : MonoBehaviour,IDamage
             IndexPair[state] = 0;
         }
         _prefabs._anim.SetFloat("AttackTime", 1 / AttackTime);
+        StartCoroutine(onUpdater());
     }
 
 
@@ -116,6 +117,17 @@ public class Player : MonoBehaviour,IDamage
 
         }
 
+    }
+
+    IEnumerator onUpdater()
+    {
+        while (true) {
+            foreach (var temp in transform.parent.parent.GetComponent<Goons>().items)   
+            {
+                temp.onUpdate(this);
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
     }
     private void OnMouseUpAsButton()
     {
@@ -199,7 +211,7 @@ public class Player : MonoBehaviour,IDamage
         }
         else
         {
-          //  Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = -1;
+            Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = -1;
             Debug.Log("ºø³ª°¨ ! : " + Health);
             return false;
         }
@@ -235,7 +247,7 @@ public class Player : MonoBehaviour,IDamage
         if (AttackTimeNow <= 0)
         {
             if (Target.GetComponent<IDamage>().TakeAttack(Damage, GameManager.instance.Dice(1, 20) + Power))
-                {
+            {
                 foreach (var temp in transform.parent.parent.GetComponent<Goons>().items)
                 {
                     temp.onAttack(this, Target.GetComponent<IDamage>());
