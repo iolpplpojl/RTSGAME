@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static GameManager instance;
 
+    public GameObject Inventory;
 
     public GameObject Popup;
     private void Awake()
@@ -32,5 +33,13 @@ public class GameManager : MonoBehaviour
             num += Random.Range(1, list[1] + 1);
         }
         return num;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Inventory.SetActive(!Inventory.activeSelf);
+        }
     }
 }

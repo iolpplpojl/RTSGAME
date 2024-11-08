@@ -16,7 +16,7 @@ MonoBehaviour:
   Power: 0
   Damage: 0
   Defence: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 5902650331669622779, guid: b04621f87db561d42b5d13d577608ac9, type: 3}
   description: 
   effect:
   - {fileID: 11400000, guid: 164b533737e46ba4782d06fc25695668, type: 2}
