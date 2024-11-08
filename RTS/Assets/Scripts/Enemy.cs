@@ -25,16 +25,18 @@ public class Enemy : MonoBehaviour,IDamage
         StartCoroutine(MovePattern());
     }
 
-    public void TakeAttack(float Damage, int Power)
+    public bool TakeAttack(float Damage, int Power)
     {
        if(Power > 10 + Defence)
         {
             TakeDamage(GameManager.instance.Dice(1,(int)Damage)) ;
+            return true;
         }
         else
         {
             Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = -1;
             Debug.Log("ºø³ª°¨ ! : " + Health);
+            return false;
         }
     }
 
@@ -75,11 +77,28 @@ public class Enemy : MonoBehaviour,IDamage
     {
         while (true)
         {
-            var temp = Physics2D.OverlapCircle(transform.position,5.0f,LayerMask.GetMask("Player"));
-            if (temp)
+            var temp = Physics2D.OverlapCircleAll(transform.position, 3.0f, LayerMask.GetMask("Player"));
+            if (temp.Length != 0)
             {
-                move.StartMove(temp.gameObject);
+                GameObject near = null;
+                foreach (var lol in temp)
+                {
+                    var kek = lol.gameObject;
+                    if (near == null)
+                    {
+                        near = kek;
+                    }
+                    if (Vector2.Distance(kek.transform.position, transform.position) < Vector2.Distance(near.transform.position, transform.position))
+                    {
+                        near = kek;
+                    }
+                }
+                if (near != null)
+                {
+                    move.StartMove(near.gameObject);
+                }
             }
+
             yield return null;
         }
     }

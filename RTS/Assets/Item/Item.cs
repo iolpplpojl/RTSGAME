@@ -13,6 +13,7 @@ public class Item : ScriptableObject
     public int Damage;
     public int Defence;
     public Sprite sprite;
+    public string description;
     public List<ScriptableObject> effect;
 
     public virtual void Equip(Player player)
@@ -39,4 +40,12 @@ public class Item : ScriptableObject
             _effect.onAttack(player, enemy);
         }
     }
+
+    public void onHit()
+    {
+
+    }
+
+
+
 }

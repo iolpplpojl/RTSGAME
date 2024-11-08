@@ -12,7 +12,7 @@ public class Popup : MonoBehaviour
          m_Text = GetComponent<TMP_Text>();
          RandomDirec = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
          RandomDirec.Normalize();
-         transform.position = transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+         transform.parent.position = transform.parent.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
 
     }
     private void Update()

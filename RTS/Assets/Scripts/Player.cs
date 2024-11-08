@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour,IDamage
 
     public int Power;
     public int Defence;
+
 
     public void Die()
     {
@@ -140,6 +142,28 @@ public class Player : MonoBehaviour,IDamage
                 {
                     Attacking = false;
                 }
+
+                var temp = Physics2D.OverlapCircleAll(transform.position, 3.0f, LayerMask.GetMask("Enemy"));
+                if (temp.Length != 0)
+                {
+                    GameObject near = null;
+                    foreach (var lol in temp)
+                    {
+                        var kek = lol.gameObject;
+                        if(near == null)
+                        {
+                            near = kek;
+                        }
+                        if (Vector2.Distance(kek.transform.position, transform.position) < Vector2.Distance(near.transform.position, transform.position))
+                        {
+                            near = kek;
+                        }
+                    }
+                    if (near != null)
+                    {
+                        move.Target = near;
+                    }
+                }
             }
             else
             {
@@ -165,16 +189,19 @@ public class Player : MonoBehaviour,IDamage
         move.isMoving = !Attacking;
     }
 
-    public void TakeAttack(float Damage, int Power)
+    public bool TakeAttack(float Damage, int Power)
     {
         if (Power > 10 + Defence)
         {
             TakeDamage(GameManager.instance.Dice(1, (int)Damage));
+            return true;
+
         }
         else
         {
           //  Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = -1;
             Debug.Log("ºø³ª°¨ ! : " + Health);
+            return false;
         }
     }
 
@@ -207,10 +234,12 @@ public class Player : MonoBehaviour,IDamage
         Attacking = true;
         if (AttackTimeNow <= 0)
         {
-            Target.GetComponent<IDamage>().TakeAttack(Damage, GameManager.instance.Dice(1, 20) + Power);
-            foreach(var temp in transform.parent.parent.GetComponent<Goons>().items)
-            {
-                temp.onAttack(this,Target.GetComponent<IDamage>());
+            if (Target.GetComponent<IDamage>().TakeAttack(Damage, GameManager.instance.Dice(1, 20) + Power))
+                {
+                foreach (var temp in transform.parent.parent.GetComponent<Goons>().items)
+                {
+                    temp.onAttack(this, Target.GetComponent<IDamage>());
+                }
             }
             AttackTimeNow = AttackTime;
         }

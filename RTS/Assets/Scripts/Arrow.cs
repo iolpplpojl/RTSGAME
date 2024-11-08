@@ -32,10 +32,12 @@ public class Arrow : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, speed * Time.deltaTime);
         if (Vector2.Distance(Target.transform.position, transform.position) <= 0.0f)
         {
-            Target.GetComponent<IDamage>().TakeAttack(Damage, GameManager.instance.Dice(1, 20) + Power);
-            foreach (var kek in items)
+            if (Target.GetComponent<IDamage>().TakeAttack(Damage, GameManager.instance.Dice(1, 20) + Power))
             {
-                kek.onAttack(owner, Target.GetComponent<IDamage>());
+                foreach (var kek in items)
+                {
+                    kek.onAttack(owner, Target.GetComponent<IDamage>());
+                }
             }
             Destroy(gameObject);
         }
