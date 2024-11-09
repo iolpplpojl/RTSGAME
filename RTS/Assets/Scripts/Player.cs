@@ -107,7 +107,7 @@ public class Player : MonoBehaviour,IDamage
                 sprite.localScale = new Vector3(-0.8f, 0.8f, 1f);
             }
         }
-        if(move.PosArrive == false)
+        if(move.isMoving == true)
         {
             anim.SetBool("1_Move", true);
         }
@@ -153,6 +153,7 @@ public class Player : MonoBehaviour,IDamage
                 else
                 {
                     Attacking = false;
+                    move.isMoving = true;
                 }
 
                 var temp = Physics2D.OverlapCircleAll(transform.position, 3.0f, LayerMask.GetMask("Enemy"));
@@ -179,7 +180,33 @@ public class Player : MonoBehaviour,IDamage
             }
             else
             {
-                Attacking = false;
+                var temp = Physics2D.OverlapCircleAll(transform.position, 3.0f, LayerMask.GetMask("Enemy"));
+                if (temp.Length != 0)
+                {
+                    GameObject near = null;
+                    foreach (var lol in temp)
+                    {
+                        var kek = lol.gameObject;
+                        if (near == null)
+                        {
+                            near = kek;
+                        }
+                        if (Vector2.Distance(kek.transform.position, transform.position) < Vector2.Distance(near.transform.position, transform.position))
+                        {
+                            near = kek;
+                        }
+                    }
+                    if (near != null)
+                    {
+                        move.Target = near;
+                    }
+                }
+                else
+                {
+                    Attacking = false;
+                    SetMoveDirection(transform.position);
+
+                }
             }
         }
         else
@@ -198,7 +225,10 @@ public class Player : MonoBehaviour,IDamage
                 Attacking = false;
             }
         }
-        move.isMoving = !Attacking;
+        if (Attacking == true)
+        {
+            move.isMoving = !Attacking;
+        }
     }
 
     public bool TakeAttack(float Damage, int Power)

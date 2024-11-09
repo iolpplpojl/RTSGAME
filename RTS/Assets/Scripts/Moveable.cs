@@ -57,6 +57,7 @@ public class Moveable : MonoBehaviour
                         if (CanArrive == true)
                         {
                             PosArrive = true;
+                            isMoving = false;
                             Debug.Log("Arrive" + agent.transform.name);
                         }
                     }
@@ -79,6 +80,7 @@ public class Moveable : MonoBehaviour
     {
         this.Target = Target;
         Targeting = true;
+        isMoving = true;
     }
     public void StartMove(Vector2 TargetPos)
     {
@@ -86,5 +88,7 @@ public class Moveable : MonoBehaviour
         StartCoroutine(CanArriveTime());
         PosArrive = false;
         Targeting = false;
+        isMoving = true;
+
     }
 }

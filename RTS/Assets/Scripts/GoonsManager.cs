@@ -88,8 +88,8 @@ public class GoonsManager : MonoBehaviour
             {
                 Goons[i].Selected = false;
             }
-                
         }
+        SetUI();
     }
     public void Select(Goons idx)
     {
@@ -105,7 +105,33 @@ public class GoonsManager : MonoBehaviour
             {
                 Goons[i].Selected = false;
             }
+        }
+        SetUI();
+    }
 
+    public void Setup()
+    {
+        nowselect = -1;
+        int i = 0;
+        foreach(var temp in Goons)
+        {
+            if (temp.Selected)
+            {
+                nowselect = i;
+            }
+            i++;
+        }
+    }
+
+    void SetUI()
+    {
+        if (nowselect == -1)
+        {
+            InventoryUI.Instance.GoonsSelected(null);
+        }
+        else
+        {
+            InventoryUI.Instance.GoonsSelected(Goons[nowselect]);
         }
     }
 }

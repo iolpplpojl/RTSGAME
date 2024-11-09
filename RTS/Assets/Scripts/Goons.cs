@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Goons : MonoBehaviour,IGoons
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-
+    public Sprite face;
     public bool Selected;
 
     [SerializeField]
@@ -102,8 +102,9 @@ public class Goons : MonoBehaviour,IGoons
         Destroy(member);
         if (members.Count == 0)
         {
-            GetComponentInParent<GoonsManager>().nowselect = -1;
             GetComponentInParent<GoonsManager>().Goons.Remove(this);
+            GetComponentInParent<GoonsManager>().Setup();
+
             Destroy(gameObject);
         }
 
