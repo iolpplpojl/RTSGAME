@@ -21,7 +21,6 @@ public class InventoryUI : MonoBehaviour
 
     public void GoonsSelected(Goons goons)
     {
-
         foreach (Transform temp in list.transform)
         {
             Destroy(temp.gameObject);

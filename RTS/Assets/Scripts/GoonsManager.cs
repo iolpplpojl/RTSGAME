@@ -121,6 +121,8 @@ public class GoonsManager : MonoBehaviour
             }
             i++;
         }
+
+        SetUI();
     }
 
     void SetUI()
