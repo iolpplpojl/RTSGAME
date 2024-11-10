@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Goons : MonoBehaviour,IGoons
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public Sprite face;
+    public GameObject face;
     public bool Selected;
 
     [SerializeField]
@@ -14,7 +14,7 @@ public class Goons : MonoBehaviour,IGoons
     public List<GameObject> members { get; set; } = new List<GameObject>();
     public List<Item> items = new List<Item>();
     public int ItemCount = 2;
-    public string name;
+    public string Name;
     
     
     

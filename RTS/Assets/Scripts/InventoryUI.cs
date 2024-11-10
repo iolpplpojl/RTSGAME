@@ -7,7 +7,7 @@ public class InventoryUI : MonoBehaviour
     public static InventoryUI Instance;
 
     public Goons goons;
-    public Image img;
+    public GameObject img;
     public GameObject list;
     public GameObject itemInven;
 
@@ -33,12 +33,19 @@ public class InventoryUI : MonoBehaviour
         if (goons == null)
         {
             this.goons = null;
-            img.sprite = null;
+            foreach (Transform temp in img.transform)
+            {
+                Destroy(temp.gameObject);
+            }
         }
         else
         {
             this.goons = goons;
-            img.sprite = this.goons.face;
+            foreach (Transform temp in img.transform)
+            {
+                Destroy(temp.gameObject);
+            }
+            Instantiate(goons.face,img.transform);
         }
     }
 }
