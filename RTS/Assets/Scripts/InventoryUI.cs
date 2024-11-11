@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,8 @@ public class InventoryUI : MonoBehaviour
     public GameObject list;
     public GameObject itemInven;
     public GameObject invenSlot;
-
+    public GameObject ItemList;
+    public GameObject ItemSlot;
 
     public void Awake()
     {
@@ -21,6 +23,42 @@ public class InventoryUI : MonoBehaviour
         }
         gameObject.SetActive(false);
     }
+
+    public void ItemListSetup()
+    {
+        foreach (Transform temp in ItemList.transform)
+        {
+            Destroy(temp.gameObject);
+        }
+        int i = 0;
+
+        foreach (var temp in GameManager.instance.storage)
+        {
+            var kek = Instantiate(ItemSlot, ItemList.transform);
+            kek.GetComponentInChildren<InventorySlot>().slotNum = i;
+            i++;
+        }
+    }
+
+    public void ItemListReset()
+    {
+        foreach (Transform temp in ItemList.transform)
+        {
+            Destroy(temp.gameObject);
+        }
+        int i = 0;
+
+        foreach(var temp in GameManager.instance.storage)
+        {
+            var kek = Instantiate(ItemSlot, ItemList.transform);
+            kek.GetComponentInChildren<InventorySlot>().slotNum = i;
+            i++;
+
+        }
+    }
+
+
+
 
     public void GoonsSelected(Goons goons)
     {

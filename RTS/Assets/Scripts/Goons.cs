@@ -42,7 +42,7 @@ public class Goons : MonoBehaviour,IGoons
     }
 
 
-    public void EquipItem(Item item)
+    public bool EquipItem(Item item)
     {
         if (items.Count < ItemCount)
         {
@@ -52,6 +52,12 @@ public class Goons : MonoBehaviour,IGoons
                 _item.Equip(member.transform.GetChild(0).GetComponent<Player>());
             }
             items.Add(_item);
+            return true;
+        }
+        else
+        {
+            Debug.Log("Àåºñ ²ËÂü");
+            return false;
         }
     }
     public void RemoveItem(int pos)

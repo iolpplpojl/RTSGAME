@@ -1,9 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static GameManager instance;
+
+
+    public int storageCount = 30;
+    public List<Item> storage = new List<Item>();
 
     public GameObject Inventory;
 
@@ -13,6 +18,11 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+        }
+
+        for(int i = 0; i < storageCount; i++)
+        {
+            storage.Add(null);
         }
     }
 

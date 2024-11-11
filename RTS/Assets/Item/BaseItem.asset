@@ -18,4 +18,5 @@ MonoBehaviour:
   Defence: 3
   sprite: {fileID: 5902650331669622779, guid: b04621f87db561d42b5d13d577608ac9, type: 3}
   description: 
-  effect: []
+  effect:
+  - {fileID: 11400000, guid: a09b2237b2634334e9f0693e54017e5f, type: 2}

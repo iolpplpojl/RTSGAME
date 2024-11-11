@@ -1,31 +1,22 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EquipSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+public class EquipSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
 {
 
     public Item item;
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public void OnDrop(PointerEventData eventData)
     {
         //ÀåÂø;
-        Debug.Log("ÀåÂø");
-
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
+        if (GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] != null)
+        {
+            Debug.Log("ÀåÂø");
+            if (InventoryUI.Instance.goons.EquipItem(GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum]))
+            {
+                GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] = null;
+            }
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
