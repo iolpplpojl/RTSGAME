@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -33,15 +34,18 @@ public class Goons : MonoBehaviour,IGoons
         }
     }
 
+
+
     public void EquipItem(Item item)
     {
         if (items.Count < ItemCount)
         {
+            Item _item = Instantiate(item);
             foreach (var member in members)
             {
-                item.Equip(member.transform.GetChild(0).GetComponent<Player>());
+                _item.Equip(member.transform.GetChild(0).GetComponent<Player>());
             }
-            items.Add(item);
+            items.Add(_item);
         }
     }
     public void RemoveItem(int pos)
