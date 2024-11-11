@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6007338519e8d8b45bea711431df1f51, type: 3}
   m_Name: BaseItem
   m_EditorClassIdentifier: 
-  Health: 0
-  Power: 0
-  Damage: 0
-  Defence: 0
+  Health: 30
+  Power: -3
+  Damage: -3
+  Defence: 3
   sprite: {fileID: 5902650331669622779, guid: b04621f87db561d42b5d13d577608ac9, type: 3}
   description: 
-  effect:
-  - {fileID: 11400000, guid: 164b533737e46ba4782d06fc25695668, type: 2}
-  - {fileID: 11400000, guid: 48ef852a3bdf06449ae8afbf9a7d1611, type: 2}
+  effect: []

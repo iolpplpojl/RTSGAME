@@ -19,7 +19,7 @@ public class EquipSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler,
     public void OnDrop(PointerEventData eventData)
     {
         //ÀåÂø;
-
+        Debug.Log("ÀåÂø");
 
     }
 

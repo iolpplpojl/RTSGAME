@@ -33,7 +33,13 @@ public class Goons : MonoBehaviour,IGoons
             members.Add(transform.GetChild(i).gameObject);
         }
     }
-
+    
+    public void usePotion(Potion potions)
+    {
+        Potion _item = Instantiate(potions);
+        _item.onUse(this);
+        
+    }
 
 
     public void EquipItem(Item item)

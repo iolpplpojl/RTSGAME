@@ -31,7 +31,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         InventoryDragSlot.instance.gameObject.SetActive(true);
         InventoryDragSlot.instance.dragSlot = this;
         InventoryDragSlot.instance.DragSetImage(GetComponent<Image>());
-        InventoryDragSlot.instance.transform.position = eventData.position;
+        Vector3 temp = Camera.main.ScreenToWorldPoint(eventData.position);
+        temp.z = 0;
+        InventoryDragSlot.instance.transform.position = temp;
+
 
     }
 
@@ -40,8 +43,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     {
         // 드래그 중 처리할 코드 작성
         // 드래그 중 요소의 위치 업데이트 예시
-        InventoryDragSlot.instance.transform.position = eventData.position;
-    }
+        Vector3 temp = Camera.main.ScreenToWorldPoint(eventData.position);
+        temp.z = 0;
+        InventoryDragSlot.instance.transform.position =  temp;
+    }   
 
     // 드래그 끝 이벤트 처리 (IEndDragHandler)
     public void OnEndDrag(PointerEventData eventData)

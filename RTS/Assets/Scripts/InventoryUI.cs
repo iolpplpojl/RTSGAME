@@ -10,6 +10,8 @@ public class InventoryUI : MonoBehaviour
     public GameObject img;
     public GameObject list;
     public GameObject itemInven;
+    public GameObject invenSlot;
+
 
     public void Awake()
     {
@@ -17,6 +19,7 @@ public class InventoryUI : MonoBehaviour
         {
             Instance = this;
         }
+        gameObject.SetActive(false);
     }
 
     public void GoonsSelected(Goons goons)
@@ -45,6 +48,10 @@ public class InventoryUI : MonoBehaviour
                 Destroy(temp.gameObject);
             }
             Instantiate(goons.face,img.transform);
+            for(int i = 0; i < goons.ItemCount; i++)
+            {
+                Instantiate(invenSlot, itemInven.transform);
+            }
         }
     }
 }

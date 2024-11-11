@@ -17,6 +17,7 @@ public class Player : MonoBehaviour,IDamage
     public float AttackTime = 0.5f;
     protected float AttackTimeNow = 0;
     public float Health { get => _health; set => _health = value; }
+    public float MaxHealth;
     public Transform sprite;
     protected  Animator anim;
     public SPUM_Prefabs _prefabs;
@@ -65,6 +66,7 @@ public class Player : MonoBehaviour,IDamage
         }
         _prefabs._anim.SetFloat("AttackTime", 1 / AttackTime);
         StartCoroutine(onUpdater());
+        MaxHealth = Health;
     }
 
 
@@ -288,6 +290,22 @@ public class Player : MonoBehaviour,IDamage
         anim.Play("ATTACK");
 
     }
+
+    public void Heal(int amount)
+    {
+        if(MaxHealth < Health + amount)
+        {
+            Health = MaxHealth;
+            Debug.Log("최대체력 회복");
+        }
+        else
+        {
+            Health += amount;
+            Debug.Log(" 회복");
+
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
