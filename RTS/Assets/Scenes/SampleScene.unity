@@ -34459,8 +34459,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1319916677}
   - {fileID: 640864395}
+  - {fileID: 1319916677}
   m_Father: {fileID: 1567316130}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!156049354 &1501017190
@@ -34758,6 +34758,7 @@ GameObject:
   - component: {fileID: 1567316130}
   - component: {fileID: 1567316132}
   - component: {fileID: 1567316131}
+  - component: {fileID: 1567316133}
   m_Layer: 0
   m_Name: Dungeon-1 (1)
   m_TagString: Untagged
@@ -34828,6 +34829,18 @@ MonoBehaviour:
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
   m_NavMeshData: {fileID: 23800000, guid: 272f1f5d327119a48bdd742ba900e8a4, type: 2}
+--- !u!114 &1567316133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567316129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366501427e2152b4b90d5f729ff8a8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1600251789
 GameObject:
   m_ObjectHideFlags: 0
