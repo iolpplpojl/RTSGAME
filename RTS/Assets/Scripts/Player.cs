@@ -112,6 +112,8 @@ public class Player : MonoBehaviour,IDamage
         if(move.isMoving == true)
         {
             anim.SetBool("1_Move", true);
+            anim.Play("MOVE");
+
         }
         else
         {

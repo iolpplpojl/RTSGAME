@@ -15,6 +15,8 @@ public class InventoryUI : MonoBehaviour
     public GameObject ItemList;
     public GameObject ItemSlot;
 
+
+
     public void Awake()
     {
         if(Instance == null)

@@ -20,26 +20,30 @@ public class Arrow : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
-        // 타겟 방향 계산
-        Vector3 direction = Target.transform.position - transform.position;
-
-        // 타겟을 향해 회전 (목표 방향으로 회전)
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, Target.transform.position - transform.position);
-
-        // 타겟을 향해 전진 (MoveTowards 사용)
-        transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, speed * Time.deltaTime);
-        if (Vector2.Distance(Target.transform.position, transform.position) <= 0.0f)
+        else
         {
-            if (Target.GetComponent<IDamage>().TakeAttack(Damage, GameManager.instance.Dice(1, 20) + Power))
+            // 타겟 방향 계산
+            Vector3 direction = Target.transform.position - transform.position;
+
+            // 타겟을 향해 회전 (목표 방향으로 회전)
+            transform.rotation = Quaternion.LookRotation(Vector3.forward, Target.transform.position - transform.position);
+
+            // 타겟을 향해 전진 (MoveTowards 사용)
+            transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, speed * Time.deltaTime);
+            if (Vector2.Distance(Target.transform.position, transform.position) <= 0.0f)
             {
-                foreach (var kek in items)
+                if (Target.GetComponent<IDamage>().TakeAttack(Damage, GameManager.instance.Dice(1, 20) + Power))
                 {
-                    kek.onAttack(owner, Target.GetComponent<IDamage>());
+                    foreach (var kek in items)
+                    {
+                        if (kek != null)
+                        {
+                            kek.onAttack(owner, Target.GetComponent<IDamage>());
+                        }
+                    }
                 }
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
         }
     }
 }
