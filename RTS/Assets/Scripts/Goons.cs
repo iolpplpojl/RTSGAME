@@ -15,6 +15,7 @@ public class Goons : MonoBehaviour,IGoons
     public List<GameObject> members { get; set; } = new List<GameObject>();
     public List<Item> items = new List<Item>();
     public int ItemCount = 2;
+    int NowEquip = 0;
     public string Name;
     
     
@@ -32,6 +33,11 @@ public class Goons : MonoBehaviour,IGoons
         {
             members.Add(transform.GetChild(i).gameObject);
         }
+
+        for(int i = 0; i < ItemCount; i++)
+        {
+            items.Add(null);
+        }
     }
     
     public void usePotion(Potion potions)
@@ -42,16 +48,17 @@ public class Goons : MonoBehaviour,IGoons
     }
 
 
-    public bool EquipItem(Item item)
+    public bool EquipItem(Item item, int slot)
     {
-        if (items.Count < ItemCount)
+        if (NowEquip < ItemCount)
         {
             Item _item = Instantiate(item);
             foreach (var member in members)
             {
                 _item.Equip(member.transform.GetChild(0).GetComponent<Player>());
             }
-            items.Add(_item);
+            items[slot] = _item;
+            NowEquip++;
             return true;
         }
         else

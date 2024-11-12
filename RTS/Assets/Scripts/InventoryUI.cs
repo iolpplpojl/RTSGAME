@@ -88,7 +88,9 @@ public class InventoryUI : MonoBehaviour
             Instantiate(goons.face,img.transform);
             for(int i = 0; i < goons.ItemCount; i++)
             {
-                Instantiate(invenSlot, itemInven.transform);
+                var temp = Instantiate(invenSlot, itemInven.transform);
+                temp.GetComponent<EquipSlot>().slotNum = i;
+
             }
         }
     }

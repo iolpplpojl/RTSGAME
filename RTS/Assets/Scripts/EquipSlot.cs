@@ -1,10 +1,20 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class EquipSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
 {
 
-    public Item item;
+
+    public int slotNum;
+    Image img;
+
+
+
+    void Start()
+    {
+        img = GetComponent<Image>();
+    }
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -12,7 +22,7 @@ public class EquipSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
         if (GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] != null)
         {
             Debug.Log("¿Â¬¯");
-            if (InventoryUI.Instance.goons.EquipItem(GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum]))
+            if (InventoryUI.Instance.goons.EquipItem(GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum],slotNum))
             {
                 GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] = null;
             }
@@ -23,16 +33,20 @@ public class EquipSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
     {
         //«ÿ¡¶;
     }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        
+        if (InventoryUI.Instance.goons != null)
+        {
+            if (InventoryUI.Instance.goons.items[slotNum] != null)
+            {
+                img.sprite = InventoryUI.Instance.goons.items[slotNum].sprite;
+            }
+            else
+            {
+                img.sprite = null;
+            }
+        }
     }
+
 }

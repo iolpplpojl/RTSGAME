@@ -124,11 +124,15 @@ public class Player : MonoBehaviour,IDamage
     IEnumerator onUpdater()
     {
         while (true) {
-            foreach (var temp in transform.parent.parent.GetComponent<Goons>().items)   
+            foreach (var temp in transform.parent.parent.GetComponent<Goons>().items)
             {
-                temp.onUpdate(this);
+                if (temp != null)
+                {
+                    temp.onUpdate(this);
+
+                }
             }
-            yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.1f);
         }
     }
     private void OnMouseUpAsButton()
@@ -282,7 +286,10 @@ public class Player : MonoBehaviour,IDamage
             {
                 foreach (var temp in transform.parent.parent.GetComponent<Goons>().items)
                 {
-                    temp.onAttack(this, Target.GetComponent<IDamage>());
+                    if (temp != null)
+                    {
+                        temp.onAttack(this, Target.GetComponent<IDamage>());
+                    }
                 }
             }
             AttackTimeNow = AttackTime;
