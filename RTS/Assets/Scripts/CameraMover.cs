@@ -56,6 +56,20 @@ public class CameraMover : MonoBehaviour
         float clampedY = Mathf.Clamp(pos.y, nowDungeon.min.y + height/2, nowDungeon.max.y - height/2);
         pos.x = clampedX;
         pos.y = clampedY;
+
         transform.position = Vector3.SmoothDamp(transform.position, pos, ref velocity, smoothingStat);
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        float clampCam = cam.orthographicSize;
+        if(scroll < 0)
+        {
+            clampCam = cam.orthographicSize += 0.1f;
+        }
+        else if(scroll > 0)
+        {
+            clampCam = cam.orthographicSize -= 0.1f;
+        }
+
+        cam.orthographicSize = Mathf.Clamp(clampCam, nowDungeon.min.y, nowDungeon.max.y); // 12 
     }
 }

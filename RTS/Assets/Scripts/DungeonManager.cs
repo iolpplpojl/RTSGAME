@@ -10,52 +10,36 @@ public class DungeonManager : MonoBehaviour
     void Start()
     {
         map = GetComponentInChildren<Tilemap>();
-        cam = Camera.main;
-        BoundsInt bounds = map.cellBounds;
-        Vector3 size = new Vector3(bounds.size.x * map.cellSize.x, bounds.size.y * map.cellSize.y, 0);
-
-        Vector3 worldSize = map.transform.TransformVector(size);
+        map.RefreshAllTiles();
+        map.CompressBounds();
         CameraMover.instance.nowDungeon = this;
-
-        Debug.Log("Tilemap World Size: " + worldSize);
-        Debug.Log("Tilemap bounds Size: " + bounds);
         IsCameraAtTilemapEdge();
+        Debug.Log(map);
     }
 
     public bool IsCameraAtTilemapEdge()
     {
-        
-        // 타일맵의 bounds (셀 좌표 기준)
-        BoundsInt tilemapBounds = map.cellBounds;
 
-        // 타일맵의 월드 공간에서의 크기 계산
-        Vector3 tilemapWorldSize = new Vector3(
-            tilemapBounds.size.x * map.cellSize.x,
-            tilemapBounds.size.y * map.cellSize.y,
-            0);
+        // Tilemap의 경계 구하기
+        BoundsInt bounds = map.cellBounds;
 
-        // 타일맵의 위치 (월드 좌표)
-        Vector3 tilemapWorldPosition = map.transform.position;
+        // 타일 크기 구하기
+        Vector3 tileSize = map.cellSize;
 
-        // 카메라의 뷰포트 크기 계산
-        float cameraHeight = cam.orthographicSize * 2;
-        float cameraWidth = cameraHeight * cam.aspect;
+        // 타일맵의 월드 공간 크기 계산
+        Vector3 worldSize = new Vector3(bounds.size.x * tileSize.x, bounds.size.y * tileSize.y, 0f);
 
-        // 카메라의 월드 좌표 (카메라의 중심)
-        Vector3 cameraPosition = cam.transform.position;
 
-        // 타일맵의 경계 (좌측 하단과 우측 상단)
-         min = tilemapWorldPosition - tilemapWorldSize / 2;
-         max = tilemapWorldPosition + tilemapWorldSize / 2;
-        Debug.Log(min + " + " +max);
-        // 카메라가 타일맵의 왼쪽, 오른쪽, 위, 아래 경계에 있는지 확인  
-  //      bool isAtLeftEdge = cameraPosition.x - cameraWidth / 2 <= tilemapMin.x;
- //       bool isAtRightEdge = cameraPosition.x + cameraWidth / 2 >= tilemapMax.x;
-  //      bool isAtBottomEdge = cameraPosition.y - cameraHeight / 2 <= tilemapMin.y;
-  //      bool isAtTopEdge = cameraPosition.y + cameraHeight / 2 >= tilemapMax.y;
-  //      Debug.Log(cameraPosition.x + " " +  cameraWidth / 2 + " " + tilemapMin.x);
+        Vector3 tilemapWorldPosition = transform.position;
 
-  ///      // 카메라가 타일맵의 가장자리에 있는지 여부 반환
+
+        min = bounds.min; //tilemapWorldPosition - worldSize / 2;
+        max = bounds.max; //tilemapWorldPosition + worldSize / 2;
+        Debug.Log(" + " + tileSize);
+        Debug.Log("min: " + min);
+        Debug.Log("max " + max);
+        Debug.Log("size " + worldSize);
+        Debug.Log("bound" + bounds);
         return false;
     }
 }
