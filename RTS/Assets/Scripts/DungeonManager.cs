@@ -5,6 +5,8 @@ public class DungeonManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     Tilemap map;
     Camera cam;
+    public Vector3 min;
+    public Vector3 max;
     void Start()
     {
         map = GetComponentInChildren<Tilemap>();
@@ -13,25 +15,16 @@ public class DungeonManager : MonoBehaviour
         Vector3 size = new Vector3(bounds.size.x * map.cellSize.x, bounds.size.y * map.cellSize.y, 0);
 
         Vector3 worldSize = map.transform.TransformVector(size);
+        CameraMover.instance.nowDungeon = this;
 
         Debug.Log("Tilemap World Size: " + worldSize);
         Debug.Log("Tilemap bounds Size: " + bounds);
+        IsCameraAtTilemapEdge();
     }
 
-    void Update()
+    public bool IsCameraAtTilemapEdge()
     {
-        if (IsCameraAtTilemapEdge())
-        {
-            Debug.Log("Camera is at the edge of the Tilemap!");
-        }
-        else
-        {
-            Debug.Log("Camera is not at the edge of the Tilemap.");
-        }
-    }
-
-    bool IsCameraAtTilemapEdge()
-    {
+        
         // 타일맵의 bounds (셀 좌표 기준)
         BoundsInt tilemapBounds = map.cellBounds;
 
@@ -52,17 +45,17 @@ public class DungeonManager : MonoBehaviour
         Vector3 cameraPosition = cam.transform.position;
 
         // 타일맵의 경계 (좌측 하단과 우측 상단)
-        Vector3 tilemapMin = tilemapWorldPosition - tilemapWorldSize / 2;
-        Vector3 tilemapMax = tilemapWorldPosition + tilemapWorldSize / 2;
-
+         min = tilemapWorldPosition - tilemapWorldSize / 2;
+         max = tilemapWorldPosition + tilemapWorldSize / 2;
+        Debug.Log(min + " + " +max);
         // 카메라가 타일맵의 왼쪽, 오른쪽, 위, 아래 경계에 있는지 확인  
-        bool isAtLeftEdge = cameraPosition.x - cameraWidth / 2 <= tilemapMin.x;
-        bool isAtRightEdge = cameraPosition.x + cameraWidth / 2 >= tilemapMax.x;
-        bool isAtBottomEdge = cameraPosition.y - cameraHeight / 2 <= tilemapMin.y;
-        bool isAtTopEdge = cameraPosition.y + cameraHeight / 2 >= tilemapMax.y;
-        Debug.Log(cameraPosition.x + " " +  cameraWidth / 2 + " " + tilemapMin.x);
+  //      bool isAtLeftEdge = cameraPosition.x - cameraWidth / 2 <= tilemapMin.x;
+ //       bool isAtRightEdge = cameraPosition.x + cameraWidth / 2 >= tilemapMax.x;
+  //      bool isAtBottomEdge = cameraPosition.y - cameraHeight / 2 <= tilemapMin.y;
+  //      bool isAtTopEdge = cameraPosition.y + cameraHeight / 2 >= tilemapMax.y;
+  //      Debug.Log(cameraPosition.x + " " +  cameraWidth / 2 + " " + tilemapMin.x);
 
-        // 카메라가 타일맵의 가장자리에 있는지 여부 반환
-        return isAtLeftEdge || isAtRightEdge || isAtBottomEdge || isAtTopEdge;
+  ///      // 카메라가 타일맵의 가장자리에 있는지 여부 반환
+        return false;
     }
 }
