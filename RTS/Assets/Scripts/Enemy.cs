@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour,IDamage
     void Start()
     {
         move = GetComponent<Moveable>();
-        Damage = 12;
+        Damage = 12;    
         StartCoroutine(MovePattern());
     }
 

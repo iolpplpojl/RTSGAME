@@ -8,11 +8,14 @@ public class Item : ScriptableObject
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
+   
+
     public int Health;
     public int Power;
     public int Damage;
     public int Defence;
     public Sprite sprite;
+    public string itemname;
     public string description;
     public List<ScriptableObject> effect;
 

@@ -150,9 +150,9 @@ public class Player : MonoBehaviour,IDamage
     //우선순위 : 적 상대 = 바닥 이동 > 주변 공격
     public void MovePattern()
     {
-        if(move.Targeting == true)
+        if(move.Targeting == true) //타겟팅중,
         {
-            if (move.Target != null)
+            if (move.Target != null) // not 타겟팅중에 상대가 죽었을때. 
             {
                 if (Vector2.Distance(transform.position, move.Target.transform.position) < AttackRadius)
                 {
@@ -164,71 +164,39 @@ public class Player : MonoBehaviour,IDamage
                     move.isMoving = true;
                 }
 
-                var temp = Physics2D.OverlapCircleAll(transform.position, 3.0f, LayerMask.GetMask("Enemy"));
-                if (temp.Length != 0)
-                {
-                    GameObject near = null;
-                    foreach (var lol in temp)
-                    {
-                        var kek = lol.gameObject;
-                        if(near == null)
-                        {
-                            near = kek;
-                        }
-                        if (Vector2.Distance(kek.transform.position, transform.position) < Vector2.Distance(near.transform.position, transform.position))
-                        {
-                            near = kek;
-                        }
-                    }
-                    if (near != null)
-                    {
-                        move.Target = near;
-                    }
-                }
+
             }
-            else
+            else // 타겟팅중에 상대가 죽었을때.
             {
-                var temp = Physics2D.OverlapCircleAll(transform.position, 3.0f, LayerMask.GetMask("Enemy"));
-                if (temp.Length != 0)
+                //주변을 탐색하여 재타겟팅.
+                if (Targetnearby())
                 {
-                    GameObject near = null;
-                    foreach (var lol in temp)
-                    {
-                        var kek = lol.gameObject;
-                        if (near == null)
-                        {
-                            near = kek;
-                        }
-                        if (Vector2.Distance(kek.transform.position, transform.position) < Vector2.Distance(near.transform.position, transform.position))
-                        {
-                            near = kek;
-                        }
-                    }
-                    if (near != null)
-                    {
-                        move.Target = near;
-                    }
+
                 }
-                else
+                else                 //재타겟팅도 실패한 경우.
                 {
+                    // 공격모드 중단.
                     Attacking = false;
                     SetMoveDirection(transform.position);
 
                 }
             }
         }
-        else
+        else // 위치 지정의 경우
         {
-            if(move.PosArrive == true)
+            if(move.PosArrive == true) // 해당위치로 도착한 경우
             {
+
+                Targetnearby();
+                /**
                 var temp = Physics2D.OverlapCircle(transform.position, AttackRadius, LayerMask.GetMask("Enemy"));
                 if (temp != null)
                 {
                     Attacking = true;
                     Attack(temp.gameObject);
-                }
+                }**/
             }
-            else
+            else // not;
             {
                 Attacking = false;
             }
@@ -237,6 +205,34 @@ public class Player : MonoBehaviour,IDamage
         {
             move.isMoving = !Attacking;
         }
+    }
+
+    public bool Targetnearby()
+    {
+        var temp = Physics2D.OverlapCircleAll(transform.position, 3.0f, LayerMask.GetMask("Enemy"));
+        if (temp.Length != 0)
+        {
+            GameObject near = null;
+            foreach (var lol in temp)
+            {
+                var kek = lol.gameObject;
+                if (near == null)
+                {
+                    near = kek;
+                }
+                if (Vector2.Distance(kek.transform.position, transform.position) < Vector2.Distance(near.transform.position, transform.position))
+                {
+                    near = kek;
+                }
+            }
+            if (near != null)
+            {
+                move.Target = near;
+                move.Targeting = true;
+                return true;
+            }
+        }
+        return false;
     }
 
     public bool TakeAttack(float Damage, int Power)
