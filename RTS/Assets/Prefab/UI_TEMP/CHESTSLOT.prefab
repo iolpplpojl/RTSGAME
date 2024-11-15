@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5260905965971413819}
   - component: {fileID: 2238487708496151873}
   - component: {fileID: 2329916448246824408}
+  - component: {fileID: 937554582105852224}
   m_Layer: 5
   m_Name: CHESTSLOT
   m_TagString: Untagged
@@ -108,6 +109,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   img: {fileID: 4767785252466765770}
   txt: {fileID: 4859080313618401292}
+--- !u!114 &937554582105852224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572055974011875849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434f1c38e883b954088e3f6eb7bb2965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
 --- !u!1 &6104873056851447208
 GameObject:
   m_ObjectHideFlags: 0

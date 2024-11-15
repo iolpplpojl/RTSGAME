@@ -2,12 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
-public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, ISlot
 {
 
     Vector3 nowposition;
     public int slotNum;
     Image img;
+    public Item item { get; set; }  // Item을 저장하는 슬롯
 
     void Start()
     {
@@ -31,9 +32,12 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         if (GameManager.instance.storage[slotNum] != null)
         {
             img.sprite = GameManager.instance.storage[slotNum].sprite;
+            item = GameManager.instance.storage[slotNum];
+
         }
         else
         {
+            item = null;
             img.sprite = null;
         }
     }

@@ -18,6 +18,7 @@ public class Item : ScriptableObject
     public string itemname;
     public string description;
     public List<ScriptableObject> effect;
+    public int rare;
 
     public virtual void Equip(Player player)
     {

@@ -25,7 +25,7 @@ public class Room : MonoBehaviour
                 Setup_room();
                 break;
             case Roomtype.Shop:
-                Setup_shop;
+                Setup_shop();
                 break;
             case Roomtype.Event:
                 Setup_event();

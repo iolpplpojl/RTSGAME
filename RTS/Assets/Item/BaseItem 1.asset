@@ -17,7 +17,9 @@ MonoBehaviour:
   Damage: 0
   Defence: 0
   sprite: {fileID: 7195734205691627793, guid: 7212bef95b8a58344944fb6e590be91e, type: 3}
+  itemname: "\uC545\uC545"
   description: 
   effect:
   - {fileID: 11400000, guid: 164b533737e46ba4782d06fc25695668, type: 2}
   - {fileID: 11400000, guid: 48ef852a3bdf06449ae8afbf9a7d1611, type: 2}
+  rare: 0

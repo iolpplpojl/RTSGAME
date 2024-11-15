@@ -18,11 +18,11 @@ public class ItemDatabase : MonoBehaviour
     {
         var temp = Random.value;
         Item _item = null;
-
-        if(temp > 1f)
+        if(temp <= 1f)
         {
             _item = commonItem[Random.Range(0, commonItem.Count)];
         }
+        Debug.Log(_item);
         return _item;
     }
 }

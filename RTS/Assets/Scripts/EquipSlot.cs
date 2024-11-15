@@ -2,12 +2,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class EquipSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
+public class EquipSlot : MonoBehaviour, IPointerClickHandler, IDropHandler,ISlot
 {
 
 
     public int slotNum;
     Image img;
+    public Item item { get; set; }  // Item을 저장하는 슬롯
 
 
 
@@ -41,10 +42,13 @@ public class EquipSlot : MonoBehaviour, IPointerClickHandler, IDropHandler
             if (InventoryUI.Instance.goons.items[slotNum] != null)
             {
                 img.sprite = InventoryUI.Instance.goons.items[slotNum].sprite;
+                item = InventoryUI.Instance.goons.items[slotNum];
             }
             else
             {
                 img.sprite = null;
+               // item = null;
+
             }
         }
     }
