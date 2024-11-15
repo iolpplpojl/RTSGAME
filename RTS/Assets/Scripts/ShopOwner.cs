@@ -7,12 +7,18 @@ public class ShopOwner : MonoBehaviour
     public int productCount;
 
 
+
+
+
     public void SetUp()
     {
+
+        productCount = Random.Range(4, 12);
         for(int i = 0; i < productCount; i++)
         {
             product temp = new product();
-            temp.item = itemDatabase.instance.GetRandomItem();
+            temp.item = ItemDatabase.instance.GetRandomItem();
+
         }
     }
 

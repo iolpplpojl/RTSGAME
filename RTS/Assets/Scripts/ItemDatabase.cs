@@ -17,14 +17,12 @@ public class ItemDatabase : MonoBehaviour
     public Item GetRandomItem()
     {
         var temp = Random.value;
-        Item _item;
+        Item _item = null;
 
-        if(temp > 0.6f)
+        if(temp > 1f)
         {
             _item = commonItem[Random.Range(0, commonItem.Count)];
         }
-
-
         return _item;
     }
 }

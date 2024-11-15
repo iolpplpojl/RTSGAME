@@ -28,6 +28,7 @@ public class RoomManager : MonoBehaviour
         {
             instance = this;
         }
+        Random.InitState(12345);
     }
     public void Clear()
     {
@@ -177,10 +178,30 @@ void Start()
         room.OutRoom.Add(init.GetComponent<Room>());
         SetConnection(room, init.GetComponent<Room>());
         init.GetComponent<Room>().InRoom.Add(room);
+
+
+
+        if (roomcount == 0)
+        {
+            init.GetComponent<Room>().roomtype = Roomtype.First;
+        }
+        else
+        {
+            init.GetComponent<Room>().roomtype = GetRandomEnumValue();
+        }
         roomQueue.Enqueue(init.GetComponent<Room>());
+        init.GetComponent<Room>().RoomSetUp();
 
     }
-
+    public static Roomtype GetRandomEnumValue()
+    {
+        System.Array enumValues = System.Enum.GetValues(typeof(Roomtype));  // Enum 값들을 배열로 가져옴
+        Roomtype randomIndex = Roomtype.First;
+        do {
+            randomIndex = (Roomtype)enumValues.GetValue(Random.Range(0, enumValues.Length));
+                } while (randomIndex == Roomtype.First); // 랜덤 선택
+        return randomIndex;  // 랜덤 인덱스를 이용해 enum 값 반환
+    }
     public void Reset()
     {
         foreach (var temp in list_room)
@@ -214,6 +235,9 @@ void Start()
         roomQueue.Enqueue(init.GetComponent<Room>());
         nowRoom = init.GetComponent<Room>();
         nowRoom.GetComponent<SpriteRenderer>().color = Color.red;
+
+        init.GetComponent<Room>().roomtype = Roomtype.First;
+        init.GetComponent<Room>().RoomSetUp();
 
     }
 
