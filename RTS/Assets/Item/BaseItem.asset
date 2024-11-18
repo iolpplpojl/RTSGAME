@@ -18,6 +18,7 @@ MonoBehaviour:
   Defence: 3
   sprite: {fileID: 5902650331669622779, guid: b04621f87db561d42b5d13d577608ac9, type: 3}
   itemname: "\uD3ED\uBC1C\uC758 \uC548\uC7A5"
-  description: 
+  description: "\uD14C\uC2A4\uD2B8"
   effect:
   - {fileID: 11400000, guid: a09b2237b2634334e9f0693e54017e5f, type: 2}
+  rare: 0

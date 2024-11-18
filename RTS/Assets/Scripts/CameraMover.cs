@@ -50,7 +50,6 @@ public class CameraMover : MonoBehaviour
 
         // 화면의 너비는 화면 비율(aspect ratio)을 사용하여 계산할 수 있습니다.
         float width = height * cam.aspect;
-        Debug.Log(height + " + " + width);
 
         float clampedX = Mathf.Clamp(pos.x, nowDungeon.min.x + width/2, nowDungeon.max.x - width/2);
         float clampedY = Mathf.Clamp(pos.y, nowDungeon.min.y + height/2, nowDungeon.max.y - height/2);

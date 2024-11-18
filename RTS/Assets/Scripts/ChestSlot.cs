@@ -20,10 +20,11 @@ public class ChestSlot : MonoBehaviour, IPointerClickHandler,ISlot
         {
             img.sprite = GameManager.instance.goldsprite;
             txt.text = string.Format("{0} °ñµå", data.gold);
-            item = data.item;
+            item = null;
         }
         else
         {
+            item = data.item;
             img.sprite = data.item.sprite;
             txt.text = data.item.itemname;
         }
