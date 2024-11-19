@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca369c723c694ce4286f4b795b9d4978, type: 3}
   m_Name: "\uD3ED\uBC1C"
   m_EditorClassIdentifier: 
-  probability: 0.7
+  probability: 0.70001
   explodeDamage: 2
   explodeRadius: 0.5
+  desc: 

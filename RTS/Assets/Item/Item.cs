@@ -58,6 +58,69 @@ public class Item : ScriptableObject
 
     }
 
+    public string getDesc()
+    {
+        string temp = "";
+        if(Health != 0)
+        {
+            if (Health > 0)
+            {
+                temp += string.Format("체력 + {0}\n", Health);
+            }
+            else
+            {
+                temp += string.Format("체력 - {0}\n", Math.Abs(Health));
+
+            }
+        }
+
+        if (Power != 0)
+        {
+            if (Power > 0)
+            {
+                temp += string.Format("공격 + {0}\n", Power);
+            }
+            else
+            {
+                temp += string.Format("공격 - {0}\n", Math.Abs(Power));
+
+            }
+        }
+        if (Damage != 0)
+        {
+            if (Damage > 0)
+            {
+                temp += string.Format("피해량 + {0}\n", Damage);
+            }
+            else
+            {
+                temp += string.Format("피해량 - {0}\n", Math.Abs(Damage));
+
+            }
+        }
+        if (Defence != 0)
+        {
+            if (Defence > 0)
+            {
+                temp += string.Format("방어 + {0}\n", Defence);
+            }
+            else
+            {
+                temp += string.Format("방어 - {0}\n", Math.Abs(Defence));
+
+            }
+        }
+
+        foreach (var item in effect)
+        {
+            IEffect _effect = item as IEffect;
+            temp += _effect.getDesc();
+            temp += "\n";
+        }
+        temp += description;
+        return temp;
+    }
+
 
 
 }

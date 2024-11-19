@@ -6,7 +6,7 @@ public class Item_AttackHeal : ScriptableObject,IEffect
     public  void onAttack(Player player, IDamage enemy)
     {
         Debug.Log("힐!!!");
-        player.Health += Heal;
+        player.Heal(Heal);
     }
     public void onUpdate(Player player)
     {
@@ -15,5 +15,10 @@ public class Item_AttackHeal : ScriptableObject,IEffect
     public  void onHit()
     {
         return;
+    }
+    public string desc;
+    public string getDesc()
+    {
+        return string.Format("공격 적중시 {0}의 체력을 회복합니다.",Heal);
     }
 }

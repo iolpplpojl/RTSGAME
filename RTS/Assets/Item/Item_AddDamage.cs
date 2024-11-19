@@ -4,6 +4,7 @@ using UnityEngine;
 public class Item_AddDamage : ScriptableObject,IEffect
 {
     public int addDamage;
+    public string desc;
     public  void onAttack(Player player, IDamage enemy)
     {
         Debug.Log("추가 피해!!!");
@@ -15,5 +16,9 @@ public class Item_AddDamage : ScriptableObject,IEffect
     }
     public  void onHit(){
         return;
+    }
+    public string getDesc()
+    {
+        return string.Format("공격 적중시 추가로 공격해 피해량을 1d{0} 입힙니다.",addDamage);
     }
 }

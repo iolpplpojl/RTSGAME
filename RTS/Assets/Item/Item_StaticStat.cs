@@ -46,4 +46,9 @@ public class Item_StaticStat : ScriptableObject, IEffect
     {
         return;
     }
+    public string desc;
+    public string getDesc()
+    {
+        return desc;
+    }
 }

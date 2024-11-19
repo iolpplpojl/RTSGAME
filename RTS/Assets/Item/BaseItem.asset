@@ -21,4 +21,7 @@ MonoBehaviour:
   description: "\uD14C\uC2A4\uD2B8"
   effect:
   - {fileID: 11400000, guid: a09b2237b2634334e9f0693e54017e5f, type: 2}
+  - {fileID: 11400000, guid: 164b533737e46ba4782d06fc25695668, type: 2}
+  - {fileID: 11400000, guid: c1678c19767d6e54ab90d1700aac9d19, type: 2}
+  - {fileID: 11400000, guid: a09b2237b2634334e9f0693e54017e5f, type: 2}
   rare: 0

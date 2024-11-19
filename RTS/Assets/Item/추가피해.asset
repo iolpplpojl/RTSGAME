@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: "\uCD94\uAC00\uD53C\uD574"
   m_EditorClassIdentifier: 
   addDamage: 0
+  desc: 

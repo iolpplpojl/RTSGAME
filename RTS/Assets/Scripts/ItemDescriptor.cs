@@ -34,7 +34,7 @@ public class ItemDescriptor : MonoBehaviour
         size = new Vector3(-(rect.rect.size.x / 2 * screenRatio), rect.rect.size.y / 2 * screenRatioy, 0); // = 16:9
         Debug.Log(size);
         title.text = item.itemname;
-        desc.text = item.description;
+        desc.text = item.getDesc();
         sprite.sprite = item.sprite;
     }
 }
