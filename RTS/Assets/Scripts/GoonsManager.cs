@@ -91,6 +91,7 @@ public class GoonsManager : MonoBehaviour
         }
         SetUI();
     }
+
     public void Select(Goons idx)
     {
         Debug.Log(idx);
@@ -109,6 +110,23 @@ public class GoonsManager : MonoBehaviour
         SetUI();
     }
 
+    public void Select(List<Goons> idx)
+    {
+        Debug.Log(idx);
+        for (int i = 0; i < Goons.Count; i++)
+        {
+            if (idx.Contains(Goons[i]))
+            {
+                Goons[i].Selected = true;
+                nowselect = i;
+            }
+            else
+            {
+                Goons[i].Selected = false;
+            }
+        }
+        SetUI();
+    }
     public void Setup()
     {
         nowselect = -1;
