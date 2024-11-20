@@ -11,20 +11,34 @@ public class Player : MonoBehaviour,IDamage
     protected Moveable move;
     [SerializeField] float AttackRadius = 0.4f;
     [SerializeField]
-    private float _health;
     protected bool Attacking = false;
-    public float Damage = 12;
-    public float AttackTime = 0.5f;
+
     protected float AttackTimeNow = 0;
-    public float Health { get => _health; set => _health = value; }
-    public float MaxHealth;
     public Transform sprite;
     protected  Animator anim;
     public SPUM_Prefabs _prefabs;
     public Dictionary<PlayerState, int> IndexPair = new();
 
+    [Header("±âº» ½ºÅÈ")]
+    public float baseHealth;
+    public float baseDamage;
+    public float baseAttacktime;
+    public int baseDefence;
+    public int basePower;
 
+    [Header("Ãß°¡ ½ºÅÈ")]
+    public float addHealth;
+    public float addDamage;
+    public float addAttackTime;
+    public int addDefence;
+    public int addPower;
 
+    //°á°ú ½ºÅÈ
+    public float Damage = 12;
+    public float AttackTime = 0.5f;
+    public float Health { get => _health; set => _health = value; }
+    private float _health;
+    public float MaxHealth;
     public int Power;
     public int Defence;
 

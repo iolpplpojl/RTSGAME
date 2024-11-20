@@ -7,7 +7,7 @@ public class ClickSelecter : MonoBehaviour
     Vector3 start;
     Vector3 current;
     RectTransform rect;
-
+    float clicktime = 0;
 
     void Start()
     {
@@ -20,25 +20,32 @@ public class ClickSelecter : MonoBehaviour
         {
             Vector3 temp = Input.mousePosition;
             start = temp;
-            rect.gameObject.SetActive(true);
-
+            clicktime = 0;
         }
         if (Input.GetMouseButton(0))
         {
-            float screenRatio = (float)Screen.width / 1920;
-            float screenRatioy = (float)Screen.height / 1080;
-            current = Input.mousePosition;
-  
-            rect.sizeDelta = new Vector2(Mathf.Abs(current.x - start.x) / screenRatio, Mathf.Abs(current.y - start.y)/screenRatioy); // 박스 크기 설정
-            // rect.localScale = (rightup - leftlow);
-            Vector3 temp = (start  + current) / 2;
-            temp.x /= screenRatio;
-            temp.y /= screenRatioy;
-            rect.anchoredPosition = temp;
+            if (clicktime > 0.1f)
+            {
+                rect.gameObject.SetActive(true);
+                float screenRatio = (float)Screen.width / 1920;
+                float screenRatioy = (float)Screen.height / 1080;
+                current = Input.mousePosition;
+
+                rect.sizeDelta = new Vector2(Mathf.Abs(current.x - start.x) / screenRatio, Mathf.Abs(current.y - start.y) / screenRatioy); // 박스 크기 설정
+                                                                                                                                           // rect.localScale = (rightup - leftlow);
+                Vector3 temp = (start + current) / 2;
+                temp.x /= screenRatio;
+                temp.y /= screenRatioy;
+                rect.anchoredPosition = temp;
+            }
+            clicktime += Time.deltaTime;
         }
         if (Input.GetMouseButtonUp(0)) {
-            DoSelect();
-            rect.gameObject.SetActive(false);
+            if (clicktime > 0.1f)
+            {
+                DoSelect();
+                rect.gameObject.SetActive(false);
+            }
         }
     }
 

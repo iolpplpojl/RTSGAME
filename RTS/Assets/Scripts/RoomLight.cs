@@ -1,0 +1,37 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Rendering.Universal;
+public class RoomLight : MonoBehaviour
+{
+    Light2D light;
+    bool onoff = false;
+
+    void Start()
+    {
+        light = GetComponent<Light2D>();
+    }
+
+   IEnumerator LightsOn()
+    {
+        while(light.intensity < 2)
+        {
+            light.intensity = Mathf.SmoothStep(light.intensity, 2, 0.03f);
+            yield return null;
+        }
+        light.intensity = 2;
+        yield break;
+    }
+    
+    // Trigger에 들어올 때 실행될 메서드
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("트리거");
+        if (!onoff)
+        {
+            StartCoroutine(LightsOn());
+            onoff = true;
+        }
+    }
+
+
+}

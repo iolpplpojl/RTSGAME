@@ -6,6 +6,8 @@ public class EnemyGoons : MonoBehaviour,IGoons
     [SerializeField]
     private List<GameObject> _members = new List<GameObject>();
     public List<GameObject> members { get; set; } = new List<GameObject>();
+    public GameObject chest;
+
 
     public void memberDie(GameObject member)
     {
@@ -13,6 +15,10 @@ public class EnemyGoons : MonoBehaviour,IGoons
         Destroy(member);
         if (members.Count == 0)
         {
+            if(chest != null)
+            {
+                var temp = Instantiate(chest, transform.position, Quaternion.identity, transform.parent);
+            }
             Destroy(gameObject);
         }
     }
