@@ -3352,13 +3352,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326b0d293dfe370469387ad1b8a9ec01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackRadius: 2.5
-  _health: 30
+  AttackRadius: 3.5
+  Attacking: 0
+  sprite: {fileID: 4875855341349531361}
+  _prefabs: {fileID: 0}
+  baseHealth: 90
+  baseDamage: 15
+  baseAttacktime: 1
+  baseDefence: 0
+  basePower: 10
+  addHealth: 0
+  addDamage: 0
+  addAttackTime: 0
+  addDefence: 0
+  addPower: 0
   Damage: 12
   AttackTime: 0.5
   MaxHealth: 0
-  sprite: {fileID: 4875855341349531361}
-  _prefabs: {fileID: 0}
   Power: 0
   Defence: -5
   Arrow: {fileID: 5272026130943490762, guid: cdf1aa94413967c40a8d489142171b74, type: 3}

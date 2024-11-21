@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603876624553d0f46b0f7f70ac5b36f4, type: 3}
   m_Name: PotionBase
   m_EditorClassIdentifier: 
-  sprite: {fileID: 5902650331669622779, guid: fea53425b09f2aa4b8888109780b0de5, type: 3}
-  description: 
+  <sprite>k__BackingField: {fileID: 232691430, guid: ad9e62bfa99c716408ac9bf36e8864d0,
+    type: 3}
+  <itemname>k__BackingField: "\uBB3C\uC57D"
+  description: "\uC554\uB2C8\u314F\u3153\u3160\u3134\uC544"
   potions:
   - {fileID: 11400000, guid: 385a275283ea183468df15168b0d1b36, type: 2}

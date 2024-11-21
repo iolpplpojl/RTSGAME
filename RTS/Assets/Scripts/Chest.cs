@@ -5,9 +5,8 @@ using UnityEngine;
 public class Chest : MonoBehaviour
 {
     public int Gold;
-    public List<Item> item = new List<Item>();
-
-
+    public List<Item> equipitem = new List<Item>();
+    public List<Potion> potion = new List<Potion>();
     public List<ChestData> slot = new List<ChestData>();
 
 
@@ -19,7 +18,14 @@ public class Chest : MonoBehaviour
             slot.Add(temp);
         }
 
-        foreach (var temp in item)
+        foreach (var temp in equipitem)
+        {
+            ChestData kek = new ChestData();
+            kek.type = 1;
+            kek.item = temp;
+            slot.Add(kek);
+        }
+        foreach(var temp in potion)
         {
             ChestData kek = new ChestData();
             kek.type = 1;
@@ -40,5 +46,5 @@ public class ChestData
 {
     public int type;
     public int gold;
-    public Item item;
+    public Iitem item;
 }

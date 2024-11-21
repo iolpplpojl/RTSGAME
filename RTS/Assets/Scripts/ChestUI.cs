@@ -52,7 +52,6 @@ public class ChestUI : MonoBehaviour
             if (chest.slot.Count == 0)
             {
                 Close();
-
                 Destroy(chest.gameObject);
             }
             else
@@ -73,6 +72,7 @@ public class ChestUI : MonoBehaviour
                     {
                         Close();
                         Destroy(chest.gameObject);
+                        ItemDescriptor.instance.gameObject.SetActive(false);
                     }
                     else
                     {

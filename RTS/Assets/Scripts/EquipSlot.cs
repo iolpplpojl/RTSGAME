@@ -8,7 +8,7 @@ public class EquipSlot : MonoBehaviour, IPointerClickHandler, IDropHandler,ISlot
 
     public int slotNum;
     Image img;
-    public Item item { get; set; }  // ItemÀ» ÀúÀåÇÏ´Â ½½·Ô
+    public Iitem item { get; set; }  // ItemÀ» ÀúÀåÇÏ´Â ½½·Ô
 
 
 
@@ -20,14 +20,15 @@ public class EquipSlot : MonoBehaviour, IPointerClickHandler, IDropHandler,ISlot
     public void OnDrop(PointerEventData eventData)
     {
         //ÀåÂø;
-        if (GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] != null)
+        if (GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] as Item != null)
         {
             Debug.Log("ÀåÂø");
-            if (InventoryUI.Instance.goons.EquipItem(GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum],slotNum))
+            if (InventoryUI.Instance.goons.EquipItem(GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] as Item, slotNum))
             {
                 GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] = null;
             }
         }
+
     }
 
     public void OnPointerClick(PointerEventData eventData)

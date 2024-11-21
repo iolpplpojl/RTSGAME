@@ -34,6 +34,7 @@ public class Player : MonoBehaviour,IDamage
     public int addPower;
 
     //결과 스탯
+    [Header("결과 스탯")]
     public float Damage = 12;
     public float AttackTime = 0.5f;
     public float Health { get => _health; set => _health = value; }
@@ -51,7 +52,7 @@ public class Player : MonoBehaviour,IDamage
     public void TakeDamage(float Damage)
     {
         Health -= Damage;
-    //    Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = Damage;
+        Instantiate(GameManager.instance.Popup, transform.position, Quaternion.identity).GetComponentInChildren<Popup>().Damage = Damage;
         Debug.Log(Damage + "Ouch");
         if (Health <= 0)
         {
@@ -80,7 +81,9 @@ public class Player : MonoBehaviour,IDamage
         }
         _prefabs._anim.SetFloat("AttackTime", 1 / AttackTime);
         StartCoroutine(onUpdater());
-        MaxHealth = Health;
+        Health = _health;
+        Health = baseHealth;
+
     }
 
 
@@ -98,7 +101,11 @@ public class Player : MonoBehaviour,IDamage
     // Update is called once per frame
     void Update()
     {
-        Health = _health;
+        Damage = addDamage + baseDamage;
+        MaxHealth = baseHealth + addHealth;
+        Power = basePower + addPower;
+        Defence = baseDefence + addDefence;
+        AttackTime = baseAttacktime - addAttackTime;
 
         Cooldown();
         MovePattern();
@@ -320,7 +327,7 @@ public class Player : MonoBehaviour,IDamage
         else
         {
             Health += amount;
-            Debug.Log(" 회복");
+            Debug.Log(" 회복" + Health);
 
         }
     }

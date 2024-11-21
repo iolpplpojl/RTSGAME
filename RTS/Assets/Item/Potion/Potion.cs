@@ -2,9 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PotionBase", menuName = "Potion/PotionBase")]
-public class Potion : ScriptableObject
+public class Potion : ScriptableObject, Iitem
 {
-    public Sprite sprite;
+    [field: SerializeField] public Sprite sprite { get; set; }
+    [field: SerializeField] public string itemname { get; set; }
     public string description;
     public List<ScriptableObject> potions;
 
@@ -18,5 +19,10 @@ public class Potion : ScriptableObject
         }  
 
         Destroy(this);
+    }
+
+    public string getDesc()
+    {
+        return description;
     }
 }

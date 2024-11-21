@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
     public Sprite goldsprite;
 
     public int gold;
-
+    public bool inFight = true;
 
     public int storageCount = 30;
-    public List<Item> storage = new List<Item>();
+    public List<Iitem> storage = new List<Iitem>();
 
     public GameObject Inventory;
 
@@ -55,6 +55,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             Inventory.SetActive(!Inventory.activeSelf);
+            if (Inventory.activeSelf == false)
+            {
+                ItemDescriptor.instance.gameObject.SetActive(false);
+            }
+
         }
     }
 }

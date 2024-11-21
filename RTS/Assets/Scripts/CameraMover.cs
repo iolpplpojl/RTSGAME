@@ -28,19 +28,19 @@ public class CameraMover : MonoBehaviour
     {
         Vector3 pos = transform.position;
 
-        if (Input.mousePosition.x >= Screen.width - screenSizeTickness)
+        if (Input.mousePosition.x >= Screen.width - screenSizeTickness || Input.GetKey(KeyCode.RightArrow))
         {
             pos.x += cameraSpeed * Time.deltaTime;
         }
-        if (Input.mousePosition.x <= screenSizeTickness)
+        if (Input.mousePosition.x <= screenSizeTickness || Input.GetKey(KeyCode.LeftArrow))
         {
             pos.x -= cameraSpeed * Time.deltaTime;
         }
-        if (Input.mousePosition.y >= Screen.height - screenSizeTickness)
+        if (Input.mousePosition.y >= Screen.height - screenSizeTickness || Input.GetKey(KeyCode.UpArrow))
         {
             pos.y += cameraSpeed * Time.deltaTime;
         }
-        if (Input.mousePosition.y <= screenSizeTickness)
+        if (Input.mousePosition.y <= screenSizeTickness || Input.GetKey(KeyCode.DownArrow))
         {
             pos.y -= cameraSpeed * Time.deltaTime;
         }

@@ -14,8 +14,9 @@ public class InventoryUI : MonoBehaviour
     public GameObject invenSlot;
     public GameObject ItemList;
     public GameObject ItemSlot;
-
-
+    public GameObject usePanel;
+    public GameObject battlePanel;
+    
 
     public void Awake()
     {
@@ -25,6 +26,22 @@ public class InventoryUI : MonoBehaviour
         }
         gameObject.SetActive(false);
     }
+
+    public void Start()
+    {
+        ItemListSetup();
+    }
+   
+
+    public void Update()
+    {
+        battlePanel.SetActive(GameManager.instance.inFight);
+        if (battlePanel.activeSelf)
+        {
+            usePanel.SetActive(false);
+        }
+    }
+
 
     public void ItemListSetup()
     {

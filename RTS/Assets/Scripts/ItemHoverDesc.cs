@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;  // IPointerEnterHandler, IPointerExitHandler를 
 public class ItemHoverDesc : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
-    public Item item;
+    public Iitem item;
     bool hover = false;
 
     void Update()
@@ -12,7 +12,7 @@ public class ItemHoverDesc : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         item = GetComponent<ISlot>().item;
         if (hover)
         {
-            Vector3 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition - ItemDescriptor.instance.size); 
+            Vector3 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition - ItemDescriptor.instance.size);
             temp.z = 0;
             ItemDescriptor.instance.transform.position = temp;
         }
@@ -26,8 +26,9 @@ public class ItemHoverDesc : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             Debug.Log(item + " 호버링 " + eventData.pointerEnter);
             ItemDescriptor.instance.gameObject.SetActive(true);
             hover = true;
-            ItemDescriptor.instance.SetUP(item);    
+            ItemDescriptor.instance.SetUP(item);
         }
+
     }
 
     // 마우스가 UI 요소를 벗어났을 때 호출됩니다.

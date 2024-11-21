@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 public class DungeonManager : MonoBehaviour
@@ -7,6 +8,9 @@ public class DungeonManager : MonoBehaviour
     Camera cam;
     public Vector3 min;
     public Vector3 max;
+    public List<EnemyGoons> remaingoons = new List<EnemyGoons>();
+
+
     void Start()
     {
         map = GetComponentInChildren<Tilemap>();
@@ -15,6 +19,11 @@ public class DungeonManager : MonoBehaviour
         CameraMover.instance.nowDungeon = this;
         IsCameraAtTilemapEdge();
         Debug.Log(map);
+        foreach (var temp in GetComponentsInChildren<EnemyGoons>())
+        {
+            remaingoons.Add(temp);
+        }
+
     }
 
     public bool IsCameraAtTilemapEdge()

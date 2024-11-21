@@ -16,8 +16,9 @@ MonoBehaviour:
   Power: -3
   Damage: -3
   Defence: 3
-  sprite: {fileID: 5902650331669622779, guid: b04621f87db561d42b5d13d577608ac9, type: 3}
-  itemname: "\uD3ED\uBC1C\uC758 \uC548\uC7A5"
+  <sprite>k__BackingField: {fileID: 4195893355761894468, guid: b04621f87db561d42b5d13d577608ac9,
+    type: 3}
+  <itemname>k__BackingField: "\u3141\u3134\u3147\u3139"
   description: "\uD14C\uC2A4\uD2B8"
   effect:
   - {fileID: 11400000, guid: a09b2237b2634334e9f0693e54017e5f, type: 2}

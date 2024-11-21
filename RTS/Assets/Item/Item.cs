@@ -4,36 +4,35 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 [CreateAssetMenu(fileName = "BaseItem", menuName = "Items/BaseItem")]
-public class Item : ScriptableObject
+public class Item : ScriptableObject,Iitem
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-   
-
     public int Health;
     public int Power;
     public int Damage;
     public int Defence;
-    public Sprite sprite;
-    public string itemname;
+    [field: SerializeField] public Sprite sprite { get; set; }
+    [field: SerializeField] public string itemname { get; set; }
     public string description;
     public List<ScriptableObject> effect;
     public int rare;
 
     public virtual void Equip(Player player)
     {
-        player.Health += Health;
-        player.Power += Power;
-        player.Damage += Damage;
-        player.Defence += Defence;
+        player.addHealth += Health;
+        player.Heal(Health);
+        player.addPower += Power;
+        player.addDamage += Damage;
+        player.addDefence += Defence;
         Debug.Log(player + "장착완료");
     }
     public virtual void UnEquip(Player player)
     {
-        player.Health -= Health;
-        player.Power -= Power;
-        player.Damage -= Damage;
-        player.Defence -= Defence;
+        player.addHealth -= Health;
+        player.Heal(0);
+        player.addPower -= Power;
+        player.addDamage -= Damage;
+        player.addDefence -= Defence;
         Debug.Log(player + "해제완료");
     }
     public void onAttack(Player player, IDamage enemy)

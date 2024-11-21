@@ -7,7 +7,7 @@ public class ShopSlot : MonoBehaviour, IPointerClickHandler, ISlot
     public product data;
     public Image img;
     public TMP_Text txt;
-    public Item item { get; set; }  // Item을 저장하는 슬롯
+    public Iitem item { get; set; }  // Item을 저장하는 슬롯
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

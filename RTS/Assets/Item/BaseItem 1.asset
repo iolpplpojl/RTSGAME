@@ -16,8 +16,9 @@ MonoBehaviour:
   Power: 0
   Damage: 0
   Defence: 0
-  sprite: {fileID: 7195734205691627793, guid: 7212bef95b8a58344944fb6e590be91e, type: 3}
-  itemname: "\uC545\uC545"
+  <sprite>k__BackingField: {fileID: -6145027692936222975, guid: 3e7f1bcf5e1004551853fead34d7fb5b,
+    type: 3}
+  <itemname>k__BackingField: "\uC548\uC7A5"
   description: "\uD14C\uC2A4\uD2B8"
   effect:
   - {fileID: 11400000, guid: 164b533737e46ba4782d06fc25695668, type: 2}

@@ -5868,12 +5868,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackRadius: 0.4
-  _health: 100
+  Attacking: 0
+  sprite: {fileID: 3256077969166274824}
+  _prefabs: {fileID: 0}
+  baseHealth: 20
+  baseDamage: 7
+  baseAttacktime: 1
+  baseDefence: 3
+  basePower: 6
+  addHealth: 0
+  addDamage: 0
+  addAttackTime: 0
+  addDefence: 0
+  addPower: 0
   Damage: 12
   AttackTime: 2
   MaxHealth: 0
-  sprite: {fileID: 3256077969166274824}
-  _prefabs: {fileID: 0}
   Power: 0
   Defence: 0
 --- !u!195 &8075972912689061635

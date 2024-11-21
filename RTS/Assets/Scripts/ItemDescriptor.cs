@@ -27,14 +27,17 @@ public class ItemDescriptor : MonoBehaviour
 
     }
 
-    public void SetUP(Item item)
+    public void SetUP(Iitem item)
     {
+        
         float screenRatio = (float)Screen.width / 1920;
         float screenRatioy = (float)Screen.height / 1080;
         size = new Vector3(-(rect.rect.size.x / 2 * screenRatio), rect.rect.size.y / 2 * screenRatioy, 0); // = 16:9
         Debug.Log(size);
-        title.text = item.itemname;
-        desc.text = item.getDesc();
-        sprite.sprite = item.sprite;
+
+            title.text = item.itemname;
+            desc.text = item.getDesc();
+            sprite.sprite = item.sprite;
+        
     }
 }

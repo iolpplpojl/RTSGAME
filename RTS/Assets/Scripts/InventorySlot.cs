@@ -8,7 +8,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     Vector3 nowposition;
     public int slotNum;
     Image img;
-    public Item item { get; set; }  // Item을 저장하는 슬롯
+    public Iitem item { get; set; }  // Item을 저장하는 슬롯
 
     void Start()
     {
@@ -17,7 +17,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         img = GetComponent<Image>();
         if (GameManager.instance.storage[slotNum] != null)
         {
-            img.sprite = GameManager.instance.storage[slotNum].sprite;
+            item = GameManager.instance.storage[slotNum];
+            img.sprite = item.sprite;
         }
         else
         {
@@ -31,9 +32,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     {
         if (GameManager.instance.storage[slotNum] != null)
         {
-            img.sprite = GameManager.instance.storage[slotNum].sprite;
             item = GameManager.instance.storage[slotNum];
-
+            img.sprite = item.sprite;
         }
         else
         {
@@ -59,6 +59,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
             Vector3 temp = Camera.main.ScreenToWorldPoint(eventData.position);
             temp.z = 0;
             InventoryDragSlot.instance.transform.position = temp;
+            if (!(GameManager.instance.storage[slotNum] is Item) )
+            {
+                InventoryUI.Instance.usePanel.SetActive(true);
+            }
         }
 
     }
@@ -83,6 +87,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         InventoryDragSlot.instance.SetColor(0);
         InventoryDragSlot.instance.dragSlot = null;
         InventoryDragSlot.instance.gameObject.SetActive(false);
+        InventoryUI.Instance.usePanel.SetActive(false);
+
     }
 
     // 드롭 이벤트 처리 (IDropHandler)
@@ -104,8 +110,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
 
     void ChangeItem(InventorySlot From) 
     {
-        Item _item = GameManager.instance.storage[From.slotNum];
-        Item _item2 = GameManager.instance.storage[slotNum];
+        Iitem _item = GameManager.instance.storage[From.slotNum];
+        Iitem _item2 = GameManager.instance.storage[slotNum];
 
         GameManager.instance.storage[From.slotNum] = _item2;
         GameManager.instance.storage[slotNum] = _item;
