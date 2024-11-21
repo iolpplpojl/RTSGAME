@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c87bab2c2ce834da74d3d333745677, type: 3}
   m_Name: Buff
   m_EditorClassIdentifier: 
-  <Duration>k__BackingField: 0
+  <Duration>k__BackingField: 3
   Health: 0
   Damage: 0
   Defence: 0
-  Power: 0
+  Power: 2

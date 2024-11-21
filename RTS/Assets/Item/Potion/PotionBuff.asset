@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad99ce12e5bb2b44b69fe2183ef032d, type: 3}
   m_Name: PotionBuff
   m_EditorClassIdentifier: 
-  buff: {fileID: 0}
+  buff: {fileID: 11400000, guid: 2a9dfca36f7c36f4399af199b1810c2d, type: 2}
