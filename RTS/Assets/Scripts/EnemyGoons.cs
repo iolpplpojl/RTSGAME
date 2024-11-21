@@ -19,6 +19,7 @@ public class EnemyGoons : MonoBehaviour,IGoons
             {
                 var temp = Instantiate(chest, transform.position, Quaternion.identity, transform.parent);
             }
+            transform.parent.GetComponent<DungeonManager>().GoonsDie(this);
             Destroy(gameObject);
         }
     }

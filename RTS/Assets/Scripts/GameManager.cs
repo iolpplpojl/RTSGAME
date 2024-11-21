@@ -62,4 +62,10 @@ public class GameManager : MonoBehaviour
 
         }
     }
+
+    public void DungeonClear()
+    {
+        Debug.Log("Å¬¸®¾î");
+        inFight = false;
+    }
 }

@@ -14,6 +14,8 @@ public class Goons : MonoBehaviour,IGoons
     private List<GameObject> _members  = new List<GameObject>();
     public List<GameObject> members { get; set; } = new List<GameObject>();
     public List<Item> items = new List<Item>();
+    public List<Buff> buffs = new List<Buff>();
+
     public int ItemCount = 2;
     int NowEquip = 0;
     public string Name;
@@ -40,11 +42,24 @@ public class Goons : MonoBehaviour,IGoons
         }
     }
     
-    public void usePotion(Potion potions)
+    public bool usePotion(Potion potions)
     {
         Potion _item = Instantiate(potions);
         _item.onUse(this);
-        
+        return true;
+    }
+
+    public void getBuff(Buff buff)
+    {
+        buffs.Add(buff);
+        foreach(GameObject obj in members)
+        {
+            var player = obj.GetComponentInChildren<Player>();
+            player.addHealth += buff.Health;
+            player.addPower += buff.Power;
+            player.addDamage += buff.Damage;
+            player.addDefence += buff.Defence;
+        }
     }
 
 

@@ -26,6 +26,19 @@ public class CameraMover : MonoBehaviour
     // Update is called once per f  rame
     void Update()
     {
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        float clampCam = cam.orthographicSize;
+        if (scroll < 0)
+        {
+            clampCam = cam.orthographicSize += 0.1f;
+        }
+        else if (scroll > 0)
+        {
+            clampCam = cam.orthographicSize -= 0.1f;
+        }
+
+        cam.orthographicSize = Mathf.Clamp(clampCam, nowDungeon.min.y, nowDungeon.max.y); // 12 
         Vector3 pos = transform.position;
 
         if (Input.mousePosition.x >= Screen.width - screenSizeTickness || Input.GetKey(KeyCode.RightArrow))
@@ -57,18 +70,5 @@ public class CameraMover : MonoBehaviour
         pos.y = clampedY;
 
         transform.position = Vector3.SmoothDamp(transform.position, pos, ref velocity, smoothingStat);
-
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        float clampCam = cam.orthographicSize;
-        if(scroll < 0)
-        {
-            clampCam = cam.orthographicSize += 0.1f;
-        }
-        else if(scroll > 0)
-        {
-            clampCam = cam.orthographicSize -= 0.1f;
-        }
-
-        cam.orthographicSize = Mathf.Clamp(clampCam, nowDungeon.min.y, nowDungeon.max.y); // 12 
     }
 }

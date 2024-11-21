@@ -9,6 +9,8 @@ public class usePanel : MonoBehaviour, IDropHandler
         if (GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] as Potion != null)
         {
             Debug.Log("Æ÷¼Ç");
+            InventoryUI.Instance.goons.usePotion(GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] as Potion);
+            GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] = null;
         }
     }
 }

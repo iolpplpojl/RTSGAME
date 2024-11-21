@@ -23,9 +23,16 @@ public class DungeonManager : MonoBehaviour
         {
             remaingoons.Add(temp);
         }
-
+        
     }
-
+    public void GoonsDie(EnemyGoons goons)
+    {
+        remaingoons.Remove(goons);
+        if(remaingoons.Count == 0)
+        {
+            GameManager.instance.DungeonClear();
+        }
+    }
     public bool IsCameraAtTilemapEdge()
     {
 
