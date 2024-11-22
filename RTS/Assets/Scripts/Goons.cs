@@ -61,7 +61,18 @@ public class Goons : MonoBehaviour,IGoons
             player.addDefence += buff.Defence;
         }
     }
-
+    public void deBuff(Buff buff)
+    {
+        foreach (GameObject obj in members)
+        {
+            var player = obj.GetComponentInChildren<Player>();
+            player.addHealth -= buff.Health;
+            player.addPower -= buff.Power;
+            player.addDamage -= buff.Damage;
+            player.addDefence -= buff.Defence;
+        }
+        buffs.Remove(buff);
+    }
 
     public bool EquipItem(Item item, int slot)
     {

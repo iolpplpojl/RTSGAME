@@ -15,7 +15,7 @@ MonoBehaviour:
   <sprite>k__BackingField: {fileID: 232691430, guid: ad9e62bfa99c716408ac9bf36e8864d0,
     type: 3}
   <itemname>k__BackingField: "\uBB3C\uC57D"
-  description: "\uCCB4\uB825\uC744 \uD68C\uBCF5\uD558\uACE0 \uD798\uC774 2 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  description: "\uC369 \uC88B\uC740 \uB9DB\uC740 \uC544\uB2D9\uB2C8\uB2E4."
   potions:
   - {fileID: 11400000, guid: 385a275283ea183468df15168b0d1b36, type: 2}
   - {fileID: 11400000, guid: 2df567b1411ecb942bb5aa44817a0afe, type: 2}

@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static GameManager instance;
 
+    public GameObject nowDungeon;
+
+
     public int seed;
     public Sprite goldsprite;
 
@@ -14,10 +17,14 @@ public class GameManager : MonoBehaviour
 
     public int storageCount = 30;
     public List<Iitem> storage = new List<Iitem>();
-
     public GameObject Inventory;
-
     public GameObject Popup;
+
+
+    public GameObject Next;
+    public GameObject Dungeon;
+
+
     private void Awake()
     {
         if (instance == null)
@@ -61,8 +68,22 @@ public class GameManager : MonoBehaviour
             }
 
         }
-    }
 
+        Next.SetActive(!inFight);
+    }
+    public void testDungeon()
+    {
+        Destroy(nowDungeon);
+        nowDungeon = Instantiate(Dungeon);
+    }
+    public void resetDungeon(DungeonManager dungeon)
+    {
+        GoonsManager.instance.setPos(dungeon);
+        GoonsManager.instance.deBuff();
+        nowDungeon = dungeon.gameObject;
+        inFight = true;
+
+    }
     public void DungeonClear()
     {
         Debug.Log("Å¬¸®¾î");

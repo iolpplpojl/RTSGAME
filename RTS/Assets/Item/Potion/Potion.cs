@@ -23,6 +23,13 @@ public class Potion : ScriptableObject, Iitem
 
     public string getDesc()
     {
-        return description;
+        string temp = "";
+        foreach(var temps in potions)
+        {
+            IPotion kek = temps as IPotion;
+            temp += kek.getDesc();
+        }
+        temp += description;
+        return temp;
     }
 }

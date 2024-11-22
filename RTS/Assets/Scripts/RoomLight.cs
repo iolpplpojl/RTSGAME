@@ -25,7 +25,6 @@ public class RoomLight : MonoBehaviour
     // Trigger에 들어올 때 실행될 메서드
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("트리거");
         if (!onoff)
         {
             StartCoroutine(LightsOn());

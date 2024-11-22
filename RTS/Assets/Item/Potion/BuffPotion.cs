@@ -8,4 +8,8 @@ public class BuffPotion : ScriptableObject, IPotion
     {
         buff.AddBuff(goons);
     }
+    public string getDesc()
+    {
+        return buff.getDesc();
+    }
 }

@@ -9,7 +9,7 @@ public class DungeonManager : MonoBehaviour
     public Vector3 min;
     public Vector3 max;
     public List<EnemyGoons> remaingoons = new List<EnemyGoons>();
-
+    public List<Transform> spawnpos;
 
     void Start()
     {
@@ -23,6 +23,7 @@ public class DungeonManager : MonoBehaviour
         {
             remaingoons.Add(temp);
         }
+        GameManager.instance.resetDungeon(this);
         
     }
     public void GoonsDie(EnemyGoons goons)

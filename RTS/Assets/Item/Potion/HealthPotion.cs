@@ -11,4 +11,9 @@ public class HealthPotion : ScriptableObject, IPotion
             player.GetComponentInChildren<Player>().Heal(amount);
         }
     }
+
+    public string getDesc()
+    {
+        return string.Format("체력을 {0} 회복합니다.\n", amount);
+    }
 }

@@ -5,12 +5,19 @@ using UnityEngine.UI;
 public class GoonsManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-
+    public static GoonsManager instance;
     public List<Goons> Goons = new List<Goons>();
     public List<GameObject> SelectField = new List<GameObject>();
 
     public int nowselect = -1;
 
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
     void Start()
     {
         var temp = transform.childCount;
@@ -19,7 +26,36 @@ public class GoonsManager : MonoBehaviour
             Goons.Add(transform.GetChild(i).gameObject.GetComponent<Goons>());
         }
     }
+    public void setPos(DungeonManager dungeon) {
+        foreach(var kek in Goons)
+        {
+            Vector3 pos = dungeon.spawnpos[Random.Range(0, dungeon.spawnpos.Count)].position;
+            Debug.Log("�׽���");
 
+            foreach (var lol in kek.members)
+            {
+                Debug.Log("�׽���2");
+
+                lol.GetComponentInChildren<UnityEngine.AI.NavMeshAgent>().Warp(pos);
+                lol.GetComponentInChildren<Player>().SetMoveDirection(pos);
+            }
+        }     
+    }
+    public void deBuff()
+    {
+        foreach(var temp in Goons)
+        {
+            for(int i = temp.buffs.Count-1; i >= 0; i--)
+            {
+                if (temp.buffs[i].Duration == 0)
+                {
+                    temp.buffs[i].DeBuff(temp);
+                    return;
+                }
+                temp.buffs[i].Duration--;
+            }
+        }   
+    }
     // Update is called once per frame
     void Update()
     {
