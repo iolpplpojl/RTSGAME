@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject nowDungeon;
 
-
+    public int floor;
     public int seed;
     public Sprite goldsprite;
 
@@ -25,6 +25,17 @@ public class GameManager : MonoBehaviour
     public GameObject Dungeon;
 
 
+    public GameObject INGAME;
+    public GameObject OUTGAME;
+
+
+
+    public void SwitchScreen()
+    {
+        INGAME.SetActive(!INGAME.activeSelf);
+        OUTGAME.SetActive(!OUTGAME.activeSelf);
+    }
+
     private void Awake()
     {
         if (instance == null)
@@ -36,6 +47,8 @@ public class GameManager : MonoBehaviour
         {
             storage.Add(null);
         }
+        Random.InitState(seed);
+
     }
 
     public int Dice(int times, int max)
@@ -68,7 +81,10 @@ public class GameManager : MonoBehaviour
             }
 
         }
-
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SwitchScreen();
+        }
         Next.SetActive(!inFight);
     }
     public void testDungeon()
@@ -84,6 +100,7 @@ public class GameManager : MonoBehaviour
         inFight = true;
 
     }
+    
     public void DungeonClear()
     {
         Debug.Log("Å¬¸®¾î");

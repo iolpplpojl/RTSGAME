@@ -32,7 +32,8 @@ public class Room : MonoBehaviour
                 break;
             case Roomtype.First:
                 break;
-
+            case Roomtype.End:
+                break;
                
         }
 
@@ -59,4 +60,5 @@ public enum Roomtype
     Shop,
     Event,
     First,
+    End,
 }

@@ -5,6 +5,8 @@ public class ItemDatabase : MonoBehaviour
 {
     public static ItemDatabase instance;
     public List<Item> commonItem = new List<Item>();
+    public List<GameObject> firstroom = new List<GameObject>();
+
 
     void Awake()
     {
@@ -25,4 +27,15 @@ public class ItemDatabase : MonoBehaviour
         Debug.Log(_item);
         return _item;
     }
+    public GameObject GetRandomRoom()
+    {
+        GameObject temp = null;
+        switch (GameManager.instance.floor)
+        {
+            case 1:
+                temp = firstroom[Random.Range(0, firstroom.Count)];
+                break;
+        }
+        return temp;
+    }   
 }

@@ -22,19 +22,20 @@ public class RoomManager : MonoBehaviour
     public bool moving = false;
     Room nowRoom;
 
+    bool endroomGen = false;
+
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
-        Random.InitState(12345);
     }
     public void Clear()
     {
            moving = true;
     }
-void Start()
+    void Start()
     {
         room_grid = new int[gridX,gridY];
         StartRoomGeneration(new Vector2Int(gridX/2,gridY/2));
@@ -67,6 +68,7 @@ void Start()
         {
             Debug.Log("생성 완료됨.");
             roomgencomplete = true;
+            transform.parent.gameObject.SetActive(false);
         }
         foreach (var temp in list_room)
         {
@@ -164,12 +166,10 @@ void Start()
             }
         }
 
-
-
         int x = index.x;
         int y = index.y;
         room_grid[x, y] = 1;
-        var init = Instantiate(this.room, GetPositionFromGridIndex(index), Quaternion.identity);
+        var init = Instantiate(this.room, GetPositionFromGridIndex(index), Quaternion.identity,transform);
         init.name = $"Room - {roomcount}";
         roomcount++;
         init.GetComponent<Room>().Pos = index;
@@ -187,19 +187,30 @@ void Start()
         }
         else
         {
-            init.GetComponent<Room>().roomtype = GetRandomEnumValue();
+            var type = GetRandomEnumValue(Roomtype.First);
+            do
+            {
+                type = GetRandomEnumValue(Roomtype.First);
+            } while (endroomGen == true && type == Roomtype.End || (endroomGen == false && roomcount < (roommax * 10) / 17&& type == Roomtype.End));
+
+            init.GetComponent<Room>().roomtype = type;
+            if (type == Roomtype.End)
+            {
+                endroomGen = true;
+            }
         }
         roomQueue.Enqueue(init.GetComponent<Room>());
         init.GetComponent<Room>().RoomSetUp();
 
+
     }
-    public static Roomtype GetRandomEnumValue()
+    public static Roomtype GetRandomEnumValue(Roomtype type)
     {
         System.Array enumValues = System.Enum.GetValues(typeof(Roomtype));  // Enum 값들을 배열로 가져옴
-        Roomtype randomIndex = Roomtype.First;
+        Roomtype randomIndex = type;
         do {
             randomIndex = (Roomtype)enumValues.GetValue(Random.Range(0, enumValues.Length));
-                } while (randomIndex == Roomtype.First); // 랜덤 선택
+                } while (randomIndex == type); // 랜덤 선택
         return randomIndex;  // 랜덤 인덱스를 이용해 enum 값 반환
     }
     public void Reset()
@@ -227,7 +238,7 @@ void Start()
         int x = index.x;
         int y = index.y;
         room_grid[x, y] = 1;
-        var init = Instantiate(room, GetPositionFromGridIndex(index), Quaternion.identity);
+        var init = Instantiate(room, GetPositionFromGridIndex(index), Quaternion.identity, transform);
         init.name = $"Room - {roomcount}";
         roomcount++;
         init.GetComponent<Room>().Pos = index;
@@ -235,7 +246,7 @@ void Start()
         roomQueue.Enqueue(init.GetComponent<Room>());
         nowRoom = init.GetComponent<Room>();
         nowRoom.GetComponent<SpriteRenderer>().color = Color.red;
-
+        endroomGen = false;
         init.GetComponent<Room>().roomtype = Roomtype.First;
         init.GetComponent<Room>().RoomSetUp();
 

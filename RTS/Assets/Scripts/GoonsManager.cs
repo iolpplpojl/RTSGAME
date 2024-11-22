@@ -41,6 +41,21 @@ public class GoonsManager : MonoBehaviour
             }
         }     
     }
+    public void setPos(Vector3 pos)
+    {
+        foreach (var kek in Goons)
+        {
+            Debug.Log("�׽���");
+
+            foreach (var lol in kek.members)
+            {
+                Debug.Log("�׽���2");
+
+                lol.GetComponentInChildren<UnityEngine.AI.NavMeshAgent>().Warp(pos);
+                lol.GetComponentInChildren<Player>().SetMoveDirection(pos);
+            }
+        }
+    }
     public void deBuff()
     {
         foreach(var temp in Goons)
