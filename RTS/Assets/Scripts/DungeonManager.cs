@@ -10,6 +10,11 @@ public class DungeonManager : MonoBehaviour
     public Vector3 max;
     public List<EnemyGoons> remaingoons = new List<EnemyGoons>();
     public List<Transform> spawnpos;
+    public List<Transform> enemyspawnpos;
+
+    public List<GameObject> enemy;
+
+    List<GameObject> spawned;
 
     void Start()
     {
@@ -19,13 +24,24 @@ public class DungeonManager : MonoBehaviour
         CameraMover.instance.nowDungeon = this;
         IsCameraAtTilemapEdge();
         Debug.Log(map);
-        foreach (var temp in GetComponentsInChildren<EnemyGoons>())
-        {
-            remaingoons.Add(temp);
-        }
         GameManager.instance.resetDungeon(this);
         
     }
+    public void SpawnEnemy()
+    {
+        foreach(var temp in enemy)
+        {
+            if (enemyspawnpos.Count > 0)
+            {
+                Transform pos = enemyspawnpos[Random.Range(0, enemyspawnpos.Count)];
+
+                remaingoons.Add(Instantiate(temp, pos.position, Quaternion.identity, transform).GetComponent<EnemyGoons>());
+                enemyspawnpos.Remove(pos);
+                Debug.Log("Àû »ý¼ºµÊ.");
+            }
+            }
+        }
+
     public void GoonsDie(EnemyGoons goons)
     {
         remaingoons.Remove(goons);

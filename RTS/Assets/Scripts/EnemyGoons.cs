@@ -8,6 +8,7 @@ public class EnemyGoons : MonoBehaviour,IGoons
     public List<GameObject> members { get; set; } = new List<GameObject>();
     public GameObject chest;
 
+    bool droped = false;
 
     public void memberDie(GameObject member)
     {
@@ -15,9 +16,10 @@ public class EnemyGoons : MonoBehaviour,IGoons
         Destroy(member);
         if (members.Count == 0)
         {
-            if(chest != null)
+            if(chest != null && droped == false)
             {
                 var temp = Instantiate(chest, transform.position, Quaternion.identity, transform.parent);
+                droped = true;
             }
             transform.parent.GetComponent<DungeonManager>().GoonsDie(this);
             Destroy(gameObject);

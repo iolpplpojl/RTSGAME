@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class GoonsManager : MonoBehaviour
             Goons.Add(transform.GetChild(i).gameObject.GetComponent<Goons>());
         }
     }
-    public void setPos(DungeonManager dungeon) {
+    public IEnumerator setPos(DungeonManager dungeon) {
         foreach(var kek in Goons)
         {
             Vector3 pos = dungeon.spawnpos[Random.Range(0, dungeon.spawnpos.Count)].position;
@@ -39,7 +40,9 @@ public class GoonsManager : MonoBehaviour
                 lol.GetComponentInChildren<UnityEngine.AI.NavMeshAgent>().Warp(pos);
                 lol.GetComponentInChildren<Player>().SetMoveDirection(pos);
             }
-        }     
+        }
+        yield return true;
+
     }
     public void setPos(Vector3 pos)
     {

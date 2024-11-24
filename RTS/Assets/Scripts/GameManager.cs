@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -90,15 +91,21 @@ public class GameManager : MonoBehaviour
     public void testDungeon()
     {
         Destroy(nowDungeon);
-        nowDungeon = Instantiate(Dungeon);
+        nowDungeon = Instantiate(Dungeon,INGAME.transform);
     }
     public void resetDungeon(DungeonManager dungeon)
     {
-        GoonsManager.instance.setPos(dungeon);
+        StartCoroutine(resetDungeonCoroutine(dungeon));
+    }
+    IEnumerator resetDungeonCoroutine(DungeonManager dungeon)
+    {
+        yield return GoonsManager.instance.setPos(dungeon);
+        yield return null;
         GoonsManager.instance.deBuff();
         nowDungeon = dungeon.gameObject;
         inFight = true;
-
+        yield return null;
+        dungeon.SpawnEnemy();
     }
     
     public void DungeonClear()

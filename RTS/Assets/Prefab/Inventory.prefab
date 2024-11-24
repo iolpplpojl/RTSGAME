@@ -4372,6 +4372,7 @@ MonoBehaviour:
   ItemSlot: {fileID: 8685966140877167727, guid: a0b3568acd5f3bd41a16e37d9210cc56,
     type: 3}
   usePanel: {fileID: 4719497484691666029}
+  battlePanel: {fileID: 0}
 --- !u!1 &5609756512757329522
 GameObject:
   m_ObjectHideFlags: 0
