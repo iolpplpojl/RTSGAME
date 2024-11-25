@@ -23,6 +23,8 @@ public class ChestUI : MonoBehaviour
     public void OpenChests(Chest chest)
     {
         this.chest = chest;
+
+        ItemDescriptor.instance.gameObject.SetActive(false);
         foreach (Transform temp in parent.transform)
         {
             Destroy(temp.gameObject);

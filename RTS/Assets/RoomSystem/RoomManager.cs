@@ -169,7 +169,7 @@ public class RoomManager : MonoBehaviour
         int x = index.x;
         int y = index.y;
         room_grid[x, y] = 1;
-        var init = Instantiate(this.room, GetPositionFromGridIndex(index), Quaternion.identity,transform);
+        var init = Instantiate(this.room, transform.position + GetPositionFromGridIndex(index), Quaternion.identity,transform);
         init.name = $"Room - {roomcount}";
         roomcount++;
         init.GetComponent<Room>().Pos = index;
@@ -238,7 +238,7 @@ public class RoomManager : MonoBehaviour
         int x = index.x;
         int y = index.y;
         room_grid[x, y] = 1;
-        var init = Instantiate(room, GetPositionFromGridIndex(index), Quaternion.identity, transform);
+        var init = Instantiate(room, transform.position+GetPositionFromGridIndex(index), Quaternion.identity, transform);
         init.name = $"Room - {roomcount}";
         roomcount++;
         init.GetComponent<Room>().Pos = index;

@@ -230,7 +230,7 @@ public class Player : MonoBehaviour,IDamage
 
     public bool Targetnearby()
     {
-        var temp = Physics2D.OverlapCircleAll(transform.position, 3.0f, LayerMask.GetMask("Enemy"));
+        var temp = Physics2D.OverlapCircleAll(transform.position, AttackRadius > 3.0f ? AttackRadius : 3.0f, LayerMask.GetMask("Enemy"));
         if (temp.Length != 0)
         {
             GameObject near = null;

@@ -37,7 +37,7 @@ public class EnemyGoons : MonoBehaviour,IGoons
         var temp = transform.childCount;
         for (int i = 0; i < temp; i++)
         {
-            members.Add(transform.GetChild(i).gameObject);
+            members.Add(transform.GetChild(i).GetChild(0).gameObject);
         }
     }
 
