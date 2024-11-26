@@ -7,6 +7,7 @@ public class Chest : MonoBehaviour
     public int Gold;
     public List<Item> equipitem = new List<Item>();
     public List<Potion> potion = new List<Potion>();
+    public List<Scroll> scroll = new List<Scroll>();
     public List<ChestData> slot = new List<ChestData>();
 
 
@@ -26,6 +27,13 @@ public class Chest : MonoBehaviour
             slot.Add(kek);
         }
         foreach(var temp in potion)
+        {
+            ChestData kek = new ChestData();
+            kek.type = 1;
+            kek.item = temp;
+            slot.Add(kek);
+        }
+        foreach (var temp in scroll)
         {
             ChestData kek = new ChestData();
             kek.type = 1;
