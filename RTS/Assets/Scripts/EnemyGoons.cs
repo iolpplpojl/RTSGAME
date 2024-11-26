@@ -31,6 +31,15 @@ public class EnemyGoons : MonoBehaviour,IGoons
         return members[Random.Range(0, members.Count)];
     }
 
+
+    public void setMove(GameObject Target)
+    {
+        foreach(var member in members)
+        {
+            member.GetComponentInChildren<Enemy>().SetTarget(Target);
+        }
+    }
+
     void Start()
     {
         members = _members;

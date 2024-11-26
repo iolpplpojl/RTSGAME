@@ -48,7 +48,13 @@ public class Goons : MonoBehaviour,IGoons
         _item.onUse(this);
         return true;
     }
-
+    public void setMove()
+    {
+        foreach (var member in members)
+        {
+            member.GetComponentInChildren<Player>().SetAggresive();
+        }
+    }
     public void getBuff(Buff buff)
     {
         buffs.Add(buff);

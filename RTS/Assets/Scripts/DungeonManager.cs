@@ -14,6 +14,8 @@ public class DungeonManager : MonoBehaviour
 
     public List<GameObject> enemy;
 
+    public string description;
+
     List<GameObject> spawned;
 
     void Start()
@@ -25,7 +27,10 @@ public class DungeonManager : MonoBehaviour
         IsCameraAtTilemapEdge();
         Debug.Log(map);
         GameManager.instance.resetDungeon(this);
-        
+        if(description != null)
+        {
+            AlertManager.instance.Append(description);
+        }
     }
     public void SpawnEnemy()
     {

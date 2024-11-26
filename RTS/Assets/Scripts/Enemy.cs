@@ -24,6 +24,11 @@ public class Enemy : MonoBehaviour,IDamage
         Damage = 12;    
         StartCoroutine(MovePattern());
     }
+    public void SetTarget(GameObject Target)
+    {
+        move.StartMove(Target);
+
+    }
 
     public bool TakeAttack(float Damage, int Power)
     {
@@ -118,6 +123,11 @@ public class Enemy : MonoBehaviour,IDamage
         if (Health <= 0)
         {
             Die();
+        }
+        if (move.Target == null)
+        {
+            var temp = Physics2D.OverlapCircle(transform.position, 10000, LayerMask.GetMask("Player"));
+            GetComponentInParent<EnemyGoons>().setMove(temp.gameObject);
         }
     }
 

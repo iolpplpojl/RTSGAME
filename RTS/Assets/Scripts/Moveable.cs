@@ -24,7 +24,7 @@ public class Moveable : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         TargetPos = transform.position;
-        agent.radius = transform.localScale.x * 0.25f;
+        agent.radius = transform.parent.localScale.x * 0.25f;
         agent.stoppingDistance = 0.03f * (agent.radius * 10);
     }
 

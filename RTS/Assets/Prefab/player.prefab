@@ -5867,12 +5867,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93c09b1c65f477459994b2a3b5c9102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackRadius: 0.4
+  AttackRadius: 0.5
   Attacking: 0
   sprite: {fileID: 3256077969166274824}
   _prefabs: {fileID: 0}
-  baseHealth: 20
-  baseDamage: 7
+  baseHealth: 40
+  baseDamage: 4
   baseAttacktime: 1
   baseDefence: 3
   basePower: 6

@@ -58,8 +58,19 @@ public class Player : MonoBehaviour,IDamage
         {
             Die();
         }
+        GetComponentInParent<Goons>().setMove();
+        
     }
 
+    
+    public void SetAggresive()
+    {
+        if (move.Target == null)
+        {
+            var temp = Physics2D.OverlapCircle(transform.position, 10000, LayerMask.GetMask("Enemy"));
+            SetMoveDirection(temp.gameObject);
+        }
+    }
     public void TakeHeal()
     {
         throw new System.NotImplementedException();
@@ -173,6 +184,7 @@ public class Player : MonoBehaviour,IDamage
     {
         if(move.Targeting == true) //타겟팅중,
         {
+            Targetnearby();
             if (move.Target != null) // not 타겟팅중에 상대가 죽었을때. 
             {
                 if (Vector2.Distance(transform.position, move.Target.transform.position) < AttackRadius)

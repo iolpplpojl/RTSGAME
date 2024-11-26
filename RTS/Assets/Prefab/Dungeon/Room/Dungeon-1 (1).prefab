@@ -10007,6 +10007,7 @@ MonoBehaviour:
   enemy:
   - {fileID: 3770014005837562738, guid: a3ca9566f6b719c4c833fd606d423ce2, type: 3}
   - {fileID: 3770014005837562738, guid: a3ca9566f6b719c4c833fd606d423ce2, type: 3}
+  description: "\uC9C0\uD558 - I"
 --- !u!1 &7034224959044458215
 GameObject:
   m_ObjectHideFlags: 0

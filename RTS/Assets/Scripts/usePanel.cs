@@ -14,6 +14,10 @@ public class usePanel : MonoBehaviour, IDropHandler
                 InventoryUI.Instance.goons.usePotion(GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] as Potion);
                 GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] = null;
             }
+            else
+            {
+                AlertManager.instance.Append("사용할 대상이 없습니다.");
+            }
         }
     }
 }
