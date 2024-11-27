@@ -45,13 +45,23 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     public void OnPointerClick(PointerEventData eventData)
     {
         // 클릭한 UI 요소에 대해 처리할 코드 작성
-        if (GameManager.instance.storage[slotNum] as Scroll != null)
+        if (GameManager.instance.storage[slotNum] != null)
         {
-            Debug.Log("스크롤 클릭됨");
-        }
-        else
-        {
-            Debug.Log("스크롤 아님 + 클릭됨");
+            if (GameManager.instance.storage[slotNum] as Scroll != null)
+            {
+                Debug.Log("스크롤 클릭됨");
+
+            }
+            else
+            {
+                Debug.Log("스크롤 아님 + 클릭됨");
+            }
+            var temp = Camera.main.ScreenToWorldPoint(eventData.position);
+            temp.z = 0;
+            OnClickPanel.instance.transform.position = temp;
+            OnClickPanel.instance.setUp(slotNum);
+
+
         }
     }
 

@@ -8,6 +8,7 @@ public class AlertManager : MonoBehaviour
     Animator anim;
     TMP_Text txt;
 
+    public int alertcount = 4;
     public List<string> alerts = new List<string>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -39,6 +40,7 @@ public class AlertManager : MonoBehaviour
     }
     public void Append(string text)
     {
+        if(alerts.Count < alertcount) 
         alerts.Add(text);
     }
     public void doAlert()

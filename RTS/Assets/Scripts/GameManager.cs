@@ -84,7 +84,14 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            SwitchScreen();
+            if (inFight)
+            {
+                AlertManager.instance.Append("전투 중에는 지도를 볼 수 없습니다.");
+            }
+            else
+            {
+                SwitchScreen();
+            }
         }
         Next.SetActive(!inFight);
     }

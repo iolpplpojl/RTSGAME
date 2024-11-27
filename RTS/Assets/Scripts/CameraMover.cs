@@ -38,8 +38,9 @@ public class CameraMover : MonoBehaviour
             else if (scroll > 0)
             {
                 clampCam = cam.orthographicSize -= 0.1f;
+                
             }
-
+            clampCam = Mathf.Clamp(clampCam, 0.1f, clampCam);
             cam.orthographicSize = Mathf.Clamp(clampCam, nowDungeon.min.y, nowDungeon.max.y); // 12 
             Vector3 pos = transform.position;
 
