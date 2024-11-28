@@ -112,8 +112,8 @@ public class OnClickPanel : MonoBehaviour
 
     public void UseScroll()
     {
+        (GameManager.instance.storage[slotNum] as Scroll).use(slotNum);
         Close();
-
     }
     public void UsePotion()
     {

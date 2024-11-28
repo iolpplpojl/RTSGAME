@@ -16,3 +16,4 @@ MonoBehaviour:
     type: 3}
   <itemname>k__BackingField: "\uC2A4\uD06C\uB864"
   description: "\uD14C\uC2A4\uD2B8"
+  magic: {fileID: 9105784861410393890, guid: 0ccb3847565ec47479a1969be738a7c0, type: 3}

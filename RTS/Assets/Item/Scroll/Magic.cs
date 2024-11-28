@@ -1,17 +1,36 @@
 using UnityEngine;
-
-public class Magic : MonoBehaviour
+public abstract class Magic : MonoBehaviour, IMagic
 {
+    public GameObject action;
+    protected MagicParameter para;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int slotNum;
+
     void Start()
     {
-        
+        InventoryUI.Instance.gameObject.SetActive(false);
+    }
+    // Update is called once per frame
+    protected virtual void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            execute();
+        }
+        else if(Input.GetMouseButtonDown(1))
+        {
+            close();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void execute() 
     {
-        
+        GameManager.instance.storage[slotNum] = null;
+
+        close();
+    }
+    public void close()
+    {
+        Destroy(gameObject);
     }
 }
