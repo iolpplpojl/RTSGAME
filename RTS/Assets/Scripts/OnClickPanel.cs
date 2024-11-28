@@ -29,7 +29,7 @@ public class OnClickPanel : MonoBehaviour
         {
             temp = Instantiate(prefab, parent.transform);
             buttn = temp.GetComponent<Button>();
-            buttn.onClick.AddListener(Discard);
+            buttn.onClick.AddListener(Equip);
             temp.GetComponentInChildren<TMP_Text>().text = "장착";
             temp.GetComponent<Image>().color = new Color(0.9790583f, 0.5333334f, 1f);
 
@@ -46,12 +46,7 @@ public class OnClickPanel : MonoBehaviour
         {
             temp = Instantiate(prefab, parent.transform);
             buttn = temp.GetComponent<Button>();
-            buttn.onClick.AddListener(Discard);
-            temp.GetComponent<Image>().color = new Color(0.9790583f, 0.5333334f, 1f);
-            temp.GetComponentInChildren<TMP_Text>().text = "사용";
-            temp = Instantiate(prefab, parent.transform);
-            buttn = temp.GetComponent<Button>();
-            buttn.onClick.AddListener(Discard);
+            buttn.onClick.AddListener(UseScroll);
             temp.GetComponent<Image>().color = new Color(0.9790583f, 0.5333334f, 1f);
             temp.GetComponentInChildren<TMP_Text>().text = "사용";
         }
@@ -67,7 +62,6 @@ public class OnClickPanel : MonoBehaviour
         buttn.onClick.AddListener(Close);
         temp.GetComponentInChildren<TMP_Text>().text = "닫기";
 
-        Debug.Log(transform.localPosition + " LOL");
         Open();
     }
 
@@ -91,14 +85,31 @@ public class OnClickPanel : MonoBehaviour
 
     public void Equip()
     {
+        if (!GameManager.instance.inFight)
+        {
+            if (GameManager.instance.storage[slotNum] as Item != null)
+            {
+                Debug.Log("장착");
+                if (InventoryUI.Instance.goons != null)
+                {
+                    if (InventoryUI.Instance.goons.EquipItem(GameManager.instance.storage[slotNum] as Item))
+                    {
+                        GameManager.instance.storage[slotNum] = null;
+                    }
+                }
+                else
+                {
+                    AlertManager.instance.Append("사용할 대상이 없습니다.");
+                }
+            }
+        }
+        else
+        {
+            AlertManager.instance.Append("전투 중에는 할 수 없습니다.");
+        }
         Close();
-
     }
 
-    void Update()
-    {
-        Debug.Log(transform.localPosition + " kek");
-    }
     public void UseScroll()
     {
         Close();
@@ -107,24 +118,32 @@ public class OnClickPanel : MonoBehaviour
     public void UsePotion()
     {
         Debug.Log("사용");
-        if (GameManager.instance.storage[slotNum] as Potion != null)
+        if (!GameManager.instance.inFight)
         {
-            Debug.Log("포션");
-            if (InventoryUI.Instance.goons != null)
+            if (GameManager.instance.storage[slotNum] as Potion != null)
             {
-                InventoryUI.Instance.goons.usePotion(GameManager.instance.storage[slotNum] as Potion);
-                GameManager.instance.storage[slotNum] = null;
+                Debug.Log("포션");
+                if (InventoryUI.Instance.goons != null)
+                {
+                    InventoryUI.Instance.goons.usePotion(GameManager.instance.storage[slotNum] as Potion);
+                    GameManager.instance.storage[slotNum] = null;
+                }
+                else
+                {
+                    AlertManager.instance.Append("사용할 대상이 없습니다.");
+                }
             }
-            else
-            {
-                AlertManager.instance.Append("사용할 대상이 없습니다.");
-            }
+        }
+        else
+        {
+            AlertManager.instance.Append("전투 중에는 할 수 없습니다.");
         }
         Close();
     }
     public void Discard()
     {
         Debug.Log("버리기");
+        GameManager.instance.storage[slotNum] = null;
         Close();
     }
     public void Close() {

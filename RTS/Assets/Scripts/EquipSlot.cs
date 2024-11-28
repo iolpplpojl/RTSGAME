@@ -23,7 +23,7 @@ public class EquipSlot : MonoBehaviour, IPointerClickHandler, IDropHandler,ISlot
         if (GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] as Item != null)
         {
             Debug.Log("ÀåÂø");
-            if (InventoryUI.Instance.goons.EquipItem(GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] as Item, slotNum))
+            if (InventoryUI.Instance.goons.EquipItem(GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] as Item))
             {
                 GameManager.instance.storage[eventData.pointerDrag.gameObject.GetComponent<InventorySlot>().slotNum] = null;
             }

@@ -80,7 +80,24 @@ public class Goons : MonoBehaviour,IGoons
         buffs.Remove(buff);
     }
 
+
     public bool EquipItem(Item item, int slot)
+    {
+
+            Item _item = Instantiate(item);
+            foreach (var member in members)
+            {
+                _item.Equip(member.transform.GetChild(0).GetComponent<Player>());
+            }
+            items[slot] = _item;
+            NowEquip++;
+            return true;
+
+ //           Debug.Log("Àåºñ ²ËÂü");
+ //           return false;
+ 
+    }
+    public bool EquipItem(Item item)
     {
         if (NowEquip < ItemCount)
         {
@@ -89,7 +106,7 @@ public class Goons : MonoBehaviour,IGoons
             {
                 _item.Equip(member.transform.GetChild(0).GetComponent<Player>());
             }
-            items[slot] = _item;
+            items[NowEquip] = _item;
             NowEquip++;
             return true;
         }

@@ -117,6 +117,7 @@ public class Player : MonoBehaviour,IDamage
         Power = basePower + addPower;
         Defence = baseDefence + addDefence;
         AttackTime = baseAttacktime - addAttackTime;
+        _prefabs._anim.SetFloat("AttackTime", 1 / AttackTime);
 
         Cooldown();
         MovePattern();
