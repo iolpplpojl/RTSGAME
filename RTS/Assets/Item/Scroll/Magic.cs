@@ -6,7 +6,7 @@ public abstract class Magic : MonoBehaviour, IMagic
 
     public int slotNum;
 
-    void Start()
+    virtual protected void Start()
     {
         InventoryUI.Instance.gameObject.SetActive(false);
     }

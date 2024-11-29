@@ -48,7 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   action: {fileID: 0}
   slotNum: 0
-  child: {fileID: 0}
+  child: {fileID: 5140318666362297713, guid: 2f205000bc2e5ac45b7ee6d02057f333, type: 3}
+  width: 5
+  height: 5
+  duration: 5
+  maxdamage_tick: 6
 --- !u!212 &3603779871530778054
 SpriteRenderer:
   m_ObjectHideFlags: 0

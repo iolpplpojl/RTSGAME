@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class NonTargetMagic : Magic
 {
-    Vector3 value;
+    protected Vector3 value;
 
     override protected void Update()
     {
