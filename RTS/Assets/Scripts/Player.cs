@@ -68,7 +68,10 @@ public class Player : MonoBehaviour,IDamage
         if (move.Target == null)
         {
             var temp = Physics2D.OverlapCircle(transform.position, 10000, LayerMask.GetMask("Enemy"));
-            SetMoveDirection(temp.gameObject);
+            if (temp != null)
+            {
+                SetMoveDirection(temp.gameObject);
+            }
         }
     }
     public void TakeHeal()

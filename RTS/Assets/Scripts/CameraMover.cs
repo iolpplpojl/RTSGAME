@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CameraMover : MonoBehaviour
@@ -14,7 +15,8 @@ public class CameraMover : MonoBehaviour
     [Range(0f, 1f)]
     public float smoothingStat = 1f;
     public Vector3 velocity = Vector3.zero;
-  
+
+    public Vector3 Shake = Vector3.zero;
     void Awake()
     {
         if(instance == null)
@@ -72,7 +74,24 @@ public class CameraMover : MonoBehaviour
             pos.x = clampedX;
             pos.y = clampedY;
 
-            transform.position = Vector3.SmoothDamp(transform.position, pos, ref velocity, smoothingStat);
+            transform.position = Vector3.SmoothDamp(transform.position, pos + Shake, ref velocity, smoothingStat);
         }
+    }
+
+    public void Quake(float power)
+    {
+        StartCoroutine(Quaker(2,power));
+
+    }
+    IEnumerator Quaker(float Duration, float power)
+    {
+        for(int i =0; i < (int)(Duration*100); i++)
+        {
+            Shake = new Vector3(Random.Range(-1f,1f) * power, Random.Range(-1f, 1f) * power, 0);
+
+     
+            yield return new WaitForSeconds(0.01f);
+        }
+        Shake = Vector3.zero;
     }
 }

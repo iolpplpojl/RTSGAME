@@ -15,8 +15,10 @@ public class FireGrid_Execute : MonoBehaviour
     IEnumerator FireDamage()
     {
         for (int i = 0; i < (int)(duration / 0.5f); i++) {
-            foreach (var enemy in enemy)
+            
+            for (int k = enemy.Count -1;k >= 0; k--)
             {
+                IDamage enemy = this.enemy[k];
                 if (enemy != null)
                 {
                     enemy.TakeAttack(maxdamage_tick, GameManager.instance.Dice(10, 20));
@@ -24,6 +26,7 @@ public class FireGrid_Execute : MonoBehaviour
             } // for 역순문으로 바꾸기;
             yield return new WaitForSeconds(0.5f);
         }
+        Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
