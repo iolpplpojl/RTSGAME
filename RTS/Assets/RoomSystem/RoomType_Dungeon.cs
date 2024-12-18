@@ -5,12 +5,17 @@ using UnityEngine;
 public class RoomType_Dungeon : ScriptableObject, IRoomType
 {
     public GameObject Dungeon;
+    public bool visited;
     public void Setup()
     {
 
     }
     public void Action()
     {
-        GameManager.instance.ExecuteDungeonEnter(Dungeon);
+        if (visited == false)
+        {
+            visited = true;
+            GameManager.instance.ExecuteDungeonEnter(Dungeon);
+        }
     }
 }

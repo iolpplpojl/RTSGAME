@@ -195,7 +195,7 @@ public class RoomManager : MonoBehaviour
               type = Random.Range(0, 3);
             } while (endroomGen == true && type == 0 || (endroomGen == false && roomcount < (roommax * 10) / 17&& type == 0));
 
-            init.GetComponent<Room>().roomType = roomtype[type] as IRoomType;
+            init.GetComponent<Room>().roomType = Instantiate(roomtype[type]) as IRoomType;
             if (type == 0)
             {
                 endroomGen = true;
@@ -241,7 +241,7 @@ public class RoomManager : MonoBehaviour
         nowRoom = init.GetComponent<Room>();
         nowRoom.GetComponent<SpriteRenderer>().color = Color.red;
         endroomGen = false;
-        init.GetComponent<Room>().roomType = roomtype[roomtype.Count-1] as IRoomType;
+        init.GetComponent<Room>().roomType = Instantiate(roomtype[roomtype.Count-1]) as IRoomType;
         init.GetComponent<Room>().Setup();
 
     }
