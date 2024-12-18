@@ -12,7 +12,7 @@ public class IncounterUI : MonoBehaviour
     {
         if (instance != null)
         {
-            instance == this;
+            instance = this;
         }
     }
 
@@ -27,7 +27,7 @@ public class IncounterUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void setIncounterButton(List<(Action, string)> list)
+    public void setIncounterButton(List<(System.Action, string)> list)
     {
         foreach (var item in list)
         {

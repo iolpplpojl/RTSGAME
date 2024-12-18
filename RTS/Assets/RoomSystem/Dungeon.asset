@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0705060c4b8173244b315b96ad8c5165, type: 3}
   m_Name: Dungeon
   m_EditorClassIdentifier: 
-  Dungeon: {fileID: 0}
+  Dungeon: {fileID: 6048069040459155865, guid: a1a6f7ca9e7668b4896d45db854d895a, type: 3}
+  visited: 0
