@@ -9,37 +9,21 @@ public class Room : MonoBehaviour
     public List<Room> OutRoom = new List<Room>();
     public List<Room> InRoom = new List<Room>();
     public List<GameObject> doors = new List<GameObject>();
-    public Roomtype roomtype;
-
     public IRoomType roomType;
 
 
+
+
+    public void Setup()
+    {
+        roomType.Setup();
+    }
     public void RoomEvent()
     {
         RoomManager.instance.MoveRoom(this);
-    }
-    public void RoomSetUp()
-    {
-        Debug.Log(roomtype + " ¼Â¾÷µÊ ");
-        switch (roomtype)
-        {
-
-
-        }
-
-    }
-    public void MoveAction()
-    {
-
+        Debug.Log(roomType);
+        roomType.Action();
     }
 }
 
 
-public enum Roomtype
-{
-    Combat,
-    Shop,
-    Event,
-    First,
-    End,
-}

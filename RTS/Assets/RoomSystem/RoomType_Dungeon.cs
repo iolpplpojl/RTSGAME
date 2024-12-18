@@ -1,6 +1,8 @@
 using UnityEngine;
 
-public class RoomType_Dungeon : MonoBehaviour, IRoomType
+[CreateAssetMenu(fileName = "Dungeon", menuName = "Room/Dungeon")]
+
+public class RoomType_Dungeon : ScriptableObject, IRoomType
 {
     public GameObject Dungeon;
     public void Setup()

@@ -22,6 +22,7 @@ public class RoomManager : MonoBehaviour
     public bool moving = false;
     Room nowRoom;
 
+    public List<ScriptableObject> roomtype = new List<ScriptableObject>();
     bool endroomGen = false;
 
     void Awake()
@@ -185,36 +186,27 @@ public class RoomManager : MonoBehaviour
 
         if (roomcount == 0)
         {
-            init.GetComponent<Room>().roomtype = Roomtype.First;
         }
         else
         {
-            var type = GetRandomEnumValue(Roomtype.First);
+            int type;
             do
             {
-                type = GetRandomEnumValue(Roomtype.First);
-            } while (endroomGen == true && type == Roomtype.End || (endroomGen == false && roomcount < (roommax * 10) / 17&& type == Roomtype.End));
+              type = Random.Range(0, 3);
+            } while (endroomGen == true && type == 0 || (endroomGen == false && roomcount < (roommax * 10) / 17&& type == 0));
 
-            init.GetComponent<Room>().roomtype = type;
-            if (type == Roomtype.End)
+            init.GetComponent<Room>().roomType = roomtype[type] as IRoomType;
+            if (type == 0)
             {
                 endroomGen = true;
             }
         }
         roomQueue.Enqueue(init.GetComponent<Room>());
-        init.GetComponent<Room>().RoomSetUp();
+        init.GetComponent<Room>().Setup();
 
 
     }
-    public static Roomtype GetRandomEnumValue(Roomtype type)
-    {
-        System.Array enumValues = System.Enum.GetValues(typeof(Roomtype));  // Enum 값들을 배열로 가져옴
-        Roomtype randomIndex = type;
-        do {
-            randomIndex = (Roomtype)enumValues.GetValue(Random.Range(0, enumValues.Length));
-                } while (randomIndex == type); // 랜덤 선택
-        return randomIndex;  // 랜덤 인덱스를 이용해 enum 값 반환
-    }
+
     public void Reset()
     {
         foreach (var temp in list_room)
@@ -249,8 +241,8 @@ public class RoomManager : MonoBehaviour
         nowRoom = init.GetComponent<Room>();
         nowRoom.GetComponent<SpriteRenderer>().color = Color.red;
         endroomGen = false;
-        init.GetComponent<Room>().roomtype = Roomtype.First;
-        init.GetComponent<Room>().RoomSetUp();
+        init.GetComponent<Room>().roomType = roomtype[roomtype.Count-1] as IRoomType;
+        init.GetComponent<Room>().Setup();
 
     }
 

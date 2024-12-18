@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(nowDungeon);
             nowDungeon = Instantiate(Dungeon, INGAME.transform);
+            SwitchScreen();
         }
     }
 

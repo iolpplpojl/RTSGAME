@@ -21,7 +21,7 @@ public class FireGround : NonTargetMagic, IMagic
     }
     public override void execute()
     {
-        Instantiate(child, value, Quaternion.identity,GameManager.instance.INGAME.transform);
+        Instantiate(child, value, Quaternion.identity,GameManager.instance.nowDungeon.transform);
         Debug.Log("파이어볼");
         base.execute();
     }

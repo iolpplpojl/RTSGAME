@@ -14,12 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Material
   m_GUID: 2e78f0d404f3ff445ac6c0a5ef5608ca
-  m_SerializeEntries:
-  - m_GUID: a97c105638bdf8b4a8650670310a4cd3
-    m_Address: Material/Lit
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6539b30b76f81224e8c6a5a72dd905ce, type: 2}
   m_SchemaSet:
