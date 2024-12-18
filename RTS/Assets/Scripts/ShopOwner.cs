@@ -17,11 +17,7 @@ public class ShopOwner : MonoBehaviour
         {
             product temp = new product();
             temp.item = ItemDatabase.instance.GetRandomItem();
-            temp.price = temp.item.rare switch
-            {
-                0 => 50,
-                _ => 0,
-            };
+            temp.price = Random.Range(30, 120);
             storage.Add(temp);
         }
         ShopUI.instance.Setup(this);
@@ -36,6 +32,6 @@ public class ShopOwner : MonoBehaviour
 
     public class product
     {
-        public Item item;
+        public Iitem item;
         public int price;
     }

@@ -88,6 +88,8 @@ public class RoomManager : MonoBehaviour
             }
         } 
         nowRoom.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        moving = !GameManager.instance.inFight;
+
     }
 
     // 배열을 무작위로 섞는 메서드

@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemDatabase : MonoBehaviour
 {
     public static ItemDatabase instance;
-    public List<Item> commonItem = new List<Item>();
+    public List<ScriptableObject> commonItem = new List<ScriptableObject>();
     public List<GameObject> firstroom = new List<GameObject>();
 
 
@@ -16,17 +16,18 @@ public class ItemDatabase : MonoBehaviour
         }
     }
 
-    public Item GetRandomItem()
+    public Iitem GetRandomItem()
     {
         var temp = Random.value;
-        Item _item = null;
+        Iitem _item = null;
         if(temp <= 1f)
         {
-            _item = commonItem[Random.Range(0, commonItem.Count)];
+            _item = commonItem[Random.Range(0, commonItem.Count)] as Iitem;
         }
         Debug.Log(_item);
         return _item;
     }
+
     public GameObject GetRandomRoom()
     {
         GameObject temp = null;

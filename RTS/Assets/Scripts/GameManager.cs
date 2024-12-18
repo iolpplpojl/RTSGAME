@@ -100,6 +100,16 @@ public class GameManager : MonoBehaviour
         Destroy(nowDungeon);
         nowDungeon = Instantiate(Dungeon,INGAME.transform);
     }
+
+    public void ExecuteDungeonEnter(GameObject Dungeon)
+    {
+        if(nowDungeon != null)
+        {
+            Destroy(nowDungeon);
+            nowDungeon = Instantiate(Dungeon, INGAME.transform);
+        }
+    }
+
     public void resetDungeon(DungeonManager dungeon)
     {
         StartCoroutine(resetDungeonCoroutine(dungeon));
