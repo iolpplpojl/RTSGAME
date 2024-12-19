@@ -17,7 +17,7 @@ public class ClickSelecter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.inFight)
+        if (!InventoryUI.Instance.gameObject.activeSelf)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -51,6 +51,10 @@ public class ClickSelecter : MonoBehaviour
                     rect.gameObject.SetActive(false);
                 }
             }
+        }
+        else
+        {
+            rect.gameObject.SetActive(false);
         }
     }
 
