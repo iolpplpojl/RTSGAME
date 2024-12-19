@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RoomType_Event : ScriptableObject, IRoomType
 {
-    public GameObject Event;
+    public Incounter Event;
     public void Setup()
     {
 
@@ -24,5 +24,6 @@ public class RoomType_Event : ScriptableObject, IRoomType
      */
     public void Action()
     {
+        Event.Open();
     }
 }

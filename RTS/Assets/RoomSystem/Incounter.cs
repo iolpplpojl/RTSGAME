@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public abstract class Incounter : MonoBehaviour
+public abstract class Incounter : ScriptableObject
 {
-
-    
     /// <summary>
     /// 기본 구조 : Open(), Close().
     /// Close시 재방문 불가는 세분화 처리.
@@ -12,10 +10,11 @@ public abstract class Incounter : MonoBehaviour
     /// </summary>
     public virtual void Open()
     {
-
+        IncounterUI.instance.OpenIncounter();
     }
     public virtual void Close()
     {
+        IncounterUI.instance.CloseIncounter();
 
     }
 }
