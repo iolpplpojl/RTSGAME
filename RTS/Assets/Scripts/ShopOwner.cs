@@ -1,13 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopOwner : MonoBehaviour
+public class ShopOwner
 {
     public List<product> storage = new List<product>();
     public int productCount;
-
-
-
 
     public void SetUp()
     {
@@ -20,9 +17,15 @@ public class ShopOwner : MonoBehaviour
             temp.price = Random.Range(30, 120);
             storage.Add(temp);
         }
+        Debug.Log("¼¥¿À³Ê »ý¼º");
+    }
+
+    public void Show()
+    {
+        Debug.Log(this + " ¿ÀÇÂ½Ãµµ");
         ShopUI.instance.Setup(this);
     }
-        
+
     public void TestSetUP()
     {
         SetUp();

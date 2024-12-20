@@ -23,6 +23,7 @@ public class ShopUI : MonoBehaviour
 
     public void Setup(ShopOwner owner)
     {
+        Debug.Log(owner + "¿ÀÇÂ");
         this.owner = owner;
         foreach (Transform temp in parent.transform)
         {
@@ -70,6 +71,6 @@ public class ShopUI : MonoBehaviour
     }
     public void Close()
     {
-
+        gameObject.SetActive(false);
     }
 }

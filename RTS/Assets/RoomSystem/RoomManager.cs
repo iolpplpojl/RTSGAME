@@ -69,7 +69,7 @@ public class RoomManager : MonoBehaviour
         {
             Debug.Log("생성 완료됨.");
             roomgencomplete = true;
-            transform.parent.gameObject.SetActive(false);
+        //    transform.parent.gameObject.SetActive(false);
         }
         foreach (var temp in list_room)
         {
@@ -106,7 +106,7 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public void MoveRoom(Room room)
+    public bool MoveRoom(Room room)
     {
         if (moving == true)
         {
@@ -117,15 +117,19 @@ public class RoomManager : MonoBehaviour
                 nowRoom = room;
                 nowRoom.GetComponent<SpriteRenderer>().color = Color.red;
                 moving = false;
+                return true;
             }
             else
             {
                 Debug.Log("무브불가");
+                return false;
             }
         }
         else
         {
             Debug.Log("무브불가");
+            return false;
+
         }
     }
 

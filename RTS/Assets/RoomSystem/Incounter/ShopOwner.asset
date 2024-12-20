@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee97009d67d291349b920e5765a46f8f, type: 3}
   m_Name: ShopOwner
   m_EditorClassIdentifier: 
+  firstmove: 1

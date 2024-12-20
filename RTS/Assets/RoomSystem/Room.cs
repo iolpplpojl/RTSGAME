@@ -20,9 +20,11 @@ public class Room : MonoBehaviour
     }
     public void RoomEvent()
     {
-        RoomManager.instance.MoveRoom(this);
-        Debug.Log(roomType);
-        roomType.Action();
+        if (RoomManager.instance.MoveRoom(this))
+        {
+            Debug.Log(roomType);
+            roomType.Action();
+        }
     }
 }
 

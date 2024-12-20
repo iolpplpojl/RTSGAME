@@ -93,7 +93,8 @@ public class GameManager : MonoBehaviour
                 SwitchScreen();
             }
         }
-        Next.SetActive(!inFight);
+        Next.SetActive( !inFight && !OUTGAME.activeSelf);
+        
     }
     public void testDungeon()
     {
@@ -106,9 +107,9 @@ public class GameManager : MonoBehaviour
         if(nowDungeon != null)
         {
             Destroy(nowDungeon);
-            nowDungeon = Instantiate(Dungeon, INGAME.transform);
-            SwitchScreen();
         }
+        nowDungeon = Instantiate(Dungeon, INGAME.transform);
+        SwitchScreen();
     }
 
     public void resetDungeon(DungeonManager dungeon)

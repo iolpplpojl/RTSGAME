@@ -16,7 +16,6 @@ public class TargetMagic : Magic
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero, Mathf.Infinity,TargetLayer.value);
-        Debug.Log(TargetLayer.value);
         if (hit.collider != null)
         {
             Target = hit.collider.gameObject;

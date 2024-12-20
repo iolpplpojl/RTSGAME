@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class RoomType_Event : ScriptableObject, IRoomType
 {
+
     public Incounter Event;
+    public Incounter _event;
     public void Setup()
     {
-
+        _event = Instantiate(Event);   
     }
 
     /** 이벤트 룸 처리 어떻게? 
@@ -24,6 +26,6 @@ public class RoomType_Event : ScriptableObject, IRoomType
      */
     public void Action()
     {
-        Event.Open();
+        _event.Open();
     }
 }

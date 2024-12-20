@@ -31,41 +31,44 @@ public class Moveable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.isStopped = !isMoving;
-        if (isMoving)
+        if (GameManager.instance.INGAME.activeSelf)
         {
-            if(Target == null)
+            agent.isStopped = !isMoving;
+            if (isMoving)
             {
-                if (Targeting == true)
+                if (Target == null)
                 {
-                    Targeting = false;
-                    TargetPos = transform.position;
-                }
-            }
-            if (Targeting && Target != null)
-            {
-                agent.SetDestination(Target.transform.position);
-            }
-            else
-            {
-                agent.SetDestination(TargetPos);
-                least = string.Format("남은거리 {0}\n속도 {1}", agent.remainingDistance,agent.velocity.sqrMagnitude);
-                if (agent.remainingDistance <= agent.stoppingDistance && PosArrive == false)
-                {
-                    if (!agent.hasPath || agent.velocity.sqrMagnitude <= 0.00f)
+                    if (Targeting == true)
                     {
-                        if (CanArrive == true)
+                        Targeting = false;
+                        TargetPos = transform.position;
+                    }
+                }
+                if (Targeting && Target != null)
+                {
+                    agent.SetDestination(Target.transform.position);
+                }
+                else
+                {
+                    agent.SetDestination(TargetPos);
+                    least = string.Format("남은거리 {0}\n속도 {1}", agent.remainingDistance, agent.velocity.sqrMagnitude);
+                    if (agent.remainingDistance <= agent.stoppingDistance && PosArrive == false)
+                    {
+                        if (!agent.hasPath || agent.velocity.sqrMagnitude <= 0.00f)
                         {
-                            PosArrive = true;
-                            isMoving = false;
-                            Debug.Log("Arrive" + agent.transform.name);
+                            if (CanArrive == true)
+                            {
+                                PosArrive = true;
+                                isMoving = false;
+                                Debug.Log("Arrive" + agent.transform.name);
+                            }
                         }
                     }
                 }
             }
-        }
-        else
-        {
+            else
+            {
+            }
         }
     }
 
