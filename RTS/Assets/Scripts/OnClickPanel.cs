@@ -140,6 +140,23 @@ public class OnClickPanel : MonoBehaviour
         }
         Close();
     }
+
+    public void UseContract()
+    {
+        if (!GameManager.instance.inFight)
+        {
+            if (GameManager.instance.storage[slotNum] as Contract != null)
+            {
+                (GameManager.instance.storage[slotNum] as Contract).use();
+                GameManager.instance.storage[slotNum] = null;
+            }
+        }
+        else
+        {
+            AlertManager.instance.Append("전투 중에는 할 수 없습니다.");
+        }
+        Close();
+    }
     public void Discard()
     {
         Debug.Log("버리기");

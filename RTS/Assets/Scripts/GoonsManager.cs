@@ -12,6 +12,7 @@ public class GoonsManager : MonoBehaviour
 
     public int nowselect = -1;
 
+    public GameObject test;
     void Awake()
     {
         if(instance == null)
@@ -25,6 +26,22 @@ public class GoonsManager : MonoBehaviour
         for (int i = 0; i < temp; i++)
         {
             Goons.Add(transform.GetChild(i).gameObject.GetComponent<Goons>());
+        }
+        addGoons(test);
+        addGoons(test);
+    }
+
+    public bool addGoons(GameObject goons)
+    {
+        if (Goons.Count != 10) {
+            GameObject temp = Instantiate(goons, (Goons[0].GetComponent<Transform>()).position, Quaternion.identity, transform);
+            Goons.Add(temp.GetComponent<Goons>());
+            Debug.Log("군 추가됨.");
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     public IEnumerator setPos(DungeonManager dungeon) {
