@@ -4,9 +4,11 @@ using UnityEngine;
 public class ItemDatabase : MonoBehaviour
 {
     public static ItemDatabase instance;
-    public List<ScriptableObject> commonItem = new List<ScriptableObject>();
+    public List<itemdb> commonItem = new List<itemdb>();
+
     public List<GameObject> firstroom = new List<GameObject>();
 
+    public List<goonsdb> commongoons = new List<goonsdb>();
 
     void Awake()
     {
@@ -20,10 +22,13 @@ public class ItemDatabase : MonoBehaviour
     {
         var temp = Random.value;
         Iitem _item = null;
+        int idx = 0;
         if(temp <= 1f)
         {
-            _item = commonItem[Random.Range(0, commonItem.Count)] as Iitem;
+            idx = 0;
         }
+        _item = commonItem[idx].items[Random.Range(0, commonItem[idx].items.Count)] as Iitem;
+
         Debug.Log(_item);
         return _item;
     }
@@ -39,4 +44,14 @@ public class ItemDatabase : MonoBehaviour
         }
         return temp;
     }   
+}
+[System.Serializable]
+public class goonsdb
+{
+    public List<GameObject> goons = new List<GameObject>();
+}
+[System.Serializable]
+public class itemdb
+{
+    public List<ScriptableObject> items = new List<ScriptableObject>();
 }

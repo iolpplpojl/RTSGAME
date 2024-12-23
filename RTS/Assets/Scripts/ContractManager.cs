@@ -6,6 +6,7 @@ public class ContractManager : MonoBehaviour
 
     public static ContractManager instance;
     public Transform parent;
+    public GameObject pref;
 
     void Awake()
     {
@@ -22,5 +23,11 @@ public class ContractManager : MonoBehaviour
         {
             Destroy(temp.gameObject);
         }
+        for(int i = 0; i < contract.count; i++)
+        {
+            
+        }
+        
+
     }
 }
