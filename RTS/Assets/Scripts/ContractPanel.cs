@@ -8,7 +8,7 @@ public class ContractPanel : MonoBehaviour, IPointerClickHandler
     public TMP_Text _stat;
     public TMP_Text _desc;
 
-    Goons goons;
+    GameObject goons;
 
     public void setButton(GameObject goons)
     {
@@ -17,6 +17,6 @@ public class ContractPanel : MonoBehaviour, IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        method();
+//
     }
 }

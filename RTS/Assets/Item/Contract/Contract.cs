@@ -10,7 +10,14 @@ public class Contract : ScriptableObject,Iitem
 
     public bool use()
     {
-       
+        if (GoonsManager.instance.Goons.Count == 10) {
+            AlertManager.instance.Append("이미 용병단의 최대 크기에 도달했습니다.");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public string getDesc()
