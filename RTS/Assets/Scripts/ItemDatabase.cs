@@ -12,12 +12,13 @@ public class ItemDatabase : MonoBehaviour
 
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
-    }
 
+
+    }
     public Iitem GetRandomItem()
     {
         var temp = Random.value;

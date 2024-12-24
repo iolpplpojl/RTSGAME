@@ -31,6 +31,7 @@ public class RoomManager : MonoBehaviour
         {
             instance = this;
         }
+
     }
     public void Clear()
     {

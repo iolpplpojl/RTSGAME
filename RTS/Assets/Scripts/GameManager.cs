@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour
     public GameObject OUTGAME;
 
 
+    public System.Random _DamageRandom;
+    public System.Random _ShopRandom;
+    public System.Random _ContractRandom;
+
 
     public void SwitchScreen()
     {
@@ -49,7 +53,13 @@ public class GameManager : MonoBehaviour
             storage.Add(null);
         }
         Random.InitState(seed);
+        _DamageRandom = new System.Random(seed);
+        _ShopRandom = new System.Random(seed);
 
+        Debug.Log($"각 시드 : {_DamageRandom.Next(1,100)} : {_ShopRandom.Next(1,100)}");
+        Debug.Log($"각 시드 : {_DamageRandom.Next(1,100)} : {_ShopRandom.Next(1,100)}");
+        Debug.Log($"각 시드 : {_DamageRandom.Next(1,100)} : {_ShopRandom.Next(1,100)}");
+        Debug.Log($"각 시드 : {_DamageRandom.Next(1,100)} : {_ShopRandom.Next(1,100)}");
     }
 
     public int Dice(int times, int max)
@@ -132,4 +142,5 @@ public class GameManager : MonoBehaviour
         Debug.Log("클리어");
         inFight = false;
     }
+
 }
