@@ -44,6 +44,20 @@ public class ItemDatabase : MonoBehaviour
         }
         return temp;
     }   
+
+    public GameObject GetRandomGoons(int rank)
+    {
+        var temp = Random.value;
+        int idx = 0;
+        GameObject Goons = null;
+        if(temp <= 1f)
+        {
+            idx = 0;
+        }
+        Goons = commongoons[idx].goons[Random.Range(0, commongoons[idx].goons.Count)];
+        return Goons;
+
+    }
 }
 [System.Serializable]
 public class goonsdb

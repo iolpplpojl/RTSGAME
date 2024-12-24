@@ -99,14 +99,16 @@ public class GoonsManager : MonoBehaviour
         {
             Select(temp);
         }
-        for (int i = 0; i < Goons.Count-1; i++)
-        {
-            SelectField[i].SetActive(true);
-        }
+        Debug.Log(Goons.Count);
         for (int i = Goons.Count; i < 10; i++)
         {
             SelectField[i].SetActive(false);
         }
+        for (int i = 0; i < Goons.Count; i++)
+        {
+            SelectField[i].SetActive(true);
+        }
+
 
 
         foreach(var kek in SelectField)

@@ -50,6 +50,14 @@ public class OnClickPanel : MonoBehaviour
             temp.GetComponent<Image>().color = new Color(0.9790583f, 0.5333334f, 1f);
             temp.GetComponentInChildren<TMP_Text>().text = "사용";
         }
+        else if (GameManager.instance.storage[slotNum] is Contract)
+        {
+            temp = Instantiate(prefab, parent.transform);
+            buttn = temp.GetComponent<Button>();
+            buttn.onClick.AddListener(UseContract);
+            temp.GetComponent<Image>().color = new Color(0.9790583f, 0.5333334f, 1f);
+            temp.GetComponentInChildren<TMP_Text>().text = "사용";
+        }
         temp = Instantiate(prefab, parent.transform);
         buttn = temp.GetComponent<Button>();
         buttn.onClick.AddListener(Discard);
@@ -147,8 +155,10 @@ public class OnClickPanel : MonoBehaviour
         {
             if (GameManager.instance.storage[slotNum] as Contract != null)
             {
-                (GameManager.instance.storage[slotNum] as Contract).use();
-                GameManager.instance.storage[slotNum] = null;
+                if ((GameManager.instance.storage[slotNum] as Contract).use())
+                {
+                    GameManager.instance.storage[slotNum] = null;
+                }
             }
         }
         else

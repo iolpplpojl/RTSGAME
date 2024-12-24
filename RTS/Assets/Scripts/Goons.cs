@@ -8,19 +8,20 @@ public class Goons : MonoBehaviour,IGoons
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject face;
+    public GameObject single;
+    public int MaxCount;
     public bool Selected;
-
     [SerializeField]
     private List<GameObject> _members  = new List<GameObject>();
     public List<GameObject> members { get; set; } = new List<GameObject>();
     public List<Item> items = new List<Item>();
     public List<Buff> buffs = new List<Buff>();
-
     public int ItemCount = 2;
     int NowEquip = 0;
-    public string Name;
-    
-    
+    public string _name;
+
+    public string description;
+   
     
     public GameObject SetTargeting()
     {
