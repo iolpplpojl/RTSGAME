@@ -30,10 +30,10 @@ public class GameManager : MonoBehaviour
     public GameObject OUTGAME;
 
 
-    public System.Random _DamageRandom;
-    public System.Random _ShopRandom;
-    public System.Random _ContractRandom;
-
+    public RNG DamageRandom;
+    public RNG ShopRandom;
+    public RNG ContractRandom;
+    public RNG MapRandom;
 
     public void SwitchScreen()
     {
@@ -53,13 +53,12 @@ public class GameManager : MonoBehaviour
             storage.Add(null);
         }
         Random.InitState(seed);
-        _DamageRandom = new System.Random(seed);
-        _ShopRandom = new System.Random(seed);
+        
+        DamageRandom = new RNG(10,seed);
+        ShopRandom = new RNG(10,seed);
+        ContractRandom =new RNG(10,seed);
+        MapRandom = new RNG(10,seed);
 
-        Debug.Log($"각 시드 : {_DamageRandom.Next(1,100)} : {_ShopRandom.Next(1,100)}");
-        Debug.Log($"각 시드 : {_DamageRandom.Next(1,100)} : {_ShopRandom.Next(1,100)}");
-        Debug.Log($"각 시드 : {_DamageRandom.Next(1,100)} : {_ShopRandom.Next(1,100)}");
-        Debug.Log($"각 시드 : {_DamageRandom.Next(1,100)} : {_ShopRandom.Next(1,100)}");
     }
 
     public int Dice(int times, int max)
@@ -143,4 +142,41 @@ public class GameManager : MonoBehaviour
         inFight = false;
     }
 
+}
+
+
+
+public class RNG
+{
+    System.Random rand;
+    int nexted;
+
+    public RNG(int count,int seed)
+    {
+    
+        rand = new System.Random(seed);
+        for(int i = 0; i < count; i++)
+        {
+            Range(0, 1);
+        }
+
+        Debug.Log($"TestSeed : {rand.Next()}");
+    }
+
+    
+    public int Range(int min, int max)
+    {
+        nexted++;
+        Debug.Log(rand + " " + nexted);
+
+        return rand.Next(min, max);
+    }
+    public float Range(float min,float max)
+    {
+        float value = (float)rand.NextDouble() * (max - min) + min;
+        nexted++;
+        Debug.Log(rand + " " + nexted);
+
+        return value;
+    }
 }

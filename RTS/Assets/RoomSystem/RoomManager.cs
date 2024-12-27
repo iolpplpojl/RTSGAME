@@ -99,7 +99,7 @@ public class RoomManager : MonoBehaviour
     {
         for (int i = 0; i < array.Length; i++)
         {
-            int randomIndex = Random.Range(i, array.Length);
+            int randomIndex = GameManager.instance.MapRandom.Range(i, array.Length);
             // ½º¿Ò
             Vector2Int temp = array[i];
             array[i] = array[randomIndex];
@@ -168,7 +168,7 @@ public class RoomManager : MonoBehaviour
 
         if (room.ConnectCount >= 1)
         {
-            if(Random.value < 0.9f && index != Vector2Int.zero)
+            if(GameManager.instance.MapRandom.Range(0f,1f) < 0.9f && index != Vector2Int.zero)
             {
                 return;
             }
@@ -197,7 +197,7 @@ public class RoomManager : MonoBehaviour
             int type;
             do
             {
-              type = Random.Range(0, 3);
+              type = GameManager.instance.MapRandom.Range(0, 3);
             } while (endroomGen == true && type == 0 || (endroomGen == false && roomcount < (roommax * 10) / 17&& type == 0));
 
             init.GetComponent<Room>().roomType = Instantiate(roomtype[type]) as IRoomType;
