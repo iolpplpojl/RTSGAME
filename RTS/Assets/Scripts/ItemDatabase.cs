@@ -19,16 +19,16 @@ public class ItemDatabase : MonoBehaviour
 
 
     }
-    public Iitem GetRandomItem()
+    public Iitem GetRandomItem(RNG randomizer)
     {
-        var temp = Random.value;
+        var temp = randomizer.Range(0f, 1f);
         Iitem _item = null;
         int idx = 0;
         if(temp <= 1f)
         {
             idx = 0;
         }
-        _item = commonItem[idx].items[Random.Range(0, commonItem[idx].items.Count)] as Iitem;
+        _item = commonItem[idx].items[randomizer.Range(0, commonItem[idx].items.Count)] as Iitem;
 
         Debug.Log(_item);
         return _item;

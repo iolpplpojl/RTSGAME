@@ -15,6 +15,10 @@ public abstract class Incounter : ScriptableObject
     {
         IncounterUI.instance.OpenIncounter();
     }
+    public virtual void Setup()
+    {
+        //
+    }
     public virtual void Close()
     {
         IncounterUI.instance.CloseIncounter();

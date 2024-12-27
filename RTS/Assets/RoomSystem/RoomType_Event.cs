@@ -8,7 +8,8 @@ public class RoomType_Event : ScriptableObject, IRoomType
     public Incounter _event;
     public void Setup()
     {
-        _event = Instantiate(Event);   
+        _event = Instantiate(Event);
+        _event.Setup();
     }
 
     /** 이벤트 룸 처리 어떻게? 

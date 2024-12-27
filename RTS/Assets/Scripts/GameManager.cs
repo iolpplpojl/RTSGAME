@@ -54,10 +54,10 @@ public class GameManager : MonoBehaviour
         }
         Random.InitState(seed);
         
-        DamageRandom = new RNG(10,seed);
-        ShopRandom = new RNG(10,seed);
-        ContractRandom =new RNG(10,seed);
-        MapRandom = new RNG(10,seed);
+        DamageRandom = new RNG(0,seed);
+        ShopRandom = new RNG(0,seed);
+        ContractRandom =new RNG(0,seed);
+        MapRandom = new RNG(0,seed);
 
     }
 
@@ -160,14 +160,12 @@ public class RNG
             Range(0, 1);
         }
 
-        Debug.Log($"TestSeed : {rand.Next()}");
     }
 
     
     public int Range(int min, int max)
     {
         nexted++;
-        Debug.Log(rand + " " + nexted);
 
         return rand.Next(min, max);
     }
@@ -175,7 +173,6 @@ public class RNG
     {
         float value = (float)rand.NextDouble() * (max - min) + min;
         nexted++;
-        Debug.Log(rand + " " + nexted);
 
         return value;
     }
