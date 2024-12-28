@@ -9621,7 +9621,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390777569386432678}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 5.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9629,7 +9629,7 @@ Transform:
   - {fileID: 2024226729524574676}
   - {fileID: 6141185202966573784}
   m_Father: {fileID: 3990199539000463675}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1436252235194109131
 GameObject:
   m_ObjectHideFlags: 0
@@ -10076,110 +10076,6 @@ MonoBehaviour:
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
---- !u!1 &1537794016354193119
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8960810372811484303}
-  - component: {fileID: 7842130518888515291}
-  - component: {fileID: 8208683915919975457}
-  m_Layer: 6
-  m_Name: Dungeon_Tileset_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8960810372811484303
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537794016354193119}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -12.06, y: 0, z: -1.22}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6141185202966573784}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7842130518888515291
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537794016354193119}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -468385011, guid: ad9e62bfa99c716408ac9bf36e8864d0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.0666667, y: 1.0666667}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!114 &8208683915919975457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537794016354193119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentShaderType: 0
-  normalStrength: 5
-  normalSmoothing: 1
-  computingNormal: 0
 --- !u!1 &1645223893443224268
 GameObject:
   m_ObjectHideFlags: 0
@@ -10220,6 +10116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6141185202966573784}
+  - component: {fileID: 4021418890960895046}
   m_Layer: 0
   m_Name: GameObject (1)
   m_TagString: Untagged
@@ -10239,10 +10136,22 @@ Transform:
   m_LocalPosition: {x: 4.23, y: -0, z: 1.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8960810372811484303}
+  m_Children: []
   m_Father: {fileID: 1444647189367298936}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4021418890960895046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160574916750084342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e73ed8b763924e54aaa9f479da0a909d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rank: 0
 --- !u!1 &2237174105530534045
 GameObject:
   m_ObjectHideFlags: 0
@@ -10345,6 +10254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2024226729524574676}
+  - component: {fileID: 8152373129903517346}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -10367,6 +10277,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1444647189367298936}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8152373129903517346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3564518330044570514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e73ed8b763924e54aaa9f479da0a909d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rank: 0
 --- !u!1 &3772058295648077782
 GameObject:
   m_ObjectHideFlags: 0
@@ -10690,12 +10613,7 @@ MonoBehaviour:
   - {fileID: 6936373232296298889}
   - {fileID: 1913434961590218988}
   - {fileID: 7333250416168902306}
-  enemyspawnpos:
-  - {fileID: 2024226729524574676}
-  - {fileID: 6141185202966573784}
-  enemy:
-  - {fileID: 3770014005837562738, guid: a3ca9566f6b719c4c833fd606d423ce2, type: 3}
-  - {fileID: 3770014005837562738, guid: a3ca9566f6b719c4c833fd606d423ce2, type: 3}
+  enemyspawnpos: []
   description: "\uC9C0\uD558 - I"
 --- !u!1 &7034224959044458215
 GameObject:

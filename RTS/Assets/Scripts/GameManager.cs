@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
     public RNG ContractRandom;
     public RNG MapRandom;
 
+    public RNG SpawnRandom;
+    public RNG SpawnerRandom;
+
     public void SwitchScreen()
     {
         INGAME.SetActive(!INGAME.activeSelf);
@@ -58,6 +61,8 @@ public class GameManager : MonoBehaviour
         ShopRandom = new RNG(0,seed);
         ContractRandom =new RNG(0,seed);
         MapRandom = new RNG(0,seed);
+        SpawnRandom = new RNG(0,seed);
+        SpawnerRandom = new RNG(0, seed);
 
     }
 
@@ -173,7 +178,7 @@ public class RNG
     {
         float value = (float)rand.NextDouble() * (max - min) + min;
         nexted++;
-
+        Debug.Log(value + "RNG °á°ú°ª");
         return value;
     }
 }

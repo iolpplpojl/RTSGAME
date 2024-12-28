@@ -9,6 +9,7 @@ public class ItemDatabase : MonoBehaviour
     public List<GameObject> firstroom = new List<GameObject>();
 
     public List<goonsdb> commongoons = new List<goonsdb>();
+    public List<goonsdb> enemygoons = new List<goonsdb>();
 
     void Awake()
     {
@@ -46,12 +47,25 @@ public class ItemDatabase : MonoBehaviour
         return temp;
     }   
 
-    public GameObject GetRandomGoons(int rank)
+    public GameObject GetEnemyGoons(int rank)
     {
-        var temp = Random.value;
+        var temp = GameManager.instance.SpawnRandom.Range(0f, 1f);
         int idx = 0;
         GameObject Goons = null;
-        if(temp <= 1f)
+        if (temp <= 1f)
+        {
+            idx = 0;
+        }
+        Goons = enemygoons[idx].goons[Random.Range(0, enemygoons[idx].goons.Count)];
+        return Goons;
+
+    }
+    public GameObject GetRandomGoons(int rank)
+    {
+        //var temp = GameManager.instance.SpawnRandom.Range(0f, 1f);
+        int idx = 0;
+        GameObject Goons = null;
+        if(1f <= 1f)
         {
             idx = 0;
         }
