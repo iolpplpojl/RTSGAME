@@ -13,7 +13,8 @@ public class FlexLayoutGroup : LayoutGroup
         가로,
         그리드,
         고정열,
-        고정행
+        고정행,
+        정비례
     }
     public fit type;
 

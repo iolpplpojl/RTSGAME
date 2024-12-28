@@ -27,8 +27,6 @@ public class GoonsManager : MonoBehaviour
         {
             Goons.Add(transform.GetChild(i).gameObject.GetComponent<Goons>());
         }
-        addGoons(test);
-        addGoons(test);
     }
 
     public bool addGoons(GameObject goons)
@@ -221,10 +219,15 @@ public class GoonsManager : MonoBehaviour
         if (nowselect == -1)
         {
             InventoryUI.Instance.GoonsSelected(null);
+            GoonsStatusUI.instance.now = null;
+            GoonsStatusUI.instance.setUp();
+
         }
         else
         {
             InventoryUI.Instance.GoonsSelected(Goons[nowselect]);
+            GoonsStatusUI.instance.now = Goons[nowselect];
+            GoonsStatusUI.instance.setUp();
         }
     }
 }

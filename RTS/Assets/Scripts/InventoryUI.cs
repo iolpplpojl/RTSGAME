@@ -9,7 +9,6 @@ public class InventoryUI : MonoBehaviour
 
     public Goons goons;
     public GameObject img;
-    public GameObject list;
     public GameObject itemInven;
     public GameObject invenSlot;
     public GameObject ItemList;
@@ -81,10 +80,6 @@ public class InventoryUI : MonoBehaviour
 
     public void GoonsSelected(Goons goons)
     {
-        foreach (Transform temp in list.transform)
-        {
-            Destroy(temp.gameObject);
-        }
         foreach (Transform temp in itemInven.transform)
         {
             Destroy(temp.gameObject);

@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 public class RoomLight : MonoBehaviour
@@ -13,12 +13,16 @@ public class RoomLight : MonoBehaviour
 
    IEnumerator LightsOn()
     {
-        while(light.intensity < 2)
+        if (onoff == false)
         {
-            light.intensity = Mathf.SmoothStep(light.intensity, 2, 0.03f);
-            yield return null;
+            onoff = true;
+            while (light.intensity <= 1.99f)
+            {
+                light.intensity = Mathf.SmoothStep(light.intensity, 2, 0.03f);
+                yield return null;
+            }
+            light.intensity = 2;
         }
-        light.intensity = 2;
         yield break;
     }
     
@@ -28,7 +32,6 @@ public class RoomLight : MonoBehaviour
         if (!onoff)
         {
             StartCoroutine(LightsOn());
-            onoff = true;
         }
     }
 

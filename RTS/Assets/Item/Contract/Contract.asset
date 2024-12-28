@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1cdf0136cbb60548b40db5383c3fcf1, type: 3}
   m_Name: Contract
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 0}
-  <itemname>k__BackingField: 
-  description: 
+  <sprite>k__BackingField: {fileID: 21300066, guid: 9f8f114589864b6489859a58fbb6baf9,
+    type: 3}
+  <itemname>k__BackingField: "\uD558\uAE09 \uBAA8\uC9D1\uC11C"
+  description: "\uC870\uAC74\uC774 \uADF8\uB2E4\uC9C0 \uC88B\uC9C0 \uC54A\uC740 \uACC4\uC57D\uC11C\uC785\uB2C8\uB2E4.
+    \uADF8\uC800 \uADF8\uB7F0 \uC218\uC900\uC758 \uC6A9\uBCD1\uB4E4\uACFC \uACC4\uC57D\uD560
+    \uC218 \uC788\uC2B5\uB2C8\uB2E4"
   rank: 0
-  count: 0
+  count: 3

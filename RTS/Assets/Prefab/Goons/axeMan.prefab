@@ -62,13 +62,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   face: {fileID: 1734853311832553308, guid: 4edbbbce3ce92644e85c55710890ab2c, type: 3}
   single: {fileID: 1399974184919895912}
+  MaxCount: 0
   Selected: 0
   _members: []
   items: []
   buffs: []
   ItemCount: 2
   _name: "\uBE0C\uB77C\uAC00\uB974 \uC878\uBCD1"
-  description: 
+  description: "\"\uC801\uC5B4\uB3C4 \uBA38\uB9BF\uC218\uB294 \uB9CE\uC796\uC544?\""
 --- !u!1001 &458872777792961983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1168,6 +1169,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581901775643719309, guid: 6bd1b04fd485b9749890ed7958594b1c,
+        type: 3}
+      propertyPath: m_ShadowsEnabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866101836427076120, guid: 6bd1b04fd485b9749890ed7958594b1c,
         type: 3}

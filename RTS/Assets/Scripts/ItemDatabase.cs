@@ -69,7 +69,7 @@ public class ItemDatabase : MonoBehaviour
         {
             idx = 0;
         }
-        Goons = commongoons[idx].goons[Random.Range(0, commongoons[idx].goons.Count)];
+        Goons = commongoons[idx].goons[GameManager.instance.ContractRandom.Range(0, commongoons[idx].goons.Count)];
         return Goons;
 
     }
