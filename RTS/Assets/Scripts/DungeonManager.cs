@@ -39,7 +39,6 @@ public class DungeonManager : MonoBehaviour
         {
             n.setUp(times);
             times++;
-
         }
     }
     public void GoonsDie(EnemyGoons goons)
@@ -68,11 +67,6 @@ public class DungeonManager : MonoBehaviour
 
         min = bounds.min; //tilemapWorldPosition - worldSize / 2;
         max = bounds.max; //tilemapWorldPosition + worldSize / 2;
-        Debug.Log(" + " + tileSize);
-        Debug.Log("min: " + min);
-        Debug.Log("max " + max);
-        Debug.Log("size " + worldSize);
-        Debug.Log("bound" + bounds);
         return false;
     }
 }

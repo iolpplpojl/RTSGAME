@@ -6,7 +6,7 @@ public class EnemyGoons : MonoBehaviour,IGoons
     [SerializeField]
     private List<GameObject> _members = new List<GameObject>();
     public List<GameObject> members { get; set; } = new List<GameObject>();
-    public GameObject chest;
+    public List<ChestData> chest;
 
     bool droped = false;
 
@@ -18,7 +18,8 @@ public class EnemyGoons : MonoBehaviour,IGoons
         {
             if(chest != null && droped == false)
             {
-                var temp = Instantiate(chest, transform.position, Quaternion.identity, transform.parent);
+                var temp = Instantiate(ItemDatabase.instance.Chest, transform.position, Quaternion.identity, transform.parent);
+                temp.GetComponent<Chest>().slot = chest;
                 droped = true;
             }
             transform.GetComponentInParent<DungeonManager>().GoonsDie(this);

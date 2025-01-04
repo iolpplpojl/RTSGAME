@@ -1,16 +1,15 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class ItemDatabase : MonoBehaviour
 {
     public static ItemDatabase instance;
     public List<itemdb> commonItem = new List<itemdb>();
-
     public List<GameObject> firstroom = new List<GameObject>();
-
     public List<goonsdb> commongoons = new List<goonsdb>();
     public List<goonsdb> enemygoons = new List<goonsdb>();
-
+    public GameObject Chest;
     void Awake()
     {
         if (instance == null)
@@ -35,6 +34,31 @@ public class ItemDatabase : MonoBehaviour
         return _item;
     }
 
+    public List<ChestData> GetRandomChestData(int rank)
+    {
+        //...°ñµå;;;
+        List<ChestData> lst = new List<ChestData>();
+        for(int i = 0; i < 4; i++)
+        {
+            var temp = GameManager.instance.ChestRandom.Range(0f, 1f);
+            if (temp > 0.5f + (0.1f*rank))
+            {
+                ChestData data = new ChestData();
+                data.type = 1;
+                data.item = GetRandomItem(GameManager.instance.ChestRandom);
+                lst.Add(data);
+            }
+        }
+        var z = GameManager.instance.ChestRandom.Range(0f, 1f);
+        if (z > 0.5f + (0.1f * rank)) {
+            ChestData gold = new ChestData();
+            gold.type = 0;
+            gold.gold = GameManager.instance.ChestRandom.Range(10, 30 * (rank+30));
+            lst.Add(gold);
+        }
+
+        return lst;
+    }
     public GameObject GetRandomRoom()
     {
         GameObject temp = null;

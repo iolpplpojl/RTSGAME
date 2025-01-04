@@ -23,14 +23,15 @@ public class InventoryUI : MonoBehaviour
         {
             Instance = this;
         }
-        gameObject.SetActive(false);
     }
 
     public void Start()
     {
         ItemListSetup();
+        gameObject.SetActive(false);
+
     }
-   
+
 
     public void Update()
     {

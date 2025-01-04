@@ -156,12 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e035a8b492f6342b8c4326eec254f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gold: 325
-  item:
-  - {fileID: 11400000, guid: 545aaf7b08c56f04f9a48fd59c78dae8, type: 2}
-  - {fileID: 11400000, guid: 049c34c134a73a2439afd528adc0b04f, type: 2}
-  - {fileID: 11400000, guid: cda3dba7bc6e93949822716c5f230349, type: 2}
-  - {fileID: 11400000, guid: 7278a6238639bf24a8e72100bc9b2cfe, type: 2}
+  Gold: 0
+  item: []
 --- !u!61 &9091961304781484668
 BoxCollider2D:
   m_ObjectHideFlags: 0

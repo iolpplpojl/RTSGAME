@@ -34,10 +34,9 @@ public class GameManager : MonoBehaviour
     public RNG ShopRandom;
     public RNG ContractRandom;
     public RNG MapRandom;
-
     public RNG SpawnRandom;
     public RNG SpawnerRandom;
-
+    public RNG ChestRandom;
     public void SwitchScreen()
     {
         INGAME.SetActive(!INGAME.activeSelf);
@@ -63,6 +62,7 @@ public class GameManager : MonoBehaviour
         MapRandom = new RNG(0,seed);
         SpawnRandom = new RNG(0,seed);
         SpawnerRandom = new RNG(0, seed);
+        ChestRandom = new RNG(0, seed);
 
     }
 

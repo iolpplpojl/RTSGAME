@@ -17,11 +17,19 @@ public class EnemySpawner : MonoBehaviour
     {
         if(times == 0)
         {
-            Instantiate(enemy, transform.position, Quaternion.identity, transform.parent);
+            Spawn();
         }
         else if (GameManager.instance.SpawnerRandom.Range(0f,1f) > 0.3f)
         {
-            Instantiate(enemy, transform.position, Quaternion.identity, transform.parent);
+            Spawn();
         }
+    }
+
+
+
+    void Spawn()
+    {
+        var temp = Instantiate(enemy, transform.position, Quaternion.identity, transform.parent);
+        temp.GetComponent<EnemyGoons>().chest = ItemDatabase.instance.GetRandomChestData(rank); 
     }
 }
