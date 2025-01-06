@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public RNG SpawnRandom;
     public RNG SpawnerRandom;
     public RNG ChestRandom;
+    public RNG DungeonRandom;
     public void SwitchScreen()
     {
         INGAME.SetActive(!INGAME.activeSelf);
@@ -60,10 +61,10 @@ public class GameManager : MonoBehaviour
         ShopRandom = new RNG(0,seed);
         ContractRandom =new RNG(0,seed);
         MapRandom = new RNG(0,seed);
-        SpawnRandom = new RNG(0,seed);
-        SpawnerRandom = new RNG(0, seed);
+        SpawnRandom = new RNG(0,seed); //Àû ÃßÃâ½Ã ·£´ý
+        SpawnerRandom = new RNG(0, seed); // Àû »ý¼º È®·ü ·£´ý
         ChestRandom = new RNG(0, seed);
-
+        DungeonRandom = new RNG(0, seed);
     }
 
     public int Dice(int times, int max)
@@ -83,7 +84,7 @@ public class GameManager : MonoBehaviour
             num += Random.Range(1, list[1] + 1);
         }
         return num;
-    }
+    } 
 
     void Update()
     {
@@ -116,13 +117,16 @@ public class GameManager : MonoBehaviour
         nowDungeon = Instantiate(Dungeon,INGAME.transform);
     }
 
-    public void ExecuteDungeonEnter(GameObject Dungeon)
+    public void ExecuteDungeonEnter(GameObject Dungeon,List<GameObject> n)
     {
         if(nowDungeon != null)
         {
             Destroy(nowDungeon);
         }
         nowDungeon = Instantiate(Dungeon, INGAME.transform);
+        nowDungeon.GetComponent<DungeonManager>().Goons = n;
+        GameManager.instance.resetDungeon(nowDungeon.GetComponent<DungeonManager>());
+
         SwitchScreen();
     }
 

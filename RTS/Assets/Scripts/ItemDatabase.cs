@@ -56,7 +56,12 @@ public class ItemDatabase : MonoBehaviour
             gold.gold = GameManager.instance.ChestRandom.Range(10, 30 * (rank+30));
             lst.Add(gold);
         }
+        Debug.Log(lst.Count + " 로 상자 셋팅 완료.");
 
+        if(lst.Count == 0)
+        {
+            return null;
+        }
         return lst;
     }
     public GameObject GetRandomRoom()
@@ -64,12 +69,25 @@ public class ItemDatabase : MonoBehaviour
         GameObject temp = null;
         switch (GameManager.instance.floor)
         {
-            case 1:
-                temp = firstroom[Random.Range(0, firstroom.Count)];
+            case 0:
+                temp = firstroom[GameManager.instance.DungeonRandom.Range(0, firstroom.Count)];
                 break;
         }
         return temp;
-    }   
+    }
+
+    public GameObject GetEnemyGoons()
+    {
+        var temp = GameManager.instance.SpawnRandom.Range(0f, 1f);
+        int idx = 0;
+        GameObject Goons = null;
+        if (temp <= 1f)
+        {
+            idx = 0;
+        }
+        Goons = enemygoons[idx].goons[Random.Range(0, enemygoons[idx].goons.Count)];
+        return Goons;
+    }
 
     public GameObject GetEnemyGoons(int rank)
     {

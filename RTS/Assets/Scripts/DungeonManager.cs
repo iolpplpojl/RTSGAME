@@ -8,6 +8,8 @@ public class DungeonManager : MonoBehaviour
     Camera cam;
     public Vector3 min;
     public Vector3 max;
+
+    public List<GameObject> Goons = new List<GameObject>();
     public List<EnemyGoons> remaingoons = new List<EnemyGoons>();
     public List<Transform> spawnpos = new List<Transform>();
     public List<EnemySpawner> enemyspawnpos = new List<EnemySpawner>();
@@ -26,7 +28,6 @@ public class DungeonManager : MonoBehaviour
         CameraMover.instance.nowDungeon = this;
         IsCameraAtTilemapEdge();
         Debug.Log(map);
-        GameManager.instance.resetDungeon(this);
         if(description != null)
         {
             AlertManager.instance.Append(description);
@@ -35,11 +36,17 @@ public class DungeonManager : MonoBehaviour
     public void SpawnEnemy()
     {
         int times = 0;
+        Debug.Log(Goons.Count + " ½ºÆùÁß");
         foreach(EnemySpawner n in enemyspawnpos)
         {
-            n.setUp(times);
+            n.setUp(times, Goons[times]);
             times++;
         }
+    }
+    public void GoonsSpawn(EnemyGoons goons)
+    {
+        remaingoons.Add(goons);
+      
     }
     public void GoonsDie(EnemyGoons goons)
     {

@@ -16,6 +16,7 @@ public class EnemyGoons : MonoBehaviour,IGoons
         Destroy(member);
         if (members.Count == 0)
         {
+            Debug.Log(chest+ "»óÀÚ");
             if(chest != null && droped == false)
             {
                 var temp = Instantiate(ItemDatabase.instance.Chest, transform.position, Quaternion.identity, transform.parent);
@@ -43,6 +44,8 @@ public class EnemyGoons : MonoBehaviour,IGoons
 
     void Start()
     {
+        transform.GetComponentInParent<DungeonManager>().GoonsSpawn(this);
+
         members = _members;
         var temp = transform.childCount;
         for (int i = 0; i < temp; i++)
