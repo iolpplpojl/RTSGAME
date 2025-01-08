@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 public class GoonsManager : MonoBehaviour
 {
@@ -48,12 +49,19 @@ public class GoonsManager : MonoBehaviour
             Vector3 pos = dungeon.spawnpos[Random.Range(0, dungeon.spawnpos.Count)].position;
             Debug.Log("�׽���");
 
+            int i = 0;
+
             foreach (var lol in kek.members)
             {
                 Debug.Log("�׽���2");
-
-                lol.GetComponentInChildren<UnityEngine.AI.NavMeshAgent>().Warp(pos);
-                lol.GetComponentInChildren<Player>().SetMoveDirection(pos);
+                // x, y 위치를 원형으로 설정
+                float angle = i * 137.5f * Mathf.Deg2Rad;
+                float radius = Mathf.Sqrt(i) * (lol.GetComponentInChildren<NavMeshAgent>().radius * 1.44f);
+                float x = Mathf.Cos(angle) * radius;
+                float y = Mathf.Sin(angle) * radius;
+                i++;
+                lol.GetComponentInChildren<UnityEngine.AI.NavMeshAgent>().Warp((Vector2)pos + new Vector2(x, y));
+                lol.GetComponentInChildren<Player>().SetMoveDirection((Vector2)pos + new Vector2(x, y));
             }
         }
         yield return true;
@@ -64,13 +72,19 @@ public class GoonsManager : MonoBehaviour
         foreach (var kek in Goons)
         {
             Debug.Log("�׽���");
+            int i = 0;
 
             foreach (var lol in kek.members)
             {
                 Debug.Log("�׽���2");
-
-                lol.GetComponentInChildren<UnityEngine.AI.NavMeshAgent>().Warp(pos);
-                lol.GetComponentInChildren<Player>().SetMoveDirection(pos);
+                // x, y 위치를 원형으로 설정
+                float angle = i * 137.5f * Mathf.Deg2Rad;
+                float radius = Mathf.Sqrt(i) * (lol.GetComponentInChildren<NavMeshAgent>().radius * 1.44f);
+                float x = Mathf.Cos(angle) * radius;
+                float y = Mathf.Sin(angle) * radius;
+                i++;
+                lol.GetComponentInChildren<UnityEngine.AI.NavMeshAgent>().Warp((Vector2)pos + new Vector2(x, y));
+                lol.GetComponentInChildren<Player>().SetMoveDirection((Vector2)pos + new Vector2(x, y));
             }
         }
     }

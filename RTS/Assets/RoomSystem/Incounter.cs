@@ -11,6 +11,7 @@ public abstract class Incounter : ScriptableObject
     /// 
 
 
+
     public virtual void Open()
     {
         IncounterUI.instance.OpenIncounter();

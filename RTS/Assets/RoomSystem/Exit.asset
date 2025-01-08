@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cef6d550d1f1f4e9f137dc33bf3bb9, type: 3}
   m_Name: Exit
   m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: a052b91d790ef784396d4fc84e9f43ab, type: 2}
+  _event: {fileID: 0}

@@ -86,6 +86,11 @@ public class GameManager : MonoBehaviour
         return num;
     } 
 
+    public void toNextFloor()
+    {
+        floor++;
+        RoomManager.instance.Reset();
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
