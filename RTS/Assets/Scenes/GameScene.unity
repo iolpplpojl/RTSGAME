@@ -9436,6 +9436,7 @@ MonoBehaviour:
   enemygoons:
   - goons:
     - {fileID: 3770014005837562738, guid: a3ca9566f6b719c4c833fd606d423ce2, type: 3}
+    - {fileID: 3770014005837562738, guid: 18d4d5dcbd477ae4491419c9ccbe79a4, type: 3}
   - goons: []
   - goons: []
   - goons: []

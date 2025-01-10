@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemDatabase : MonoBehaviour
@@ -71,6 +72,9 @@ public class ItemDatabase : MonoBehaviour
         {
             case 0:
                 temp = firstroom[GameManager.instance.DungeonRandom.Range(0, firstroom.Count)];
+                break;
+            case 1:
+                temp = firstroom[GameManager.instance.DungeonRandom.Range(0, firstroom.Count)]
                 break;
         }
         return temp;
