@@ -20,7 +20,7 @@ public class RoomManager : MonoBehaviour
     int roommax = 12;
     bool roomgencomplete = false;
     public bool moving = false;
-    Room nowRoom;
+    public Room nowRoom;
 
     public List<ScriptableObject> roomtype = new List<ScriptableObject>();
     bool endroomGen = false;
@@ -111,7 +111,7 @@ public class RoomManager : MonoBehaviour
     {
         if (moving == true)
         {
-            if (nowRoom.InRoom.Contains(room) || nowRoom.OutRoom.Contains(room))
+            if (nowRoom.InRoom.Contains(room) || nowRoom.OutRoom.Contains(room) || nowRoom == room)
             {
                 Debug.Log("무브성공");
                 nowRoom.GetComponent<SpriteRenderer>().color = Color.white;

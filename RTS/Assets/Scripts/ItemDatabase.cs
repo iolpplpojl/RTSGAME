@@ -74,7 +74,8 @@ public class ItemDatabase : MonoBehaviour
                 temp = firstroom[GameManager.instance.DungeonRandom.Range(0, firstroom.Count)];
                 break;
             case 1:
-                temp = firstroom[GameManager.instance.DungeonRandom.Range(0, firstroom.Count)]
+                temp = firstroom[GameManager.instance.DungeonRandom.Range(0, firstroom.Count)];
+
                 break;
         }
         return temp;
