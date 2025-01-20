@@ -20,7 +20,7 @@ public class ShopSlot : MonoBehaviour, IPointerClickHandler, ISlot
     public void OnPointerClick(PointerEventData eventData)
     {
         //±¸¸Å;
-        ShopUI.instance.Buy(this);
+        ShopUI.instance.Buy(this);  
     }
 
 }

@@ -22,8 +22,7 @@ public class GoonsStatusUI : MonoBehaviour
 
     public void setUp()
     {
-        Debug.Log("¼Â¾÷!");
-        Debug.Log(parent + "ÆÐ·±Ã÷");
+
             if (now != null)
             {
                 foreach (Transform temp in parent)

@@ -89,6 +89,14 @@ public class GameManager : MonoBehaviour
     public void toNextFloor()
     {
         floor++;
+        DamageRandom.Reset();
+        ShopRandom.Reset();
+        ContractRandom.Reset();
+        MapRandom.Reset();
+        SpawnRandom.Reset();
+        SpawnerRandom.Reset();
+        ChestRandom.Reset();
+        DungeonRandom.Reset(); 
         RoomManager.instance.Reset();
     }
     void Update()
@@ -163,11 +171,12 @@ public class GameManager : MonoBehaviour
 public class RNG
 {
     System.Random rand;
-    int nexted;
+    public int nexted;
 
+
+    public int nextedtemp;
     public RNG(int count,int seed)
     {
-    
         rand = new System.Random(seed);
         for(int i = 0; i < count; i++)
         {
@@ -176,17 +185,22 @@ public class RNG
 
     }
 
+    public void Reset()
+    {
+        nexted += nextedtemp;
+        nextedtemp = 0;
+    }
     
     public int Range(int min, int max)
     {
-        nexted++;
+        nextedtemp++;
 
         return rand.Next(min, max);
     }
     public float Range(float min,float max)
     {
         float value = (float)rand.NextDouble() * (max - min) + min;
-        nexted++;
+        nextedtemp++;
         Debug.Log(value + "RNG °á°ú°ª");
         return value;
     }

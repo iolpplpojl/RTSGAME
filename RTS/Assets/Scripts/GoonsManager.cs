@@ -28,6 +28,7 @@ public class GoonsManager : MonoBehaviour
         {
             Goons.Add(transform.GetChild(i).gameObject.GetComponent<Goons>());
         }
+
     }
 
     public bool addGoons(GameObject goons)
@@ -111,7 +112,6 @@ public class GoonsManager : MonoBehaviour
         {
             Select(temp);
         }
-        Debug.Log(Goons.Count);
         for (int i = Goons.Count; i < 10; i++)
         {
             SelectField[i].SetActive(false);

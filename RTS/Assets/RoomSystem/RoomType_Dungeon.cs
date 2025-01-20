@@ -18,7 +18,6 @@ public class RoomType_Dungeon : ScriptableObject, IRoomType
             if(i == 0)
             {
                 GameObject temp = ItemDatabase.instance.GetEnemyGoons();
-
                 enemySpawn.Add(temp);
             }
             else if (GameManager.instance.SpawnerRandom.Range(0f, 1f) > 0.3f)
@@ -27,6 +26,7 @@ public class RoomType_Dungeon : ScriptableObject, IRoomType
                 enemySpawn.Add(temp);
             }
         }
+
         Debug.Log("던전생성됨" + Dungeon + enemySpawn.Count);
 
     }

@@ -51,7 +51,7 @@ public class ShopUI : MonoBehaviour
                 {
                     GameManager.instance.storage[i] = slot.data.item;
                     owner.storage.Remove(slot.data);
-
+                    GameManager.instance.gold-= slot.data.price;
                     Setup(owner);
 
 

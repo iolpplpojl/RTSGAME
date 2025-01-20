@@ -9,8 +9,8 @@ public class RoomManager : MonoBehaviour
 
     public static RoomManager instance;
 
-    List<GameObject> list_room = new List<GameObject>();
-    Queue<Room> roomQueue = new Queue<Room>();
+     List<GameObject> list_room = new List<GameObject>();
+     Queue<Room> roomQueue = new Queue<Room>();
     int roomW = 20;
     int roomH = 12;
     int gridX = 20;
@@ -32,6 +32,22 @@ public class RoomManager : MonoBehaviour
             instance = this;
         }
 
+    }
+    [ContextMenu("GetNow")]    
+    public int GetNowRoomCount()
+    {
+        int i = 0;
+        foreach (GameObject room in list_room)
+        {
+            
+            if(room.GetComponent<Room>() == nowRoom)
+            {
+                Debug.Log(i);
+                return i;
+            }
+            i++;
+        }
+        return -1;
     }
     public void Clear()
     {

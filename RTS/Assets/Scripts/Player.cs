@@ -97,7 +97,6 @@ public class Player : MonoBehaviour,IDamage
         StartCoroutine(onUpdater());
         Health = _health;
         Health = baseHealth;
-
     }
 
 

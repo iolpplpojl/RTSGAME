@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ItemDatabase : MonoBehaviour
 {
     public static ItemDatabase instance;
     public List<itemdb> commonItem = new List<itemdb>();
+    public List<ScriptableObject> buffs = new List<ScriptableObject>();
+
     public List<GameObject> firstroom = new List<GameObject>();
     public List<goonsdb> commongoons = new List<goonsdb>();
     public List<goonsdb> enemygoons = new List<goonsdb>();
@@ -25,7 +29,7 @@ public class ItemDatabase : MonoBehaviour
         var temp = randomizer.Range(0f, 1f);
         Iitem _item = null;
         int idx = 0;
-        if(temp <= 1f)
+        if (temp <= 1f)
         {
             idx = 0;
         }
@@ -39,10 +43,10 @@ public class ItemDatabase : MonoBehaviour
     {
         //...골드;;;
         List<ChestData> lst = new List<ChestData>();
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             var temp = GameManager.instance.ChestRandom.Range(0f, 1f);
-            if (temp > 0.5f + (0.1f*rank))
+            if (temp > 0.5f + (0.1f * rank))
             {
                 ChestData data = new ChestData();
                 data.type = 1;
@@ -51,15 +55,16 @@ public class ItemDatabase : MonoBehaviour
             }
         }
         var z = GameManager.instance.ChestRandom.Range(0f, 1f);
-        if (z > 0.5f + (0.1f * rank)) {
+        if (z > 0.5f + (0.1f * rank))
+        {
             ChestData gold = new ChestData();
             gold.type = 0;
-            gold.gold = GameManager.instance.ChestRandom.Range(10, 30 * (rank+30));
+            gold.gold = GameManager.instance.ChestRandom.Range(10, 30 * (rank + 30));
             lst.Add(gold);
         }
         Debug.Log(lst.Count + " 로 상자 셋팅 완료.");
 
-        if(lst.Count == 0)
+        if (lst.Count == 0)
         {
             return null;
         }
@@ -112,7 +117,7 @@ public class ItemDatabase : MonoBehaviour
         //var temp = GameManager.instance.SpawnRandom.Range(0f, 1f);
         int idx = 0;
         GameObject Goons = null;
-        if(1f <= 1f)
+        if (1f <= 1f)
         {
             idx = 0;
         }
@@ -120,7 +125,76 @@ public class ItemDatabase : MonoBehaviour
         return Goons;
 
     }
+
+    public int[] GetGoonsIndex(Goons goons)
+    {
+        int x = 0;
+        int y = 0;
+        foreach (var goon in commongoons)
+        {
+            foreach (var temp in goon.goons)
+            {
+                if (goons._name == temp.GetComponent<Goons>()._name)
+                {
+                    return new int[] { x, y };
+                }
+                y++;
+            }
+            x++;
+        }
+        return new int[] { -1, -1 };
+    }
+
+    public List<SaveInvenData> GetInvenIndex()
+    {
+        List<SaveInvenData> data = new List<SaveInvenData>();
+        foreach(var item in GameManager.instance.storage)
+        {
+            (int, int) temp = FindItem(item);
+            data.Add(new SaveInvenData(temp.Item1, temp.Item2));
+        }
+        return data;
+    }
+    public List<SaveEquipMent> GetItemIndex(Goons goons)
+    {
+        List<SaveEquipMent> list = new List<SaveEquipMent>();
+        foreach (var item in goons.items)
+        {
+
+            (int, int) temp = FindItem(item);
+            list.Add(new SaveEquipMent(temp.Item1, temp.Item2));
+
+
+        }
+        return list;
+
+    }
+    public (int, int) FindItem(Iitem item)
+    {
+        int x = 0;
+        int y = 0;
+        if (item != null)
+        {
+            foreach (var compare in commonItem)
+            {
+                foreach (var i in compare.items)
+                {
+                    Debug.Log(i);
+                    if ((i as Iitem).itemname == item.itemname)
+                    {
+                        return (x, y);
+                    }
+                    y++;
+                }
+                x++;
+            }
+        }
+        return (-1, -1);
+    }
 }
+
+
+
 [System.Serializable]
 public class goonsdb
 {
@@ -131,3 +205,4 @@ public class itemdb
 {
     public List<ScriptableObject> items = new List<ScriptableObject>();
 }
+    
