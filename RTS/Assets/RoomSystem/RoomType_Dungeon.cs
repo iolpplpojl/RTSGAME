@@ -7,7 +7,7 @@ public class RoomType_Dungeon : ScriptableObject, IRoomType
 {
     public GameObject Dungeon;
     public List<GameObject> enemySpawn;
-    public bool visited;
+    [field:SerializeField] public bool visited { get; set; }
 
     public void Setup()
     {

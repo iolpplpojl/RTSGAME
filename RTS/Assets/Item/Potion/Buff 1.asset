@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Duration>k__BackingField: 0
   Health: 0
-  Damage: 0
+  Damage: 4
   Defence: 0
   Power: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Incounter_Exit : Incounter
 {
 
+
     public bool firstmove = true;
     public override void Open()
     {

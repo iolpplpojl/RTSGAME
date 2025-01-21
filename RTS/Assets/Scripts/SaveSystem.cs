@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class SaveSystem : MonoBehaviour
 {
@@ -12,6 +14,34 @@ public class SaveSystem : MonoBehaviour
             instance = this;
        }
     }
+
+
+    [ContextMenu("DOLOAD")]
+    public void Load()
+    {
+        string filePath = Path.Combine(Application.persistentDataPath, "data.json");
+        string json = File.ReadAllText(filePath);
+        SaveData dat = JsonUtility.FromJson<SaveData>(json);
+        Debug.Log(dat.gold);
+        GameManager gm = GameManager.instance;
+
+        gm.floor = dat.floor;
+        gm.gold = dat.gold;
+        gm.seed = dat.seed;
+        gm.DamageRandom = new RNG(dat.DamageRandom, dat.seed);
+        gm.ShopRandom = new RNG(dat.ShopRandom, dat.seed);
+        gm.ContractRandom = new RNG(dat.ContractRandom, dat.seed);
+        gm.MapRandom = new RNG(dat.MapRandom, dat.seed);
+        gm.SpawnRandom = new RNG(dat.SpawnRandom, dat.seed);  
+        gm.SpawnerRandom = new RNG(dat.SpawnerRandom, dat.seed);  
+        gm.ChestRandom = new RNG(dat.ChestRandom, dat.seed);  
+        gm.DungeonRandom = new RNG(dat.DungeonRandom, dat.seed);
+
+        RoomManager rm = RoomManager.instance;
+        rm.DoLoad(dat.nowpos,dat.visited);
+
+    }
+
 
     [ContextMenu("DOSAVE")]
     public void Save()
@@ -35,6 +65,8 @@ public class SaveSystem : MonoBehaviour
         sav.ChestRandom = gameManager.ChestRandom.nexted;
         sav.DungeonRandom = gameManager.DungeonRandom.nexted;
 
+        sav.visited = RoomManager.instance.GetVisitedList();
+
         sav.item = ItemDatabase.instance.GetInvenIndex();
         List<SaveGoonsData> Goon = new List<SaveGoonsData>();
         foreach(Goons goons in goonsManager.Goons)
@@ -42,16 +74,29 @@ public class SaveSystem : MonoBehaviour
             SaveGoonsData g = new SaveGoonsData();
             g.goons = ItemDatabase.instance.GetGoonsIndex(goons);
             g.equip = ItemDatabase.instance.GetItemIndex(goons);
-            Debug.Log(ItemDatabase.instance.GetItemIndex(goons));
+            g.buff = ItemDatabase.instance.GetBuffIndex(goons);
+            List<SaveUnitData> Unit = new List<SaveUnitData>();
             foreach(GameObject p in goons.members)
             {
-                Player unit = p.GetComponent<Player>();
+                SaveUnitData u = new SaveUnitData();
                 
+                Player unit = p.GetComponentInChildren<Player>();
+                u.addAttackTime = unit.addAttackTime;
+                u.addDamage = unit.addDamage; 
+                u.addDefence = unit.addDefence;
+                u.addHealth = unit.addHealth;
+                u.Health = unit.Health; 
+                u.addPower = unit.addPower;
+               
+                Unit.Add(u);
             }
+            g.unit = Unit;
             Goon.Add(g);
         }
         sav.goonsData = Goon;
-
+        string filePath = Path.Combine(Application.persistentDataPath, "data.json");
+        File.WriteAllText(filePath, JsonUtility.ToJson(sav));
+        Debug.Log(filePath);
         Debug.Log(JsonUtility.ToJson(sav));
     }
 
@@ -62,7 +107,7 @@ public class SaveSystem : MonoBehaviour
 public class SaveData
 {
     public int nowpos;
-    public int[] visited;
+    public List<bool> visited;
 
     public List<SaveInvenData> item;
     public int gold;

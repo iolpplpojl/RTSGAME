@@ -49,12 +49,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         {
             if (GameManager.instance.storage[slotNum] as Scroll != null)
             {
-                Debug.Log("½ºÅ©·Ñ Å¬¸¯µÊ");
 
             }
             else
             {
-                Debug.Log("½ºÅ©·Ñ ¾Æ´Ô + Å¬¸¯µÊ");
             }
             var temp = Camera.main.ScreenToWorldPoint(eventData.position);
             temp.z = 0;

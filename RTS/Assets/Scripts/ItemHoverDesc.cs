@@ -23,7 +23,6 @@ public class ItemHoverDesc : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (item != null)
         {
-            Debug.Log(item + " È£¹ö¸µ " + eventData.pointerEnter);
             ItemDescriptor.instance.gameObject.SetActive(true);
             hover = true;
             ItemDescriptor.instance.SetUP(item);

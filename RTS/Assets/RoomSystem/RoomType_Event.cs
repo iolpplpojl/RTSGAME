@@ -6,6 +6,8 @@ public class RoomType_Event : ScriptableObject, IRoomType
 
     public Incounter Event;
     public Incounter _event;
+    [field: SerializeField] public bool visited { get; set; }
+
     public void Setup()
     {
         _event = Instantiate(Event);

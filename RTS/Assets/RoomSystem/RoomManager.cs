@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
     using UnityEngine;
 
@@ -33,7 +34,38 @@ public class RoomManager : MonoBehaviour
         }
 
     }
-    [ContextMenu("GetNow")]    
+    
+    public void SetVisitedList(List<bool> visited)
+    {
+        int k = 0;
+        foreach(bool i in visited)
+        {
+            Debug.Log(i);                                                                       
+            list_room[k].GetComponent<Room>().roomType.visited = i;
+            k++;
+        }
+    }
+
+    public void SetNowPos(int i)
+    {
+        nowRoom = list_room[i].GetComponent<Room>();
+    }
+
+    public List<bool> GetVisitedList()
+    {
+        List<bool> lst = new List<bool>();
+
+        foreach(var r in list_room)
+        {
+            Room rm = r.GetComponent<Room>();
+            lst.Add(rm.roomType.visited);
+        }
+
+
+        return lst;
+
+    }
+
     public int GetNowRoomCount()
     {
         int i = 0;
@@ -60,34 +92,7 @@ public class RoomManager : MonoBehaviour
     }
     void Update()
     {
-        if (roomQueue.Count > 0 && roommax > roomcount && !roomgencomplete)
-        {
-            Room room = roomQueue.Dequeue();
 
-            // 방향을 배열에 저장
-            Vector2Int[] directions = new Vector2Int[]
-            {
-               Vector2Int.left,
-                  Vector2Int.right,
-                Vector2Int.up,
-              Vector2Int.down
-            };
-
-            // 배열을 무작위로 섞기
-            ShuffleArray(directions);
-
-            // 섞인 방향에 따라 방 생성
-            foreach (var direction in directions)
-            {
-                RoomGeneration(room.Pos + direction, room);
-            }
-        }
-        else if (!roomgencomplete)
-        {
-            Debug.Log("생성 완료됨.");
-            roomgencomplete = true;
-        //    transform.parent.gameObject.SetActive(false);
-        }
         foreach (var temp in list_room)
         {
 
@@ -172,6 +177,31 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    public void RoomGen()
+    {
+        while (roomQueue.Count > 0 && roommax > roomcount)
+        {
+            Room room = roomQueue.Dequeue();
+
+            // 방향을 배열에 저장
+            Vector2Int[] directions = new Vector2Int[]
+            {
+               Vector2Int.left,
+                  Vector2Int.right,
+                Vector2Int.up,
+              Vector2Int.down
+            };
+
+            // 배열을 무작위로 섞기
+            ShuffleArray(directions);
+
+            // 섞인 방향에 따라 방 생성
+            foreach (var direction in directions)
+            {
+                RoomGeneration(room.Pos + direction, room);
+            }
+        }
+    }
     void RoomGeneration(Vector2Int index, Room room)
     {
         Debug.Log(index);
@@ -241,6 +271,20 @@ public class RoomManager : MonoBehaviour
         StartRoomGeneration(new Vector2Int(gridX / 2, gridY / 2));
         roomgencomplete = false;
     }
+    
+    public void DoLoad(int pos, List<bool> vi)
+    {
+        StartCoroutine(Load(pos,vi));
+    }
+    IEnumerator Load(int pos, List<bool> vi)
+    {
+        Reset();
+        SetVisitedList(vi);
+        SetNowPos(pos);
+        yield return null;
+    }
+
+   
     Vector3 GetPositionFromGridIndex(Vector2Int gridIndex)
     {
         int X = gridIndex.x;
@@ -264,7 +308,7 @@ public class RoomManager : MonoBehaviour
         endroomGen = false;
         init.GetComponent<Room>().roomType = Instantiate(roomtype[roomtype.Count-1]) as IRoomType;
         init.GetComponent<Room>().Setup();
-
+        RoomGen();
     }
 
     void OnDrawGizmos()

@@ -125,12 +125,10 @@ public class OnClickPanel : MonoBehaviour
     }
     public void UsePotion()
     {
-        Debug.Log("사용");
         if (!GameManager.instance.inFight)
         {
             if (GameManager.instance.storage[slotNum] as Potion != null)
             {
-                Debug.Log("포션");
                 if (InventoryUI.Instance.goons != null)
                 {
                     InventoryUI.Instance.goons.usePotion(GameManager.instance.storage[slotNum] as Potion);

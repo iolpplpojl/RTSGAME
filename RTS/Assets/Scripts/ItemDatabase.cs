@@ -148,12 +148,39 @@ public class ItemDatabase : MonoBehaviour
     public List<SaveInvenData> GetInvenIndex()
     {
         List<SaveInvenData> data = new List<SaveInvenData>();
-        foreach(var item in GameManager.instance.storage)
+        foreach (var item in GameManager.instance.storage)
         {
             (int, int) temp = FindItem(item);
             data.Add(new SaveInvenData(temp.Item1, temp.Item2));
         }
         return data;
+    }
+
+    public List<SaveBuffData> GetBuffIndex(Goons goons)
+    {
+        List<SaveBuffData> list = new List<SaveBuffData>();
+        foreach(var buff in goons.buffs)
+        {
+            int i = 0;
+            foreach(var compare in buffs)
+            {
+                int removeLength = 7;
+
+                // 문자열 길이가 7보다 크면 뒤에서 7글자를 잘라냄
+                string result = buff.name.Length > removeLength
+                                ? buff.name.Substring(0, buff.name.Length - removeLength)
+                                : buff.name;
+                if (result == compare.name)
+                {
+                    SaveBuffData dat = new SaveBuffData();
+                    dat.buffCode = i;
+                    dat.duration = buff.Duration;
+                    list.Add(dat);
+                }
+                i++;
+            }
+        }
+        return list;
     }
     public List<SaveEquipMent> GetItemIndex(Goons goons)
     {

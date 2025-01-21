@@ -8101,9 +8101,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1467885193}
-        m_TargetAssemblyTypeName: RoomManager, Assembly-CSharp
-        m_MethodName: Reset
+      - m_Target: {fileID: 1766634057}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: toNextFloor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9498,7 +9498,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: cda3dba7bc6e93949822716c5f230349, type: 2}
     - {fileID: 11400000, guid: 7278a6238639bf24a8e72100bc9b2cfe, type: 2}
     - {fileID: 11400000, guid: df633abbec8fe6d44a42f27e7fba3d89, type: 2}
-  buffs: []
+  buffs:
+  - {fileID: 11400000, guid: 2a9dfca36f7c36f4399af199b1810c2d, type: 2}
+  - {fileID: 11400000, guid: 3289d200bdc481348ac294a6df82906d, type: 2}
   firstroom:
   - {fileID: 6048069040459155865, guid: a1a6f7ca9e7668b4896d45db854d895a, type: 3}
   - {fileID: 6048069040459155865, guid: e947ec5633abe444188134e3f465c8ef, type: 3}
